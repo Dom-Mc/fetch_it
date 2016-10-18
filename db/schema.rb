@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018211711) do
+ActiveRecord::Schema.define(version: 20161018213128) do
+
+  create_table "phones", force: :cascade do |t|
+    t.string   "phone_number",     limit: 10, default: "", null: false
+    t.integer  "phone_type",                  default: 0,  null: false
+    t.string   "ext"
+    t.string   "phone_owner_type"
+    t.integer  "phone_owner_id"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.index ["phone_number"], name: "index_phones_on_phone_number"
+    t.index ["phone_owner_type", "phone_owner_id"], name: "index_phones_on_phone_owner_type_and_phone_owner_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
