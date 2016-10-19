@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shippers
   resources :recipients
   resources :addresses
   devise_for :users
