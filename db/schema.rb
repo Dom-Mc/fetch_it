@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018213128) do
+ActiveRecord::Schema.define(version: 20161019004052) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "address_type",       default: 0,               null: false
+    t.string   "street_address",     default: "",              null: false
+    t.string   "secondary_address"
+    t.string   "city",               default: "San Francisco", null: false
+    t.string   "state",              default: "California",    null: false
+    t.string   "zip",                default: "",              null: false
+    t.string   "country",            default: "United States", null: false
+    t.string   "address_owner_type"
+    t.integer  "address_owner_id"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.index ["address_owner_type", "address_owner_id"], name: "index_addresses_on_address_owner_type_and_address_owner_id"
+  end
 
   create_table "phones", force: :cascade do |t|
     t.string   "phone_number",     limit: 10, default: "", null: false
