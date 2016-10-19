@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: shippers
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  order_id   :integer
+#  first_name :string           default(""), not null
+#  last_name  :string           default(""), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe Shipper, type: :model do
