@@ -17,7 +17,7 @@
 #
 
 class Address < ApplicationRecord
-  enum address_type: { residence: 0, business: 1 }
+  enum address_type: { "Residence" => 0, "Business" => 1 }
 
   belongs_to :address_owner, polymorphic: true
 

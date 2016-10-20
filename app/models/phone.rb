@@ -13,7 +13,7 @@
 #
 
 class Phone < ApplicationRecord
-  enum phone_type: { mobile: 0, home: 1, office: 2 }
-  
+  enum phone_type: { "Mobile" => 0, "Home" => 1, "Office" => 2 }
+
   belongs_to :phone_owner, polymorphic: true
 end

@@ -17,7 +17,7 @@
 #
 
 class User < ApplicationRecord
-  enum account_type: {personal: 0, business: 1}
+  enum account_type: { "Personal" => 0, "Business" => 1 }
 
   has_many :addresses, as: :address_owner,
                        dependent: :destroy
