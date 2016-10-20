@@ -31,9 +31,21 @@ class User < ApplicationRecord
 
   has_many :shippers, through: :order
 
+  after_create :set_account_number, if: "account_number.blank?"
 
   # NOTE: Others available Devise modules:
   # :confirmable, :lockable, :timeoutable, :omniauthable, :recoverable, :rememberable, :trackable
   devise :database_authenticatable, :registerable, :validatable
+
+  private
+
+    # NOTE: run after User.create
+    def generate_account_number
+      "FI-%.6d" % id
+    end
+
+    def set_account_number
+      update!(account_number: generate_account_number)
+    end
 
 end
