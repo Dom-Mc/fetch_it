@@ -27,15 +27,16 @@ class User < ApplicationRecord
   has_many :phones, as: :phone_owner,
                     dependent: :destroy
 
-  has_many :recipients, through: :order
+  has_many :recipients, through: :orders
 
-  has_many :shippers, through: :order
+  has_many :shippers, through: :orders
 
   after_create :set_account_number, if: "account_number.blank?"
 
   # NOTE: Others available Devise modules:
   # :confirmable, :lockable, :timeoutable, :omniauthable, :recoverable, :rememberable, :trackable
   devise :database_authenticatable, :registerable, :validatable
+
 
   private
 
