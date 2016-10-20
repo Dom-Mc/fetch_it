@@ -15,8 +15,8 @@
 #
 
 class Order < ApplicationRecord
-  enum signature_requirement: { no_signature: 0, direct_signature: 1, indirect_signature: 2 }
-
+  enum signature_requirement: { "No Signature" => 0, "Direct Signature" => 1, "Indirect Signature" => 2 }
+  
   has_one :recipient, inverse_of: :order
   belongs_to :service, inverse_of: :orders
   has_one :shipper, inverse_of: :order
