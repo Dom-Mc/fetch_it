@@ -18,8 +18,8 @@ class Order < ApplicationRecord
   enum signature_requirement: { no_signature: 0, direct_signature: 1, indirect_signature: 2 }
 
   has_one :recipient, inverse_of: :order
-  has_one :service, inverse_of: :order
+  belongs_to :service, inverse_of: :orders
   has_one :shipper, inverse_of: :order
-  belongs_to :user, inverse_of: :order
+  belongs_to :user, inverse_of: :orders
 
 end

@@ -12,5 +12,5 @@
 #
 
 class Service < ApplicationRecord
-  belongs_to :order, inverse_of: :service
+  has_many :orders, inverse_of: :service
 end

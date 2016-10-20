@@ -20,9 +20,9 @@ class User < ApplicationRecord
   enum account_type: {personal: 0, business: 1}
 
   has_many :addresses, as: :address_owner,
-                     dependent: :destroy
+                       dependent: :destroy
 
-  has_one :order, inverse_of: :user
+  has_many :orders, inverse_of: :user
 
   has_many :phones, as: :phone_owner,
                     dependent: :destroy
@@ -31,8 +31,6 @@ class User < ApplicationRecord
 
   has_many :shippers, through: :order
 
-  # TODO: Add an order_history
-  # has_many :services, through: :order_history
 
   # NOTE: Others available Devise modules:
   # :confirmable, :lockable, :timeoutable, :omniauthable, :recoverable, :rememberable, :trackable
