@@ -1,0 +1,56 @@
+<div class="container"><br><br><br><br>
+
+  <%= simple_form_for @order do |f| %>
+
+    <h2>Shipper</h2>
+    <%= f.simple_fields_for :shipper do |shipper| %>
+      <%= shipper.input :first_name %>
+      <%= shipper.input :last_name %>
+
+      <%= shipper.fields_for :address do |address| %>
+        <%= address.input :address_type, collection: Address.address_types.keys.to_a, selected: "residence" %>
+        <%= address.input :street_address %>
+        <%= address.input :second_address %>
+        <%= address.input :zip %>
+      <% end %>
+
+      <%=shipper.fields_for :phone do |phone| %>
+        <%= phone.input :phone_type, collection: Phone.phone_types.keys.to_a, selected: 'mobile' %>
+        <%= phone.input :phone_number, as: :tel %>
+        <%= phone.input :ext, as: :tel %>
+      <% end %>
+    <% end %>
+
+    <h2>Recipient</h2>
+    <%= f.simple_fields_for :recipient do |recipient| %>
+      <%= recipient.input :first_name %>
+      <%= recipient.input :last_name %>
+
+      <%= recipient.fields_for :phone do |phone| %>
+        <%= phone.input :phone_type, collection: Phone.phone_types.keys.to_a, selected: 'mobile' %>
+        <%= phone.input :phone_number, as: :tel %>
+        <%= phone.input :ext, as: :tel %>
+      <% end %>
+
+      <%= recipient.fields_for :address do |address| %>
+        <%= address.input :address_type, collection: Address.address_types.keys.to_a, selected: "residence" %>
+        <%= address.input :street_address %>
+        <%= address.input :second_address %>
+        <%= address.input :zip %>
+      <% end %>
+    <% end %>
+
+    <h2>Service</h2>
+    <%= f.input :service_id, collection: Service.all, label_method: :service_name, selected: "ASAP" %>
+    <%= f.input :special_instructions, as: :text %>
+    <%= f.input :number_of_items, as: :integer %>
+    <%= f.input :estimated_weight, as: :integer %>
+    <%= f.input :signature_requirement, collection: Order.signature_requirements.to_a, selected: "No Signature" %>
+    <%= f.input :shipping_reference %>
+    shipping_reference
+
+    <%= f.button :submit %>
+
+  <% end %>
+
+</div>
