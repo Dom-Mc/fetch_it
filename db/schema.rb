@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019012856) do
+ActiveRecord::Schema.define(version: 20161019233235) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "address_type",       default: 0,               null: false
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20161019012856) do
     t.integer  "user_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.integer  "service_id"
+    t.index ["service_id"], name: "index_orders_on_service_id"
     t.index ["shipping_reference"], name: "index_orders_on_shipping_reference"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -68,10 +70,8 @@ ActiveRecord::Schema.define(version: 20161019012856) do
     t.string   "service_name", default: "",    null: false
     t.text     "description",  default: "",    null: false
     t.decimal  "price",        default: "0.0", null: false
-    t.integer  "order_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.index ["order_id"], name: "index_services_on_order_id"
     t.index ["service_name"], name: "index_services_on_service_name"
   end
 
