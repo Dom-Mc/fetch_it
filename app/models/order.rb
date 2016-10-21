@@ -22,6 +22,31 @@ class Order < ApplicationRecord
   has_one :shipper, inverse_of: :order
   belongs_to :user, inverse_of: :orders
 
+
+  validates :estimated_weight, presence: true,
+  numericality: { greater_than_or_equal_to: 1 }
+
+  validates :number_of_items, presence: true,
+  numericality: { greater_than_or_equal_to: 1 }
+
+  validates :service, presence: true
+
+  validates :shipping_reference, length: { maximum: 50 },
+                                 allow_nil: true
+
+  validates :signature_requirement, presence: true,
+                                    inclusion: { within: ["No Signature", "Indirect Signature", "Direct Signature"] }
+
+  validates :special_instructions, length: { maximum: 2000 },
+                allow_nil: true
+
+
+  validates :total_charge, presence: true
+                           #numericality: { greater_than_or_equal_to: 0 }
+
+  validates :user, presence: true
+
+
   # def name_of_service=(service_id)
   #   self.service = Service.find(service_id)
   # end
@@ -33,7 +58,7 @@ class Order < ApplicationRecord
     )
     shipper.build_phone(
       phone_number: shipper_attributes[:phone][:phone_number],
-        phone_type: 0,#shipper_attributes[:phone][:phone_type],
+        phone_type: shipper_attributes[:phone][:phone_type],
                ext: shipper_attributes[:phone][:ext]
     )
     shipper.build_address(
@@ -51,7 +76,7 @@ class Order < ApplicationRecord
     )
     recipient.build_phone(
       phone_number: recipient_attributes[:phone][:phone_number],
-        phone_type: 0,#recipient_attributes[:phone][:phone_type],
+        phone_type: recipient_attributes[:phone][:phone_type],
                ext: recipient_attributes[:phone][:ext]
     )
     recipient.build_address(
