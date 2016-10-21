@@ -13,4 +13,14 @@
 
 class Service < ApplicationRecord
   has_many :orders, inverse_of: :service
+
+  validates :description, presence: true,
+                        length: { maximum: 2000 }
+
+  validates :service_name, presence: true,
+                   length: { maximum: 50 },
+                   uniqueness: true
+
+  validates :price, presence: true,
+                    numericality: { greater_than_or_equal_to: 0 }
 end
