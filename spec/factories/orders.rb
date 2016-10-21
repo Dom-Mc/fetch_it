@@ -16,12 +16,14 @@
 
 FactoryGirl.define do
   factory :order do
-    total_charge "9.99"
-    number_of_items "MyString"
-    special_instructions "MyString"
-    shipping_reference "MyString"
-    estimated_weight "MyString"
-    signature_requirement 1
-    user nil
+    user
+    service
+    # total_charge (default - 0.0)
+    # number_of_items (default - "1")
+    # special_instructions (optional)
+    # shipping_reference (optional)
+    # estimated_weight (default - "1")
+    # signature_requirement (default - "No-Signature")
   end
+
 end

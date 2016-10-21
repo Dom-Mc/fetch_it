@@ -79,7 +79,7 @@ user_type2.addresses.create!(
     )
 end
 
-order1 = user_type1.create_order!(
+order1 = user_type1.orders.create!(
     number_of_items: Faker::Number.between(0, 10),
     # special_instructions (optional)
     # shipping_reference (optional)
@@ -89,7 +89,7 @@ order1 = user_type1.create_order!(
     service_id: Service.first.id
   )
 
-order2 = user_type1.create_order!(
+order2 = user_type1.orders.create!(
     number_of_items: Faker::Number.between(0, 10),
     # special_instructions (optional)
     # shipping_reference (optional)

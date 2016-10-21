@@ -13,9 +13,8 @@
 
 FactoryGirl.define do
   factory :service do
-    service_name "MyString"
-    description "MyText"
-    price "9.99"
-    order nil
+    service_name %w(ASAP Express 4-Hour 8-Hour).shuffle.first
+    description Faker::Lorem.paragraph(2)
+    price { rand() * 100 }
   end
 end

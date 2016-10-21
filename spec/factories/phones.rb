@@ -14,9 +14,11 @@
 
 FactoryGirl.define do
   factory :phone do
-    phone_number "MyString"
-    phone_type 1
-    ext "MyString"
-    phone_owner nil
+    phone_type Faker::Number.between(0, 2)
+    phone_number Faker::Number.number(10)
+    # ext (optional)
+    user
+    service
+    order
   end
 end

@@ -18,6 +18,13 @@
 
 FactoryGirl.define do
   factory :user do
-    
+    email Faker::Internet.email
+    first_name Faker::Name.first_name
+    last_name Faker::Name.last_name
+    password "secret"
+    password_confirmation "secret"
+    account_type Faker::Number.between(0, 1)
+    # account_number (created on automatically on save)
+    # company (optional)
   end
 end

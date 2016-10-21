@@ -18,13 +18,16 @@
 
 FactoryGirl.define do
   factory :address do
-    address_type 1
-    street_address "MyString"
-    secondary_address "MyString"
-    city "MyString"
-    state "MyString"
-    zip "MyString"
-    country "MyString"
-    address_owner nil
+    order
+    address_type Faker::Number.between(0, 1)
+    street_address Faker::Address.street_address
+    # city (default - San Francisco)
+    # state (default - "California")
+    zip Faker::Address.postcode.first(5)
+    # country (default - "United States")
+    #
+    # user
+    # service
+    # order
   end
 end
