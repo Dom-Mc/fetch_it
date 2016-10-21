@@ -21,4 +21,34 @@ class Address < ApplicationRecord
 
   belongs_to :address_owner, polymorphic: true
 
+  validates :address_type,
+            presence: true,
+            inclusion: { within: %w(residence business) }
+
+  validates :street_address,
+              presence: true,
+              length: { maximum: 250 }
+
+  validates :secondary_address,
+              length: { maximum: 250 },
+              allow_nil: true
+
+  validates :city,
+              presence: true,
+              length: { maximum: 25 }
+
+  validates :state,
+              presence: true,
+              length: { maximum: 25 }
+
+  validates :zip,
+              presence: true,
+              length: { is: 5 },
+              numericality: { only_integer: true }
+
+  validates :country,
+              presence: true,
+              length: { maximum: 25 }
+
+
 end
