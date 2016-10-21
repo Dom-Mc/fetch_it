@@ -24,4 +24,13 @@ class Shipper < ApplicationRecord
 
   has_one :user, through: :order
 
+
+  validates :first_name, presence: true,
+                         length: { maximum: 50 }
+
+  validates :last_name, presence: true,
+                        length: { maximum: 50 }
+
+  validates :order, presence: true
+
 end
