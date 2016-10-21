@@ -1,4 +1,9 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+
+    def index
+    end
+
   def new
     # TODO: go over
     user = User.last
