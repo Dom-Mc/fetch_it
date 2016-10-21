@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # def after_sign_in_path_for(resource_or_scope)
-  #   current_user # redirects to a user's show page
-  # end
+  def after_sign_in_path_for(resource_or_scope)
+    current_user # redirects to a user's show page
+  end
 
   # NOTE: Adding new paramters
   def configure_permitted_parameters
