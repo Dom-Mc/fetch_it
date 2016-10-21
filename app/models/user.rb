@@ -31,6 +31,22 @@ class User < ApplicationRecord
 
   has_many :shippers, through: :orders
 
+  validates :account_number, presence: true,
+                             uniqueness: true,
+                             on: :update
+
+  validates :account_type, presence: true,
+                           inclusion: { within: %w(Personal Business) }
+
+  validates :company, length: { maximum: 250 },
+                      allow_nil: true
+
+  validates :first_name, presence: true,
+                         length: { maximum: 50 }
+
+  validates :last_name, presence: true,
+                        length: { maximum: 50 }
+
   after_create :set_account_number, if: "account_number.blank?"
 
   # NOTE: Others available Devise modules:
