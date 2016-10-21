@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  resources :orders
-  resources :services
-  resources :shippers
-  resources :recipients
-  resources :addresses
+  root 'static_pages#home'
+
+  # resources :orders
+  # resources :services
+  # resources :shippers
+  # resources :recipients
+  # resources :addresses
+
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :users do
+    resources :orders, only: [:new, :create]
+  end
+
 end
