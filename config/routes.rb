@@ -7,20 +7,21 @@ Rails.application.routes.draw do
   # resources :recipients
   # resources :addresses
 
-  devise_for :users, skip: :registrations
+  devise_for :users, skip: :registrations,
+  :path => '',
+  :path_names => { sign_in: "login", sign_out: "logout", sign_up: "signup" }
+
   devise_scope :user do
     resource :registration,
       only: [:new, :create, :edit, :update],
-      path: 'users',
-      path_names: { new: 'sign_up' },
+      path: '',
+      path_names: { new: 'signup' },
       controller: 'devise/registrations',
       as: :user_registration do
         get :cancel
       end
   end
 
-  resources :users do
-    resources :orders, only: [:new, :create]
-  end
-
+  get '/profile', to: 'users#profile', as: 'user_profile'
+  resources :orders, only: [:index, :new, :create]
 end
