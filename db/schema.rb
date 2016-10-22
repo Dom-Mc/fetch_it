@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019233235) do
+ActiveRecord::Schema.define(version: 20161021204438) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "address_type",       default: 0,               null: false
@@ -98,9 +98,13 @@ ActiveRecord::Schema.define(version: 20161019233235) do
     t.integer  "account_type",           default: 0,  null: false
     t.string   "first_name",             default: "", null: false
     t.string   "last_name",              default: "", null: false
+    t.string   "provider"
+    t.string   "uid"
     t.index ["account_number"], name: "index_users_on_account_number"
     t.index ["company"], name: "index_users_on_company"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end
