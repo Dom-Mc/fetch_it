@@ -20,20 +20,16 @@ class Phone < ApplicationRecord
   belongs_to :phone_owner, polymorphic: true
 
   validates :ext, length: { maximum: 10 },
-                  allow_nil: true,
-                  numericality: { only_integer: true }
+                  numericality: { only_integer: true },
+                  allow_nil: true
 
-  validates :phone_number, length: { is: 10 },
-                           numericality: { only_integer: true }#,
+  validates :phone_number, presence: true,
+                           length: { is: 10 },
+                           numericality: { only_integer: true }
 
-  validates :phone_type, inclusion: { within: %w(Mobile Home Office) }
+  validates :phone_type, presence: true,
+                         inclusion: { within: %w(Mobile Home Office) }
 
-  validates :phone_number, :phone_type, :phone_owner, presence: true, unless: -> { facebook_user? }
+  validates :phone_owner, presence: true
 
-  private
-
-    def facebook_user?
-      self.phone_owner.provider && self.phone_owner.uid
-    end
-    
 end
