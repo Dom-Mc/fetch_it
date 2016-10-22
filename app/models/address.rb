@@ -23,7 +23,7 @@ class Address < ApplicationRecord
 
   validates :address_type,
             presence: true,
-            inclusion: { within: %w(residence business) }
+            inclusion: { within: %w(Residence Business) }
 
   validates :street_address,
               presence: true,
