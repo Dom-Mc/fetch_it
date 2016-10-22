@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   # resources :shippers
   # resources :recipients
   # resources :addresses
-
-  devise_for :users, skip: :registrations,
-  :path => '',
-  :path_names => { sign_in: "login", sign_out: "logout", sign_up: "signup" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" },
+                     skip: :registrations,
+                     :path => '',
+                     :path_names => { sign_in: "login", sign_out: "logout", sign_up: "signup" }
 
   devise_scope :user do
     resource :registration,
@@ -22,6 +22,6 @@ Rails.application.routes.draw do
       end
   end
 
-  get '/profile', to: 'users#profile', as: 'user_profile'
+  get '/profile', to: 'users#profile', as: 'profile'
   resources :orders, only: [:index, :new, :create]
 end
