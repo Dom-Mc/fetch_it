@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource_or_scope)
-    current_user # redirects to a user's show page
+    request.env['omniauth.origin'] || profile_path
   end
 
   # NOTE: Adding new paramters

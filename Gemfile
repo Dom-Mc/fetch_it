@@ -36,6 +36,7 @@ gem 'devise'
 gem 'faker'
 # gem 'friendly_id'
 # gem 'pundit'
+gem 'omniauth-facebook'
 gem 'simple_form'
 
 group :development, :test do
