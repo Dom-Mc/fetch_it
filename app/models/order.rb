@@ -17,6 +17,8 @@
 class Order < ApplicationRecord
   enum signature_requirement: { "No Signature" => 0, "Direct Signature" => 1, "Indirect Signature" => 2 }
 
+  SALES_TAX = 8.75
+
   has_one :recipient, inverse_of: :order
   belongs_to :service, inverse_of: :orders
   has_one :shipper, inverse_of: :order
@@ -47,9 +49,6 @@ class Order < ApplicationRecord
   validates :user, presence: true
 
 
-  # def name_of_service=(service_id)
-  #   self.service = Service.find(service_id)
-  # end
 
   def shipper_attributes=(shipper_attributes)
     shipper = self.build_shipper(
@@ -86,5 +85,15 @@ class Order < ApplicationRecord
                     zip: recipient_attributes[:address][:zip]
     )
   end
+
+  private
+
+    def compute_total
+      # self.total_charge = service.price + SALES_TAX
+    end
+
+    def add_to_customer_balance
+      # current_user.balance += total_charge (change to order_total)
+    end
 
 end
