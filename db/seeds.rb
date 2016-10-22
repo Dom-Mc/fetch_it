@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 [User, Service, Order, Shipper, Recipient, Phone, Address].each do |table|
   table.delete_all
 end
@@ -32,7 +31,7 @@ user_type2 = User.create!(
     company: Faker::Company.name
     # account_number (automatically generated on save)
   )
-# binding.pry
+
 user_type1.phones.create!(
     phone_type: Faker::Number.between(0, 2),
     phone_number: Faker::Number.number(10)
@@ -80,7 +79,7 @@ user_type2.addresses.create!(
 end
 
 order1 = user_type1.orders.create!(
-    number_of_items: Faker::Number.between(1, 10),
+    number_of_items: Faker::Number.between(1, 10).to_s,
     # special_instructions (optional)
     # shipping_reference (optional)
     # estimated_weight (default - "1")
@@ -90,13 +89,13 @@ order1 = user_type1.orders.create!(
   )
 
 order2 = user_type1.orders.create!(
-    number_of_items: Faker::Number.between(1, 10),
+    number_of_items: Faker::Number.between(1, 10).to_s,
     # special_instructions (optional)
     # shipping_reference (optional)
     # estimated_weight (default - "1")
     # signature_requirement (default - 0)
     total_charge: Faker::Commerce.price,
-    service_id: Service.second.id
+    service_id: Service.last.id
   )
 
 shipper1 = order1.create_shipper!(
