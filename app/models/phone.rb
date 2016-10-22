@@ -23,13 +23,17 @@ class Phone < ApplicationRecord
                   allow_nil: true,
                   numericality: { only_integer: true }
 
-  validates :phone_number, presence: true,
-                           length: { is: 10 },
+  validates :phone_number, length: { is: 10 },
                            numericality: { only_integer: true }#,
 
-  validates :phone_type, presence: true,
-                         inclusion: { within: ["Mobile", "Home" "Office"] }
+  validates :phone_type, inclusion: { within: %w(Mobile Home Office) }
 
-  validates :phone_owner, presence: true
+  validates :phone_number, :phone_type, :phone_owner, presence: true, unless: -> { facebook_user? }
 
+  private
+
+    def facebook_user?
+      self.phone_owner.provider && self.phone_owner.uid
+    end
+    
 end
