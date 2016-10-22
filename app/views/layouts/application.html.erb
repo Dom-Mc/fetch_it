@@ -10,11 +10,43 @@
   </head>
 
   <body>
+    <script>
+    FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '782171998589372',
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+       FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+    </script>
+
+
+
+
+
+
+
     <%= render "layouts/application/navigation" %>
-    <%= render "layouts/application/flash_messages" %>    
+    <%= render "layouts/application/flash_messages" %>
     <%= yield %>
+
     <%= render "layouts/application/footer" %>
 
-    <%= debug(params) if Rails.env.development? %>
+    <%= debug(user_session) if Rails.env.development? %>
   </body>
 </html>
