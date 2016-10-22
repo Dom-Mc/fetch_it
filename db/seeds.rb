@@ -32,7 +32,7 @@ user_type2 = User.create!(
     company: Faker::Company.name
     # account_number (automatically generated on save)
   )
-
+# binding.pry
 user_type1.phones.create!(
     phone_type: Faker::Number.between(0, 2),
     phone_number: Faker::Number.number(10)
@@ -80,7 +80,7 @@ user_type2.addresses.create!(
 end
 
 order1 = user_type1.orders.create!(
-    number_of_items: Faker::Number.between(0, 10),
+    number_of_items: Faker::Number.between(1, 10),
     # special_instructions (optional)
     # shipping_reference (optional)
     # estimated_weight (default - "1")
@@ -90,7 +90,7 @@ order1 = user_type1.orders.create!(
   )
 
 order2 = user_type1.orders.create!(
-    number_of_items: Faker::Number.between(0, 10),
+    number_of_items: Faker::Number.between(1, 10),
     # special_instructions (optional)
     # shipping_reference (optional)
     # estimated_weight (default - "1")
