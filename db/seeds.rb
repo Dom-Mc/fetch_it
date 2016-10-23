@@ -84,7 +84,7 @@ order1 = user_type1.orders.create!(
     # shipping_reference (optional)
     # estimated_weight (default - "1")
     # signature_requirement (default - 0)
-    total_charge: Faker::Commerce.price,
+    order_total: Faker::Commerce.price,
     service_id: Service.first.id
   )
 
@@ -94,7 +94,7 @@ order2 = user_type1.orders.create!(
     # shipping_reference (optional)
     # estimated_weight (default - "1")
     # signature_requirement (default - 0)
-    total_charge: Faker::Commerce.price,
+    order_total: Faker::Commerce.price,
     service_id: Service.last.id
   )
 

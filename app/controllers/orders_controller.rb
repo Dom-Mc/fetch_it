@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(
         :number_of_items,
-        :total_charge,
+        :order_total,
         :special_instructions,
         :shipping_reference,
         :estimated_weight,
