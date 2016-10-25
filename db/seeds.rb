@@ -74,11 +74,15 @@ user_type2.addresses.create!(
   Service.create!(
       service_name: service,
       description: Faker::Lorem.paragraph(2),
-      price: Faker::Commerce.price
+      price: Faker::Commerce.price,
+      start_time: '09:00',
+      end_time: '15:00'
     )
 end
 
 order1 = user_type1.orders.create!(
+    pickup_date: Faker::Date.between(Date.current, 1.day.from_now),
+    pickup_time: '11:00',
     number_of_items: Faker::Number.between(1, 10).to_s,
     # special_instructions (optional)
     # shipping_reference (optional)
@@ -89,6 +93,8 @@ order1 = user_type1.orders.create!(
   )
 
 order2 = user_type1.orders.create!(
+    pickup_date: Faker::Date.between(Date.current, 1.day.from_now),
+    pickup_time: '13:00',
     number_of_items: Faker::Number.between(1, 10).to_s,
     # special_instructions (optional)
     # shipping_reference (optional)
