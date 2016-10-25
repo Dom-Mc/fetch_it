@@ -39,7 +39,7 @@ class User < ApplicationRecord
                            inclusion: { within: %w(Personal Business) }
 
   validates :company, length: { maximum: 250 },
-                      allow_nil: true
+                      allow_blank: true
 
   validates :first_name, presence: true,
                          length: { maximum: 50 }
