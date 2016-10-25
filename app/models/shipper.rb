@@ -31,6 +31,7 @@ class Shipper < ApplicationRecord
   validates :last_name, presence: true,
                         length: { maximum: 50 }
 
-  validates :order, presence: true
+  validates_associated :address
+  validates_associated :phone
 
 end

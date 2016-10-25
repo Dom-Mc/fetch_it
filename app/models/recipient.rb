@@ -32,4 +32,7 @@ class Recipient < ApplicationRecord
 
   validates :order, presence: true
 
+  validates_associated :address
+  validates_associated :phone
+
 end
