@@ -3,7 +3,7 @@
 # Table name: orders
 #
 #  id                    :integer          not null, primary key
-#  total_charge          :decimal(, )      default(0.0), not null
+#  order_total          :decimal(, )      default(0.0), not null
 #  number_of_items       :string           default("1"), not null
 #  special_instructions  :string
 #  shipping_reference    :string
@@ -18,7 +18,8 @@ FactoryGirl.define do
   factory :order do
     user
     service
-    # total_charge (default - 0.0)
+    shipping_date Faker::Date.between(2.days.ago, Date.today)
+    # order_total (default - 0.0)
     # number_of_items (default - "1")
     # special_instructions (optional)
     # shipping_reference (optional)

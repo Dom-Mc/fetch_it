@@ -3,7 +3,7 @@
 # Table name: orders
 #
 #  id                    :integer          not null, primary key
-#  total_charge          :decimal(, )      default(0.0), not null
+#  order_total          :decimal(, )      default(0.0), not null
 #  number_of_items       :string           default("1"), not null
 #  special_instructions  :string
 #  shipping_reference    :string
@@ -92,23 +92,23 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe "total_charge" do
-    it { is_expected.to respond_to(:total_charge) }
+  describe "order_total" do
+    it { is_expected.to respond_to(:order_total) }
 
-    # it 'is invalid without a total_charge' do
+    # it 'is invalid without a order_total' do
     #   binding.pry
-    #   order.total_charge = nil
+    #   order.order_total = nil
     #   expect(order).to_not be_valid
     # end
 
-    # it 'defaults to 0.0 if total_charge is not included' do
+    # it 'defaults to 0.0 if order_total is not included' do
     #   Service.delete_all
-    #   saved_order.total_charge = nil
+    #   saved_order.order_total = nil
     #   saved_order.save
-    #   expect(saved_order.total_charge).to_be eql(0.0)
+    #   expect(saved_order.order_total).to_be eql(0.0)
     # end
 
-    # it { is_expected.to validate_numericality_of(:total_charge).is_greater_than_or_equal_to(0) }
+    # it { is_expected.to validate_numericality_of(:order_total).is_greater_than_or_equal_to(0) }
   end
 
 end
