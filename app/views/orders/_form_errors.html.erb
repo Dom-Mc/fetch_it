@@ -1,0 +1,28 @@
+<% if order.errors.any? %>
+
+  <div id="error_explanation">
+    <h4>Your order could not be placed at this time. Please fix the following errors:</h4>
+    <ul>
+      <% order.errors.full_messages.each do |order_error_message| %>
+
+        <li><%= order_error_message %></li>
+
+          <% if order_error_message == "Shipper is invalid" %>
+            <ul>
+              <% order.shipper.errors.full_messages.each do |shipper_error_message| %>
+                <li><%= shipper_error_message %></li>
+              <% end %>
+            </ul>
+
+          <% elsif order_error_message == "Recipient is invalid"%>
+            <ul>
+              <% order.recipient.errors.full_messages.each do |recipient_error_message| %>
+                <li><%= recipient_error_message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+
+      <% end %>
+    </ul>
+  </div><!-- /.error_explanation -->
+<% end %>
