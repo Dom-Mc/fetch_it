@@ -28,7 +28,7 @@ class Address < ApplicationRecord
                              length: { maximum: 250 }
 
   validates :secondary_address, length: { maximum: 250 },
-                                allow_nil: true
+                                allow_blank: true
 
   validates :city, presence: true,
                    length: { maximum: 25 }
@@ -42,5 +42,16 @@ class Address < ApplicationRecord
 
   validates :country, presence: true,
                       length: { maximum: 25 }
+
+  validates :address_owner, presence: true,
+                            unless: -> { facebook_user? }
+
+  private
+
+    def facebook_user?
+      if address_owner.is_a?(User)
+        address_owner.provider && address_owner.uid
+      end
+    end
 
 end

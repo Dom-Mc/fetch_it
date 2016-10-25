@@ -21,7 +21,7 @@ class Phone < ApplicationRecord
 
   validates :ext, length: { maximum: 10 },
                   numericality: { only_integer: true },
-                  allow_nil: true
+                  allow_blank: true
 
   validates :phone_number, presence: true,
                            length: { is: 10 },
@@ -30,6 +30,21 @@ class Phone < ApplicationRecord
   validates :phone_type, presence: true,
                          inclusion: { within: %w(Mobile Home Office) }
 
-  validates :phone_owner, presence: true
+  validates :phone_owner, presence: true,
+                          unless: -> { facebook_user? }
 
+
+  before_validation :sanitize_phone_number
+
+  private
+
+    def facebook_user?
+      if phone_owner.is_a?(User)
+        phone_owner.provider && phone_owner.uid
+      end
+    end
+
+    def sanitize_phone_number
+      self.phone_number = phone_number&.gsub(/\D/, '')
+    end
 end
