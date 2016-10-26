@@ -1,0 +1,7 @@
+<h1>Services</h1>
+
+<ul>
+  <% @services.each do |service| %>
+    <li><%= render "list", service: service %></li>
+  <% end %>
+</ul>
