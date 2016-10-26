@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
 
-  # resources :orders
-  # resources :services
+
   # resources :shippers
   # resources :recipients
   # resources :addresses
@@ -23,5 +22,8 @@ Rails.application.routes.draw do
   end
 
   get '/profile', to: 'users#profile', as: 'profile'
-  resources :orders, only: [:index, :new, :create]
+
+  resources :orders, only: [:index, :new, :create, :show]
+
+  resources :services, only: [:index, :new, :create, :show, :edit, :update]
 end
