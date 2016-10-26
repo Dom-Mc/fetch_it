@@ -47,4 +47,8 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore project notes file
 *notes.md
+
+# Ignore ios settings
+.DS_Store
