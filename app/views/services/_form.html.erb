@@ -1,0 +1,12 @@
+<%= simple_form_for service do |f| %>
+  <%= render "layouts/application/form_errors", object: service %>
+
+    <%= f.input :service_name %>
+    <%= f.input :description, as: :text, hint: 'Maximum 2000 characters.' %>
+    <%= f.input :price,  as: :decimal %>
+    <%= f.input :start_time, selected: Time.current, as: :time, ampm: true, minute_step: 15 %>
+    <%= f.input :end_time, selected: Time.current + 1.hour, as: :time, ampm: true, minute_step: 15 %>
+
+  <%= f.button :submit %>
+
+<% end %>
