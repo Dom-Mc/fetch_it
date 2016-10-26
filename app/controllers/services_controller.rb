@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+  before_action :authenticate_user!, only [:new, :create, :edit, :update]
   before_action :set_service, only: [:show, :edit, :update]
 
   def index
@@ -6,10 +7,12 @@ class ServicesController < ApplicationController
   end
 
   def new
+    # TODO: check if user is an admin
     @service = Service.new
   end
 
   def create
+    # TODO: check if user is an admin
     @service = Service.new(service_params)
     if @service.save
       redirect_to @service, notice: 'Your new service has been created.'
@@ -19,14 +22,14 @@ class ServicesController < ApplicationController
   end
 
   def show
-    # @service = Service.find(params[:id])
   end
 
   def edit
-    # @service = Service.find(params[:id])
+    # TODO: check if user is an admin
   end
 
   def update
+    # TODO: check if user is an admin
     if @service.save
       redirect_to @service, notice: 'Your new service has been created.'
     else
