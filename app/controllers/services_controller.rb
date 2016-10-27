@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_service, only: [:show, :edit, :update]
+  before_action :verify_slug, only: [:show, :edit, :update]
 
   def index
     @services = Service.all
@@ -14,6 +14,7 @@ class ServicesController < ApplicationController
   def create
     # TODO: check if user is an admin
     @service = Service.new(service_params)
+    binding.pry
     if @service.save
       redirect_to @service, notice: 'Your new service has been created.'
     else
@@ -38,12 +39,16 @@ class ServicesController < ApplicationController
   end
 
   private
-    def set_service
-      @service = Service.find(params[:id])
+    def verify_slug
+      @service ||= Service.find_by_slug(params[:id])
+      if @service.blank?
+        # TODO: change flash message
+        redirect_to services_path, notice: 'The service you were looking for could not be found.'
+      end
     end
 
     def service_params
-      params.require(:service).permit(:service_name, :description, :price, :start_time, :end_time, :start_at)
+      params.require(:service).permit(:service_name, :description, :price, :get_service_start, :get_service_end)
     end
 
 end
