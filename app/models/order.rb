@@ -26,8 +26,11 @@ class Order < ApplicationRecord
   has_one :recipient, inverse_of: :order
   belongs_to :service, inverse_of: :orders
   has_one :shipper, inverse_of: :order
+
+  # TODO: not sure about
   # belongs_to :user, inverse_of: :orders
   belongs_to :account, inverse_of: :orders
+
 
   validates :estimated_weight, presence: true
   validates :estimated_weight, numericality: { greater_than_or_equal_to: 1 }, if: "estimated_weight.present?"

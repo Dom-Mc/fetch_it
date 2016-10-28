@@ -2,27 +2,41 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user = current_user
+    binding.pry
+    # TODO: call this page order history
+    # @user = current_user
+    @user_account = Account.friendly.find(params[:account_id])
+    @order = @user_account.orders
   end
 
   def new
-    @order = current_user.orders.build
+    @user_account = Account.friendly.find(params[:account_id])
+    @order = @user_account.orders.build
     @shipper = @order.build_shipper
     @recipient = @order.build_recipient
+
+    # @order = current_user.orders.build
+    # @shipper = @order.build_shipper
+    # @recipient = @order.build_recipient
   end
 
   def create
-    @order = current_user.orders.build(order_params)
+    @user_account = Account.friendly.find(params[:account_id])
+    @order = @user_account.orders.build(order_params)
+    # @order = current_user.orders.build(order_params)
 
     if @order.save
-      redirect_to @order, notice: 'Your order has been placed.'
+      redirect_to account_order_path(@user_account, @order), notice: 'Your order has been placed.'
+      # redirect_to @order, notice: 'Your order has been placed.'
     else
       render :new
     end
   end
 
   def show
-    @order = current_user.orders.find_by(params[:id])
+    @user_account = Account.friendly.find(params[:account_id])
+    @order = @user_account.orders.find_by(params[:id])
+    # @order = current_user.orders.find_by(params[:id])
   end
 
   private

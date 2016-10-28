@@ -2,6 +2,8 @@ class ServicesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :verify_slug, only: [:show, :edit, :update]
 
+
+  # TODO: fix seeds and add to readme!
   def index
     @services = Service.all
   end

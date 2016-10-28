@@ -31,6 +31,10 @@ module OrdersHelper
   end
 
   def display_service
-    @order.service.service_name || Service.first.service_name
+    if @order.service.present?
+      @order.service.service_name
+    else
+      Service.first.service_name
+    end
   end
 end

@@ -1,4 +1,4 @@
-<%= simple_form_for order do |f| %>
+<%= simple_form_for [user_account, order] do |f| %>
   <%= render "form_errors", order: order %>
 
   <h2>Pickup</h2>
@@ -42,7 +42,9 @@
 
   <h2>Service</h2>
   <%= f.input :pickup_date, as: :date,  discard_year: true, selected: display_date %>
-  <%= f.input :get_pickup_time, label: "Pickup time", selected: display_time, as: :time, minute_step: 10, ampm: true, hint: "Pickup times are available from 8:00am to 3:00pm (PST) daily." %>
+  <%= f.input :get_pickup_time, label: "Pickup time", selected: display_time, as: :time, minute_step: 10, ampm: true, hint: "Pickups are available from 8:00am to 3:00pm (PST) daily" %>
+  <small>Note: Select services may have earlier cut off times."</small>
+  <small>Please see our service page for more information.</small>
 
   <%= f.input :service_id, collection: Service.all, label_method: :service_name, selected: display_service %>
   <%= f.input :special_instructions, as: :text, hint: 'Maximum 2000 characters.' %>

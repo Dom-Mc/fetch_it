@@ -23,6 +23,10 @@ class User < ApplicationRecord
 
   has_one :account, inverse_of: :user,
                     dependent: :destroy
+# has_many :orders, inverse_of: :user
+
+
+
 
   # has_many :addresses, as: :address_owner,
   #                      dependent: :destroy

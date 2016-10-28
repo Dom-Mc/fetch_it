@@ -16,8 +16,6 @@ class Account < ApplicationRecord
   has_many :addresses, as: :address_owner,
                        dependent: :destroy
 
-  has_many :orders, inverse_of: :user
-
   has_many :phones, as: :phone_owner,
                     dependent: :destroy
 
@@ -25,8 +23,9 @@ class Account < ApplicationRecord
 
   has_many :shippers, through: :orders
 
-  belongs_to :user, inverse_of: :account
 
+  belongs_to :user, inverse_of: :account
+  has_many :orders, inverse_of: :account
 
 
   validates :account_type, presence: true,
