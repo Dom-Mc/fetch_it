@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026224949) do
+ActiveRecord::Schema.define(version: 20161028001400) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "slug",         default: "", null: false
+    t.string   "first_name",   default: "", null: false
+    t.string   "last_name",    default: "", null: false
+    t.string   "company"
+    t.integer  "account_type", default: 0,  null: false
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["slug"], name: "index_accounts_on_slug", unique: true
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "address_type",       default: 0,               null: false
@@ -25,6 +38,18 @@ ActiveRecord::Schema.define(version: 20161026224949) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.index ["address_owner_type", "address_owner_id"], name: "index_addresses_on_address_owner_type_and_address_owner_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -79,7 +104,7 @@ ActiveRecord::Schema.define(version: 20161026224949) do
     t.string   "end_time"
     t.string   "slug",         default: "",    null: false
     t.index ["service_name"], name: "index_services_on_service_name"
-    t.index ["slug"], name: "index_services_on_slug"
+    t.index ["slug"], name: "index_services_on_slug", unique: true
   end
 
   create_table "shippers", force: :cascade do |t|

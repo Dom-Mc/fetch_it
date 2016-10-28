@@ -11,6 +11,9 @@
 #  updated_at   :datetime         not null
 
 class Service < ApplicationRecord
+  extend FriendlyId
+  friendly_id :service_name, use: :slugged
+
   attr_accessor :get_service_start, :get_service_end
 
   has_many :orders, inverse_of: :service
@@ -35,16 +38,6 @@ class Service < ApplicationRecord
   validates :start_time, presence: { message: "was blank or contained invalid characters." }
 
   before_validation :set_time, if: :times_are_present?
-
-  before_validation :set_slug
-
-  def to_param
-    slug
-  end
-
-  def set_slug
-    self.slug = service_name.downcase.gsub(/\s+/, '-')
-  end
 
   def times_are_present?
     get_service_start.present? && get_service_end.present?
