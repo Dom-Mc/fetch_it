@@ -4,8 +4,11 @@
     <%= f.input :service_name %>
     <%= f.input :description, as: :text, hint: 'Maximum 2000 characters.' %>
     <%= f.input :price,  as: :decimal %>
-    <%= f.input :start_time, selected: Time.current, as: :time, ampm: true, minute_step: 15 %>
-    <%= f.input :end_time, selected: Time.current + 1.hour, as: :time, ampm: true, minute_step: 15 %>
+
+    <%# TODO: move time conversions to helpers %>
+    
+    <%= f.input :get_service_start, selected: Time.current, as: :time, ampm: true, minute_step: 15 %>
+    <%= f.input :get_service_end, selected: Time.current + 1.hour, as: :time, ampm: true, minute_step: 15 %>
 
   <%= f.button :submit %>
 
