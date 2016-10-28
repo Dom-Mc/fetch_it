@@ -18,12 +18,13 @@ Rails.application.routes.draw do
   end
 
   # TODO: check resources
-  resources :orders, only: [:index, :new, :create, :show]
+  # resources :orders, only: [:index, :new, :create, :show]
 
   resources :services, only: [:index, :new, :create, :show, :edit, :update]
 
-  resources :accounts, path: :account, except: :destroy
-
+  resources :accounts, path: :account, except: :destroy do
+    resources :orders, only: [:index, :new, :create, :show]
+  end
   # resources :shippers
   # resources :recipients
   # resources :addresses
