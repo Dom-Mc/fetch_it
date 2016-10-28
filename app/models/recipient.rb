@@ -12,7 +12,10 @@
 #
 
 class Recipient < ApplicationRecord
+
   # TODO: remove user_id (order will have it)
+
+  has_one :account, through: :order
 
   has_one :address, as: :address_owner,
                     dependent: :destroy
@@ -22,7 +25,6 @@ class Recipient < ApplicationRecord
   has_one :phone, as: :phone_owner,
                   dependent: :destroy
 
-  has_one :user, through: :order
 
   validates :first_name, presence: true,
                          length: { maximum: 50 }
@@ -33,6 +35,7 @@ class Recipient < ApplicationRecord
   validates :order, presence: true
 
   validates_associated :address
+  
   validates_associated :phone
 
 end

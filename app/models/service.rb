@@ -27,6 +27,7 @@ class Service < ApplicationRecord
                    length: { maximum: 50 },
                    uniqueness: true
 
+# TODO: remove
   validates :slug, presence: true,
                    length: { maximum: 50 },
                    uniqueness: true

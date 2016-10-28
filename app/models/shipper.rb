@@ -14,6 +14,8 @@
 class Shipper < ApplicationRecord
   # TODO: remove user_id (order will have it)
 
+  has_one :account, through: :order
+
   has_one :address, as: :address_owner,
                     dependent: :destroy
 
@@ -21,9 +23,6 @@ class Shipper < ApplicationRecord
 
   has_one :phone, as: :phone_owner,
                   dependent: :destroy
-
-  has_one :user, through: :order
-
 
   validates :first_name, presence: true,
                          length: { maximum: 50 }
