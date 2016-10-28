@@ -1,1 +1,7 @@
 <h2>Order</h2>
+
+<ul>
+  <%= render "list", order: @order %>
+</ul>
+
+<%= link_to "Back to Account", account_path(@order.account) %>
