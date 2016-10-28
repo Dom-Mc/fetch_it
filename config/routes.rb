@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
 
-
-  # resources :shippers
-  # resources :recipients
-  # resources :addresses
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" },
                      skip: :registrations,
                      :path => '',
@@ -21,9 +17,14 @@ Rails.application.routes.draw do
       end
   end
 
-  get '/profile', to: 'users#profile', as: 'profile'
-
+  # TODO: check resources
   resources :orders, only: [:index, :new, :create, :show]
 
   resources :services, only: [:index, :new, :create, :show, :edit, :update]
+
+  resources :accounts, path: :account, except: :destroy
+
+  # resources :shippers
+  # resources :recipients
+  # resources :addresses
 end
