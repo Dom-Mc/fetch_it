@@ -1,0 +1,9 @@
+<h1>Update Profile</h1>
+
+<%# render "form", user_account: @user_account,
+                   addresses:    @user_account.addresses,
+                   phones:       display_phones %>
+
+<%= render "form", user_account: @user_account,
+                   addresses:    display_address_fields,
+                   phones:       display_phone_fields %>

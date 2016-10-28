@@ -1,0 +1,25 @@
+<%= simple_form_for user_account do |f| %>
+
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+
+  <%= f.input :account_type, collection: Account.account_types.keys.to_a, selected: user_account.account_type %>
+
+  <%= f.input :company %>
+
+  <%= f.fields_for :addresses, addresses do |address| %>
+    <%= address.input :address_type, collection: Address.address_types.keys.to_a, selected: "residence" %>
+    <%= address.input :street_address %>
+    <%= address.input :secondary_address, label: "Apt/Unit/Floor" %>
+    <%= address.input :zip %>
+  <% end %>
+
+  <%=f.fields_for :phones, phones do |phone| %>
+    <%= phone.input :phone_type, collection: Phone.phone_types.keys.to_a, selected: 'mobile' %>
+    <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
+    <%= phone.input :ext, as: :tel, required: false %>
+  <% end %>
+
+  <%= f.button :submit %>
+
+<% end %>
