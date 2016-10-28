@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20161028001400) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "slug",         default: "", null: false
+    t.string   "slug"
     t.string   "first_name",   default: "", null: false
     t.string   "last_name",    default: "", null: false
     t.string   "company"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20161028001400) do
     t.datetime "updated_at",                   null: false
     t.string   "start_time"
     t.string   "end_time"
-    t.string   "slug",         default: "",    null: false
+    t.string   "slug"
     t.index ["service_name"], name: "index_services_on_service_name"
     t.index ["slug"], name: "index_services_on_slug", unique: true
   end
