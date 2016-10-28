@@ -59,16 +59,16 @@ ActiveRecord::Schema.define(version: 20161028001400) do
     t.string   "shipping_reference"
     t.string   "estimated_weight",      default: "1",   null: false
     t.integer  "signature_requirement", default: 0,     null: false
-    t.integer  "user_id"
+    t.integer  "account_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.integer  "service_id"
     t.date     "pickup_date"
     t.string   "pickup_time"
+    t.index ["account_id"], name: "index_orders_on_account_id"
     t.index ["pickup_date"], name: "index_orders_on_pickup_date"
     t.index ["service_id"], name: "index_orders_on_service_id"
     t.index ["shipping_reference"], name: "index_orders_on_shipping_reference"
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "phones", force: :cascade do |t|
@@ -84,14 +84,14 @@ ActiveRecord::Schema.define(version: 20161028001400) do
   end
 
   create_table "recipients", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "order_id"
     t.string   "first_name", default: "", null: false
     t.string   "last_name",  default: "", null: false
+    t.integer  "account_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.index ["account_id"], name: "index_recipients_on_account_id"
     t.index ["order_id"], name: "index_recipients_on_order_id"
-    t.index ["user_id"], name: "index_recipients_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -108,14 +108,14 @@ ActiveRecord::Schema.define(version: 20161028001400) do
   end
 
   create_table "shippers", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "order_id"
     t.string   "first_name", default: "", null: false
     t.string   "last_name",  default: "", null: false
+    t.integer  "account_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.index ["account_id"], name: "index_shippers_on_account_id"
     t.index ["order_id"], name: "index_shippers_on_order_id"
-    t.index ["user_id"], name: "index_shippers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
