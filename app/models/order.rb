@@ -31,11 +31,13 @@ class Order < ApplicationRecord
   # belongs_to :user, inverse_of: :orders
   belongs_to :account, inverse_of: :orders
 
-
+# TODO: ORDER VALIDATIONS
   validates :estimated_weight, presence: true
+
   validates :estimated_weight, numericality: { greater_than_or_equal_to: 1 }, if: "estimated_weight.present?"
 
   validates :number_of_items, presence: true
+
   validates :number_of_items, numericality: { greater_than_or_equal_to: 1 }, if: "number_of_items.present?"
 
   validates :service, presence: true
