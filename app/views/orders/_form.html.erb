@@ -9,7 +9,6 @@
     <%= shipper.input :last_name %>
 
     <%# shipper.fields_for :address, order.shipper.address do |address| %>
-    <%= binding.pry %>
     <%= shipper.fields_for :address, shipper_address do |address| %>
       <%= address.input :address_type, collection: address_type_collection, selected: shipper_address_type_selected %>
       <%= address.input :street_address %>

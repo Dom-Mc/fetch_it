@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     @order = @orders.build(order_params)
     # @order = current_user.orders.build(order_params)
     if @order.save
-      redirect_to account_order_path(@order.account, @order), notice: 'Your order has been placed Thank you for using FetchIt!'
+      redirect_to account_order_path(@order.account, @order), notice: 'Your order has been placed. Thank you for using FetchIt!'
     else
       render :new
     end
