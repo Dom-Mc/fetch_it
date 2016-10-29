@@ -1,15 +1,38 @@
+<%# TODO: apply pundit %>
+
 <% if user_signed_in? %>
-  <li><%= link_to "Place Order", new_order_path %></li>
+
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      Account <b class="caret"></b>
+      Services<b class="caret"></b>
+    </a>
+
+    <ul class="dropdown-menu">
+      <% Service.all.each do |service| %>
+        <li><%= link_to service.service_name, service_path(service) %></li>
+        <% if service != Service.last %>
+          <li class="divider"></li>
+        <% end %>
+      <% end %>
+
+    </ul>
+  </li>
+
+  <li><%= link_to "Place Order", new_account_order_path(current_user.account) %></li>
+  <li><%= link_to "Order History", account_orders_path(current_user.account) %></li>
+
+
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      Account Settings<b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
-      <li><%= link_to "Account", profile_path(current_user) %></li>
+      <li><%= link_to "Profile", account_path(current_user.account) %></li>
       <li class="divider"></li>
-      <li><%= link_to "Edit Account", edit_user_registration_path %></li>
+      <li><%= link_to "Edit Profile", edit_account_path(current_user.account) %></li>
       <li class="divider"></li>
-      <li><%= link_to "Order History", orders_path %></li>
+      <li><%= link_to "Edit Account Settings", edit_user_registration_path %></li>
       <li class="divider"></li>
       <li>
         <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
