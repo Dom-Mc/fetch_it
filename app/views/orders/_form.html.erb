@@ -2,53 +2,62 @@
   <%= render "form_errors", order: order %>
 
   <h2>Pickup</h2>
-  <%= f.simple_fields_for :shipper, order.shipper do |shipper| %>
+  <%# f.simple_fields_for :shipper, order.shipper do |shipper| %>
+  <%= f.simple_fields_for :shipper, shipper do |shipper| %>
 
     <%= shipper.input :first_name %>
     <%= shipper.input :last_name %>
 
-    <%= shipper.fields_for :address, order.shipper.address do |address| %>
-      <%= address.input :address_type, collection: Address.address_types.keys.to_a, selected: "residence" %>
+    <%# shipper.fields_for :address, order.shipper.address do |address| %>
+    <%= binding.pry %>
+    <%= shipper.fields_for :address, shipper_address do |address| %>
+      <%= address.input :address_type, collection: address_type_collection, selected: shipper_address_type_selected %>
       <%= address.input :street_address %>
       <%= address.input :secondary_address, label: "Apt/Unit/Floor", required: false %>
       <%= address.input :zip %>
     <% end %>
 
-    <%=shipper.fields_for :phone, order.shipper.phone do |phone| %>
-      <%= phone.input :phone_type, collection: Phone.phone_types.keys.to_a, selected: 'mobile' %>
+    <%# shipper.fields_for :phone, order.shipper.phone do |phone| %>
+    <%= shipper.fields_for :phone, shipper_phone do |phone| %>
+      <%= phone.input :phone_type, collection: phone_type_collection, selected: shipper_phone_type_selected %>
       <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
       <%= phone.input :ext, as: :tel, required: false %>
     <% end %>
   <% end %>
 
   <h2>Delivery</h2>
-  <%= f.simple_fields_for :recipient, order.recipient do |recipient| %>
+  <%# f.simple_fields_for :recipient, order.recipient do |recipient| %>
+  <%= f.simple_fields_for :recipient, recipient do |recipient| %>
     <%= recipient.input :first_name %>
     <%= recipient.input :last_name %>
 
-    <%= recipient.fields_for :address, order.recipient.address do |address| %>
-      <%= address.input :address_type, collection: Address.address_types.keys.to_a, selected: "residence" %>
+    <%# recipient.fields_for :address, order.recipient.address do |address| %>
+    <%= recipient.fields_for :address, recipient_address do |address| %>
+      <%= address.input :address_type, collection: address_type_collection, selected: recipient_address_type_selected %>
       <%= address.input :street_address %>
       <%= address.input :secondary_address, label: "Apt/Unit/Floor", required: false %>
       <%= address.input :zip %>
     <% end %>
 
-    <%= recipient.fields_for :phone, order.recipient.phone do |phone| %>
-      <%= phone.input :phone_type, collection: Phone.phone_types.keys.to_a, selected: 'mobile' %>
+    <%# recipient.fields_for :phone, order.recipient.phone do |phone| %>
+    <%= recipient.fields_for :phone, recipient_phone do |phone| %>
+      <%= phone.input :phone_type, collection: phone_type_collection, selected: recipient_phone_type_selected %>
       <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
       <%= phone.input :ext, as: :tel, required: false %>
     <% end %>
   <% end %>
 
   <h2>Service</h2>
-  <%= f.input :pickup_date, as: :date,  discard_year: true, selected: display_date %>
-  <%= f.input :get_pickup_time, label: "Pickup time", selected: display_time, as: :time, minute_step: 10, ampm: true, hint: "Pickups are available from 8:00am to 3:00pm (PST) daily" %>
+  <%= f.input :pickup_date, as: :date, discard_year: true, selected: pickup_date_selected %>
+
+  <%= f.input :get_pickup_time, label: "Pickup time", selected: pickup_time_selected, as: :time, minute_step: 10, ampm: true, hint: "Pickups are available from 8:00am to 3:00pm (PST) daily" %>
   <small>Note: Select services may have earlier cut off times."</small>
   <small>Please see our service page for more information.</small>
 
-  <%= f.input :service_id, collection: Service.all, label_method: :service_name, selected: display_service %>
+  <%= f.input :service_id, collection: service_type_collection, label_method: :service_name, selected: service_selected %>
   <%= f.input :special_instructions, as: :text, hint: 'Maximum 2000 characters.' %>
-  <%= f.input :signature_requirement, collection: Order.signature_requirements.to_a, selected: "No Signature", hint: 'Indirect Signature: anyone at address - Direct Signature: only recipient.' %>
+
+  <%= f.input :signature_requirement, collection: signature_requirement_collection, selected: "No Signature", hint: 'Indirect Signature: anyone at address - Direct Signature: only recipient.' %>
 
   <h2>Shipment</h2>
   <%= f.input :number_of_items, as: :integer %>

@@ -3,7 +3,14 @@
   <h1>Order Service</h1>
   <small>* required fields</small>
 
-  <%= render "form", order: @order, user_account: @user_account %>
-  <%# render "form", order: @order, shipper: @order.build_shipper, recipient: @order.build_recipient %>
+  <%= render "form", order: @order,
+                     user_account: @order.account,
+                     shipper: set_shipper,
+                     shipper_address: set_shipper_address,
+                     shipper_phone: set_shipper_phone,
+                     recipient: set_recipient,
+                     recipient_address: set_recipient_address,
+                     recipient_phone: set_recipient_phone
+                   %>
 
 </div>
