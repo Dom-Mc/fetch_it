@@ -1,0 +1,34 @@
+// =======================================================================
+// Hero
+// =======================================================================
+
+/* -----------------------------------------
+    Main Image
+----------------------------------------- */
+
+// #hero
+body {
+    background-image       : url('streets_of_sf.jpg');
+    background-attachment  : fixed;
+    background-position    : center;
+    background-repeat      : no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size   : cover;
+    -o-background-size     : cover;
+    background-size        : cover;
+    width                  : 100%;
+    //height determined by browser window
+    //center items on screen
+    display                : -ms-flexbox;
+    display                : -webkit-flex;
+    display                : flex;
+    flex-direction         : column;
+    -ms-flex-align         : center;
+    -webkit-align-items    : center;
+    -webkit-box-align      : center;
+    align-items            : center;
+    justify-content        : center;
+}
+/* -----------------------------------------
+    Logo
+----------------------------------------- */

@@ -1,0 +1,114 @@
+// =======================================================================
+// Mixins
+// =======================================================================
+
+
+/* -----------------------------------------
+    Border
+----------------------------------------- */
+@mixin borders($borders) {
+  border: $borders;
+  // Usage
+  //@include borders($border-radius solid $color-border-light) //2nd & 3rd args (optional)
+}
+
+
+/* -----------------------------------------
+    Colors
+----------------------------------------- */
+// UI Color Theme ----------------------
+@mixin bg-colors($map) {
+  @each $theme, $color in $map {
+    &--#{$theme} {
+      background-color: $color;
+    }
+  }
+}
+// Usage
+//.btn {
+//  @include bg-colors($ui-colors);
+//}
+
+
+/* -----------------------------------------
+    Images
+----------------------------------------- */
+@mixin background_img ($img) {
+  // @include media('>=sm') {
+	// 	height: 400px;
+	// }
+	// @include media('>=md') {
+	// 	height: 450px;
+	// }
+	// @include media('>=lg') {
+	// 	background-attachment: fixed !important;
+	// 	height: 500px;
+	// }
+	// @include media('>=xl') {
+	// 	height: 1000px;
+	// }
+	background-image:  url('#{$path--img}/#{$img}');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-size: cover;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+	width: 100%;
+	height: 300px;
+}
+
+@mixin backImage($image, $height: 100vh, $bgPos: center center) {
+  background: -webkit-linear-gradient(rgba(0,0,0,0), rbga(0,0,0,.6));
+  background: -o-linear-gradient(rgba(0,0,0,0), rbga(0,0,0,.6));
+  background: linear-gradient(rgba(0,0,0,0), rbga(0,0,0,.6));
+  background-image: url($image);
+  background-repeat: no-repeat;
+  background-position: $bgPos;
+  background-size: cover;
+  height: $height;
+}
+/* USAGE:
+http://www.lynda.com/Sass-tutorials/Creating-basic-mixins/375925/435565-4.html
+.jumbotron {
+  @@include backImage('../img/file_name.jpg');
+} */
+/* -----------------------------------------
+    Links
+----------------------------------------- */
+@mixin links ($link, $visit: $link, $hover: $link, $active: $link) {
+  a {
+    color: $link;
+    &:visited {
+      color: $visit;
+    }
+    &:hover {
+      color: $hover;
+    }
+    &:active {
+      color: $active;
+    }
+  }
+}
+
+
+/* -----------------------------------------
+    Text
+----------------------------------------- */
+@mixin text($size: nul, $color: null, $size: nul, $weight: null, $l-height: null) {  //null is excepted for all args
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $l-height;
+}
+
+
+/* -----------------------------------------
+    List
+----------------------------------------- */
+@mixin list-reset() {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}

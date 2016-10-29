@@ -1,0 +1,19 @@
+// ==========================================================================
+// Logo
+// ==========================================================================
+
+
+.logo {
+  color: $white;
+  display: inline-block;
+  // font-family: 'Quicksand', sans-serif;
+  font-family: 'Kanit', sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+//   margin-top: 0;
+//   text-shadow: 3px 3px 3px $charcoal;
+  span.xbold {
+    font-weight: 700;
+  }
+}

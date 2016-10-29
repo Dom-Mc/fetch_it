@@ -1,0 +1,150 @@
+// =======================================================================
+// Config
+// =======================================================================
+
+// Google Web Font URLs
+// $font-url--google : 'https://fonts.googleapis.com/css?family=Ubuntu:700italic,500italic,400italic,300italic|PT+Sans:700italic,400italic|Fira+Sans:700italic,500italic,400italic,300italic|Lato:900italic,900,700italic,400italic,300italic';
+
+ @import url( 'https://fonts.googleapis.com/css?family=Exo+2:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Kanit:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Palanquin+Dark:400,500,600,700|Quicksand:300,400,700|Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
+
+
+
+/* -----------------------------------------
+  	Colors
+----------------------------------------- */
+// Base Colors -------------------------
+$semi-transparent  :rgba(255,255,255,.92);
+$white         : #ffffff;
+$vapor         : #f6f6f6;
+$white-smoke   : #f5f5f5;
+$smoke         : #eeeeee; //border
+$aluminum      : #999999;
+$grey          : #888888;
+$monsoon       : #777777;
+$steel         : #666666;
+$charcoal      : #555555;
+$tundora       : #444444;
+$github        : #333333;
+$jet           : #222222;
+$oil           : #111111;
+$black         : #000000;
+$cerulean	     : #00BFFF;
+$twitter       : #4099ff;
+$dodger		     : #1E90FF;
+$astral		     : #337AB7;
+$linkedin      : #006fa6;
+$facebook      : #3b5998;
+$river-bed	   : #48525C;
+$emerald       : #5ece7f;
+$shamrock      : #3adb76;
+$pomegranate   : #f04124;
+$red           : #ec5840;
+$google        : #d34836;
+$coral         : #ff784f;
+$rss           : #ee802f;
+
+// Color Usage -------------------------
+$color-primary   : $dodger;
+$color-secondary : $pomegranate;
+$color-accent    : $emerald;
+$color-shadow    : rgba($black, .2);
+
+// UI Colors ---------------------------
+$ui-colors: (
+	default : $dodger,
+	success : $emerald,
+	error   : $pomegranate,
+	warning : $rss,
+	info    : $twitter
+);
+//Usage
+// .btn--default
+// .btn--success
+// .btn--error
+// .btn--warning
+// .btn--info
+
+
+
+/* -----------------------------------------
+    Borders
+----------------------------------------- */
+// Border Colors -----------------------
+$color-border-light : lighten($grey, 35%);
+$color-border-dark  : $charcoal;
+
+// Border Radius  ----------------------
+//$br: 10px;
+$border-default : .3rem;
+$border-round   : 50%;
+
+
+
+/* -----------------------------------------
+    Text
+----------------------------------------- */
+// Font Stack --------------------------
+$font-family-primary   : 'Helvetica Neue', Helvetica, Arial, sans-serif;
+//$font-family-secondary : 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+//Font Weights -------------------------
+$font-weight-thin       : 100;
+$font-weight-light      : 300;
+$font-weight-medium     : 400;
+$font-weight-bold       : 700;
+$font-weight-ultra-bold : 900;
+
+//Text Colors --------------------------
+$color-text-light   : $grey;
+$color-text-base    : $river-bed;
+//$color-text-dark    : $river-bed;
+
+// Font Sizes --------------------------
+$base-font-size: 18px; //$base__font-size
+$title-font-size: 1.5rem;
+//$headline-font-size: 26px;
+//$sub-headline-font-size: 20px;
+$small-font-size: .8rem;
+// $letter-space    : 1px;
+// $baseline: 25px;
+//$base-line-height: ($baseline/$base-font-size);
+
+
+
+/* -----------------------------------------
+   Links
+----------------------------------------- */
+$color-link-default : $dodger;
+$color-link-visited : $dodger;
+$color-link-hover   : $dodger;
+$color-link-active  : $dodger;
+
+
+
+/* -----------------------------------------
+    Transitions
+----------------------------------------- */
+$trns-duration : .3s;
+
+
+/* -----------------------------------------
+    Z-indexes
+----------------------------------------- */
+$z-index: 100;
+
+
+/* -----------------------------------------
+    Include Media (library)
+----------------------------------------- */
+// $breakpoints: (
+//   'phone'   :   320px,
+//   'tablet'  :   768px,
+//   'desktop' :   1024px,
+//   'portrait':   425px,
+//
+//   'xs'      :   767px,
+//   'sm'      :   768px,
+//   'md'      :   992px,
+//   'lg'      :   1200px,
+//   'xl'      :   1800px
+// );

@@ -1,0 +1,94 @@
+// =======================================================================
+// Navigation
+// =======================================================================
+
+
+/* ----------------------------------------------
+    Navbar
+---------------------------------------------- */
+// #main-nav {
+//   background: $semi-transparent;
+//   border-radius: 0; //remove rounded edge of border on navigation
+//   padding: 15px 0;
+// }
+
+
+/* ----------------------------------------------
+    Navigation Links (tabs)
+---------------------------------------------- */
+// #main-nav {
+//
+//   // Inactive State
+//   li > a {
+//   color: $color-primary;
+//     &:focus, &:hover {
+//       background-color: $astral;
+//       color: $white;
+//     }
+//   }
+
+  // Active State
+//   .active > a {
+//     background-color: $color-primary;
+//     color: $white;
+//     &:focus, &:hover {
+//       background-color: $astral;
+//       color: $white;
+//     }
+//   }
+//
+// }
+
+
+/* ----------------------------------------------
+    Navbar Collapse (mobile)
+---------------------------------------------- */
+//make scrollable on ios devices
+// #main-nav {
+//   .navbar-collapse,
+//   .navbar-collapse {
+//     max-height: none;
+//   }
+// }
+
+// Dropdown Menu
+// @media only screen and (max-width: 768px) {
+//   .navbar-collapse.in {
+//     background-color: $semi-transparent;
+//   }
+// }
+
+
+/* ----------------------------------------------
+    Navbar Toggle (mobile)
+---------------------------------------------- */
+// #main-nav {
+//
+//   .navbar-toggle {
+//     background-color: $color-primary;
+//     &:focus,&:hover {
+//       background-color: $astral;
+//     }
+//   }
+
+  // Toggle horizonal lines
+//   .icon-bar {
+//     background-color: $white;
+//   }
+//
+// }
+
+
+/* ----------------------------------------------
+    Navbar Brand/Logo
+---------------------------------------------- */
+// #main-nav {
+//   .navbar-brand {
+//     color: $color-primary;
+//     font-size: 2rem;
+//     text-shadow: none;
+//     &:focus,&:hover {
+//       color: $astral;
+//     }
+//   }
+// }

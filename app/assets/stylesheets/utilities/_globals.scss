@@ -1,0 +1,59 @@
+// =======================================================================
+// Global
+// =======================================================================
+
+
+/* -----------------------------------------
+    Elements
+----------------------------------------- */
+html {
+    font-size: $base-font-size; //rem need html to be set (relative to the root unit - HTML)
+}
+
+body {
+    font-size: $base-font-size;
+    // color                        : $color-text-base;
+    // background-color: $background-color;
+    -webkit-text-size-adjust     : 100%;
+    -webkit-font-feature-settings: 'kern' 1;
+    -moz-font-feature-settings   : 'kern' 1;
+    -o-font-feature-settings     : 'kern' 1;
+    font-feature-settings        : 'kern' 1;
+    font-kerning                 : normal;
+    // Adjust for fixed navigation
+    // padding-top: 50px;
+    position                     : relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: $font-weight-bold;
+    margin     : 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    padding-left : 0;
+    padding-right: 0;
+}
+
+/* -----------------------------------------
+    Headings
+----------------------------------------- */
+// .heading {
+//     @extend %center-text;
+//
+//     &-main {
+//         text-align: center;
+//         // color: blue;
+//     }
+//
+//     &-sub {}
+// }

@@ -13,15 +13,20 @@
  */
 
  // NOTE: removed from the section above.
- // *= require_tree .
- // *= require_self
+
 
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
- @import "bootstrap-sprockets";
- @import "bootstrap";
+
+ @import 'bootstrap-sprockets';
+ @import 'bootstrap';
+
+ @import 'utilities/index';
+ @import 'libs/index';
+ @import 'layouts/index';
+ @import 'components/index';
 
 
-
+ @import 'utilities/index';
 
 // Debug partial
 body {

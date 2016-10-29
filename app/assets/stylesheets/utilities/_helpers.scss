@@ -1,0 +1,89 @@
+// =======================================================================
+// Helpers
+// =======================================================================
+
+
+/* -----------------------------------------
+    Borders
+----------------------------------------- */
+%top-border {
+  border-top: 2px solid $color-primary; //CHANGE COLOR LATER!!!
+}
+%bottom-border {
+  border-bottom: 2px solid $color-primary; //CHANGE COLOR LATER!!!
+}
+
+
+
+/* -----------------------------------------
+    Center Align
+----------------------------------------- */
+%center-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+%center-text {
+  text-align: center;
+  color: pink; //temp
+}
+
+
+
+/* -----------------------------------------
+    Floats
+----------------------------------------- */
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+
+/* -----------------------------------------
+    Text
+----------------------------------------- */
+
+// Truncate Text -----------------------
+%truncate {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+// Screen Readers ----------------------
+// displays hidden text for screen readers
+.screen-readers {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+// Responsive Line Breaks --------------
+// breakup text on targeted screen sizes
+.line-break {
+  display: block;
+  @media (max-width: 500px){
+    display: inline;
+  }
+  @media (min-width: 1000px){
+    display: inline;
+  }
+}
+/*Remove whitespace / prevent line-break*/
+.nobr{
+  white-space: nowrap;
+}
+
+
+.hide-tag {
+  display: none !important
+}
