@@ -1,7 +1,7 @@
 <h2>Order History</h2>
 
 <ul>
-  <% @user_account.orders.each do |order| %>
+  <% @orders.each do |order| %>
       <%= render "list", order: order %>
   <% end %>
 </ul>
