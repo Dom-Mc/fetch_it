@@ -1,3 +1,8 @@
-<h1><%= @service.service_name.titleize %> - Service</h1>
+<div class="container form">
+  <h1 class="page-title">Service - <%= @service.service_name.titleize %></h1>
 
-<%= render "list", service: @service %>
+<ul>
+  <%= render "list", service: @service %>
+</ul>
+
+</div><!-- /.container -->

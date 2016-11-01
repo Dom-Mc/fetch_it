@@ -14,50 +14,56 @@ class Service < ApplicationRecord
   extend FriendlyId
   friendly_id :service_name, use: :slugged
 
-  attr_accessor :get_service_start, :get_service_end
+  TIME_REGEX = /\A(2[0-3]|[01]?[0-9]):([0-5]?[0-9])( )?([APap][mM])?\z/
+
+  before_save :set_service_times
 
   has_many :orders, inverse_of: :service
 
   validates :description, presence: true,
                           length: { maximum: 2000 }
 
-  validates :end_time, presence: { message: "was blank or contained invalid characters." }
-
-  validates :price, presence: true
-  validates :price, numericality: { greater_than: 0, message: "must be greater than $0.00." }
+  validates :end_time, presence: true
 
   validates :service_name, presence: true,
-                   length: { maximum: 50 },
-                   uniqueness: true
+                           length: { maximum: 50 },
+                           uniqueness: true
 
-# TODO: remove
-  validates :slug, presence: true,
-                   length: { maximum: 50 },
-                   uniqueness: true
+  validates :start_time, presence: true
 
-  validates :start_time, presence: { message: "was blank or contained invalid characters." }
+  validate :service_times_are_valid
 
-  before_validation :set_time, if: :times_are_present?
+  validates :price, presence: { message: "can't be blank and should to be in the correct format (exampe: 0.00." },
+                    numericality: { greater_than: 0,
+                                    message: "should be greater than 0.00." }
 
-  def times_are_present?
-    get_service_start.present? && get_service_end.present?
-  end
+  private
 
-  def times_are_valid?
-    [get_service_start, get_service_end].all? do |time|
-      time[4] != 0 && time[4].present? && time[5].present?
+    def parsed_time(time)
+      Time.zone.parse(time).strftime('%H:%M')
     end
-  end
 
-  def parse_time
-    [get_service_start, get_service_end].map do |raw_time|
-      parsed_time = "#{raw_time[4]}:#{raw_time[5]}"
-      parsed_time << "0" if raw_time[5] == 0
+    def set_service_times
+      if !self.errors.include?(:start_time)
+        self.start_time = parsed_time(start_time)
+      end
+      if !self.errors.include?(:end_time)
+        self.end_time = parsed_time(end_time)
+      end
     end
-  end
 
-  def set_time
-    self.start_time, self.end_time = parse_time
-  end
+    def service_times_are_valid
+      error_message = "not in the correct format (example: 11:00AM)."
+
+      if start_time.present?
+        time = start_time.gsub(/\s+/,'').downcase.match(TIME_REGEX)
+        self.errors.add(:start_time, :invalid_format, message: error_message) if time.nil?
+      end
+
+      if end_time.present?
+        time = end_time.gsub(/\s+/,'').downcase.match(TIME_REGEX)
+        self.errors.add(:end_time, :invalid_format, message: error_message) if time.nil?
+      end
+    end
 
 end

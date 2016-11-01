@@ -16,7 +16,6 @@ class ServicesController < ApplicationController
   def create
     # TODO: check if user is an admin
     @service = Service.new(service_params)
-    binding.pry
     if @service.save
       redirect_to @service, notice: 'Your new service has been created.'
     else
@@ -50,7 +49,14 @@ class ServicesController < ApplicationController
     end
 
     def service_params
-      params.require(:service).permit(:service_name, :description, :price, :get_service_start, :get_service_end)
+      params.require(:service).permit(:service_name,
+                                      :description,
+                                      :price,
+                                      :start_time,
+                                      :end_time
+                                      # :get_service_start,
+                                      # :get_service_end
+                                      )
     end
 
 end

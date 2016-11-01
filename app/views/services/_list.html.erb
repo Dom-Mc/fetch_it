@@ -1,4 +1,4 @@
-Name: <%= service.service_name %>
-Description: <%= service.description %>
-Price: <%= number_to_currency(service.price) %>
-Service Availability: <%= show_time(service.start_time) %> to <%= show_time(service.end_time) %>
+<li><b>Name:</b> <%= service.service_name %></li>
+<li><b>Description:</b> <%= service.description %></li>
+<li><b>Price:</b> <%= number_to_currency(service.price) %></li>
+<li><b>Availability:</b> <%= show_time(service.start_time) %> to <%= show_time(service.end_time) %></li>

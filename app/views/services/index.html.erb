@@ -1,7 +1,11 @@
-<h1>Services</h1>
+<div class="container form">
+  <h1 class="page-title">Services</h1>
 
-<ul>
-  <% @services.each do |service| %>
-    <li><%= render "list", service: service %></li>
-  <% end %>
-</ul>
+  <ul class="service-list">
+    <% @services.each do |service| %>
+      <h2><%= link_to service.service_name, service_path(service) %></h2>
+      <%= render "list", service: service %>
+    <% end %>
+  </ul>
+
+</div><!-- /.container -->
