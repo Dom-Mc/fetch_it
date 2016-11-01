@@ -10,13 +10,6 @@ class Account < ApplicationRecord
     ]
   end
 
-
-default_scope -> { order(created_at: :desc) }
-
-
-  enum account_type: { "Personal" => 0, "Business" => 1 }
-
-
   has_many :addresses, as: :address_owner,
                        dependent: :destroy
 

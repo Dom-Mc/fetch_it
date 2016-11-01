@@ -17,12 +17,10 @@
 class Order < ApplicationRecord
 # TODO: not sure about pickup_time_request
   attr_accessor :parsed_pickup_time
-# attr_accessor :get_pickup_time, :pickup_time_request
+
+  default_scope { order(id: :desc) }
 
   before_validation :set_pickup_time, if: :pickup_time_valid?
-  # after_initialize :set_pickup_time
-
-
 
   enum signature_requirement: { "No Signature" => 0, "Direct Signature" => 1, "Indirect Signature" => 2 }
 
