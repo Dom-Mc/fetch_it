@@ -1,0 +1,35 @@
+// =======================================================================
+// Panel
+// =======================================================================
+
+// Provided by rails - simple_form
+.error_explanation, #error_explanation {
+  color: $google;
+  margin-bottom: 1.25;
+  h4 {
+      margin-bottom: .75rem;
+  }
+  ul {
+    font-size: 17px;
+    // margin-top: 8px;
+    ul{
+      margin-bottom: .5rem;
+      li {
+        margin-left: 15px;
+      }
+      li:last-child{
+        margin-bottom: .5rem;
+      }
+    }
+
+  }
+}
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
+    color: $google;
+    // color: #a94442;
+}
+// Flash Message
+
+.alert.alert-dismissable {
+  // margin-top: 1.5rem;
+}

@@ -38,14 +38,15 @@ $river-bed	   : #48525C;
 $emerald       : #5ece7f;
 $shamrock      : #3adb76;
 $pomegranate   : #f04124;
-$red           : #ec5840;
+// $red        : #ec5840;
+$red					 : #ff0000;
 $google        : #d34836;
 $coral         : #ff784f;
 $rss           : #ee802f;
 
 // Color Usage -------------------------
-$color-primary   : $dodger;
-$color-secondary : $pomegranate;
+$color-primary   : $github;
+$color-secondary : $white-smoke;
 $color-accent    : $emerald;
 $color-shadow    : rgba($black, .2);
 

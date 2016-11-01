@@ -19,19 +19,17 @@
 
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
-
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
  @import 'utilities/index';
- @import 'libs/index';
+ // @import 'libs/index';
  @import 'layouts/index';
  @import 'components/index';
 
 
  @import 'utilities/index';
 
-// Debug partial
-body {
-  margin-top: 60px
-}
+
  $gray-medium-light: #eaeaea;
  @mixin box_sizing {
   //  -moz-box-sizing:    border-box;

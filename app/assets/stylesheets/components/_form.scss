@@ -1,0 +1,59 @@
+// =======================================================================
+// Forms
+// =======================================================================
+
+label {
+  font-weight: normal;
+}
+
+.legend {
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.9rem;
+  margin: 2rem 0 1.5rem;
+}
+
+form {
+  .small {
+    color: $steel;
+  }
+
+}
+.container.form {
+  margin-bottom: 5rem;
+}
+
+.form-required {
+  color: $steel;
+  // top: -15px;
+  position: relative;
+  font-size: 75%;
+  float: right;
+}
+
+.form-note {
+  color: #666666;
+  font-weight: 100;
+  font-size: .75rem;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+// $aluminum      : #999999;
+// $grey          : #888888;
+// $monsoon       : #777777;
+// $steel         : #666666;
+// $charcoal      : #555555;
+// $tundora       : #444444;
+// $github        : #333333;
+
+
+// // Mixins
+// .size(@width; @height) {
+//   width: @width;
+//   height: @height;
+// }
+// .square(@size) {
+//   .size(@size; @size);
+// }
+
+
+// @font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;

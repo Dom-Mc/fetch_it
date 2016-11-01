@@ -1,0 +1,44 @@
+// =======================================================================
+// Buttons
+// =======================================================================
+
+.hero {
+  .btn {
+      background-color: rgba(0, 0, 0, 0);
+      border-color: $white;
+      color: $white-smoke;
+      font-weight: 400;
+      &:focus, &:hover {
+        background-color: $white-smoke;
+        color: $github;
+      }
+    }
+}
+
+//forms
+.form {
+
+  .btn.primary {
+    background: $astral;
+    color: $white-smoke;
+    margin: .75rem 0 .5rem;
+    width: 100%;
+    &:focus, &:hover {
+      background-color: $linkedin;
+    }
+  }
+
+}
+
+.main-footer {
+    a {
+      color: $charcoal;
+      &:hover {
+          text-decoration: none;
+      }
+      &:focus, &:hover {
+        color: $smoke;
+      }
+    }
+
+}

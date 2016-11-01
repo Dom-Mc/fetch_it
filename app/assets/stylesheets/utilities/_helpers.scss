@@ -1,5 +1,5 @@
 // =======================================================================
-// Helpers
+// Placeholders/Helpers
 // =======================================================================
 
 
@@ -7,28 +7,38 @@
     Borders
 ----------------------------------------- */
 %top-border {
-  border-top: 2px solid $color-primary; //CHANGE COLOR LATER!!!
+  border-top: 2px solid $color-primary;
 }
 %bottom-border {
-  border-bottom: 2px solid $color-primary; //CHANGE COLOR LATER!!!
+  border-bottom: 2px solid $color-primary;
 }
 
 
 
 /* -----------------------------------------
-    Center Align
+    Alignment
 ----------------------------------------- */
+
+// Horizontal & Vertical Centering
+%center-horizonal {
+  text-align: center;
+}
+
 %center-vertical {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+%center-vertical-flex {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 %center-text {
   text-align: center;
-  color: pink; //temp
 }
-
-
 
 /* -----------------------------------------
     Floats
@@ -40,8 +50,6 @@
     clear: both;
   }
 }
-
-
 
 /* -----------------------------------------
     Text
@@ -68,7 +76,7 @@
 }
 
 // Responsive Line Breaks --------------
-// breakup text on targeted screen sizes
+//breakup text on targeted screen sizes
 .line-break {
   display: block;
   @media (max-width: 500px){
@@ -78,12 +86,22 @@
     display: inline;
   }
 }
+
 /*Remove whitespace / prevent line-break*/
 .nobr{
   white-space: nowrap;
 }
 
+.firstLetter {
+  margin-left: -1.23rem;
+}
 
 .hide-tag {
   display: none !important
+}
+
+.hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }

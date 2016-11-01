@@ -6,8 +6,14 @@
 /* -----------------------------------------
     Elements
 ----------------------------------------- */
+* {
+  margin: 0;
+}
 html {
     font-size: $base-font-size; //rem need html to be set (relative to the root unit - HTML)
+    height: 100%;
+    position: relative;
+    // min-height: 100%;
 }
 
 body {
@@ -20,9 +26,16 @@ body {
     -o-font-feature-settings     : 'kern' 1;
     font-feature-settings        : 'kern' 1;
     font-kerning                 : normal;
+    height: 100%;
+    position: relative;
     // Adjust for fixed navigation
     // padding-top: 50px;
-    position                     : relative;
+    // position                     : relative;
+    font-family: Helvetica;
+
+    // Adjust fixed navbar
+    padding-top: 70px;
+
 }
 
 h1,
@@ -35,18 +48,28 @@ h6 {
     margin     : 0;
 }
 
-a {
-    text-decoration: none;
-}
 
 ul {
     padding-left : 0;
     padding-right: 0;
 }
 
+
+/* -----------------------------------------
+    Links
+----------------------------------------- */
+
+a {
+  text-decoration: none;
+  &:focus, &:hover {
+    text-decoration: none;
+  }
+}
+
 /* -----------------------------------------
     Headings
 ----------------------------------------- */
+
 // .heading {
 //     @extend %center-text;
 //

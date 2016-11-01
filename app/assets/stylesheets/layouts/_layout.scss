@@ -5,7 +5,40 @@
 /* -----------------------------------------
     Page Sections
 ----------------------------------------- */
-.sections {
-  height: 350px;
-  margin-top: 10%;
+
+
+/* -----------------------------------------
+    Centering Sections
+----------------------------------------- */
+@media (min-width: 769px) {
+    .row.centered > div {
+        float     : none;
+        display   : inline-block;
+        text-align: left;
+    }
+    .row.centered {
+        text-align: center;
+    }
+}
+
+
+.page-wrap {
+  // create a sticky footer
+  min-height: 100%;
+  //equal to footer height
+  margin-bottom: -5rem;
+
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+.hero {
+  .page-wrap {
+  // center content on homepage
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    }
 }

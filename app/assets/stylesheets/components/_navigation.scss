@@ -6,40 +6,55 @@
 /* ----------------------------------------------
     Navbar
 ---------------------------------------------- */
-// #main-nav {
+ #main-nav {
 //   background: $semi-transparent;
-//   border-radius: 0; //remove rounded edge of border on navigation
-//   padding: 15px 0;
-// }
+  border-radius: 0; //remove rounded edge of border on navigation
+  padding: 11px 0;
+}
 
 
 /* ----------------------------------------------
     Navigation Links (tabs)
 ---------------------------------------------- */
-// #main-nav {
-//
-//   // Inactive State
-//   li > a {
-//   color: $color-primary;
-//     &:focus, &:hover {
-//       background-color: $astral;
-//       color: $white;
-//     }
-//   }
+#main-nav {
+  font-weight: 100;
+  font-size: 16px;
+  // Inactive State
+  li > a {
+    background-color: $jet;
+    color: $smoke;
+    &:focus, &:hover {
+      background-color: $jet;
+      color: $aluminum;
+    }
+  }
 
   // Active State
-//   .active > a {
-//     background-color: $color-primary;
-//     color: $white;
-//     &:focus, &:hover {
-//       background-color: $astral;
-//       color: $white;
-//     }
-//   }
-//
-// }
-
-
+  .active > a {
+    background-color: $jet;
+    color: $aluminum;
+    &:focus, &:hover {
+      background-color: $jet;
+      color: $aluminum;
+    }
+  }
+}
+/* ----------------------------------------------
+    Navbar Dropdown-Menu
+---------------------------------------------- */
+#main-nav {
+  .dropdown-menu{
+    li > a {
+      background-color: $white;
+      color: $jet;
+      &:focus, &:hover {
+        // background-color: $jet;
+        color: $steel;
+        // increase font
+      }
+    }
+  }
+}
 /* ----------------------------------------------
     Navbar Collapse (mobile)
 ---------------------------------------------- */
