@@ -1,23 +1,35 @@
-<h2>Update your Profile</h2>
+<div class="page-wrap">
 
-<%= devise_error_messages! %>
+  <div class="container form">
 
-<%= simple_form_for(resource, as: resource_name,
-                              url: registration_path(resource_name)) do |f| %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <h1 class="page-title">Update your Account/Sign In</h1>
+    <div class="centered row">
+      <div class="col-sm-8 panel panel-default">
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+        <%= devise_error_messages! %>
 
-    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-    <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
-  </div>
+        <%= simple_form_for(resource, as: resource_name,
+        url: registration_path(resource_name)) do |f| %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true %>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+
+          <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+          <%= f.input :password_confirmation, required: false %>
+          <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+        </div><!-- /.form-inputs -->
+
+        <div class="form-actions">
+          <%= f.button :submit, "Update" %>
+        </div><!-- /.form-actions -->
+        <% end %>
+
+      </div><!-- /.panel -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</div><!-- /.page-wrap -->

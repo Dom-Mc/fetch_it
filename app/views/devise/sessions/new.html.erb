@@ -1,18 +1,29 @@
-<h2>Log in</h2>
+<div class="page-wrap">
 
-<%= devise_error_messages! %>
+  <div class="container form">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+    <h1 class="page-title">Log in</h1>
+    <div class="centered row">
+      <div class="col-sm-8 panel panel-default">
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+        <%= devise_error_messages! %>
 
-<%= link_to "Log in with Facebook", user_facebook_omniauth_authorize_path %>
-<p>Don't have an account? <%= link_to "Sign up now!", new_user_registration_path %></p>
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email, required: false, autofocus: true %>
+          <%= f.input :password, required: false %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div><!-- /.form-inputs -->
+
+        <div class="form-actions">
+          <%= f.button :submit, "Log in", class: "primary" %>
+        </div><!-- /.form-actions -->
+        <% end %>
+
+        <%= link_to "Log in with Facebook", user_facebook_omniauth_authorize_path %>
+        <p>Don't have an account? <%= link_to "Sign up now!", new_user_registration_path %></p>
+
+      </div><!-- /.panel -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</div><!-- /.page-wrap -->
