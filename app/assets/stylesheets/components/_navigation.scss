@@ -43,10 +43,14 @@
     Navbar Dropdown-Menu
 ---------------------------------------------- */
 #main-nav {
-  .dropdown-menu{
+  .dropdown-menu {
+    background-color: #222;
+    .divider {
+      background-color: $oil;
+    }
     li > a {
-      background-color: $white;
-      color: $jet;
+      background-color: #222;
+      color: $smoke;
       &:focus, &:hover {
         // background-color: $jet;
         color: $steel;
