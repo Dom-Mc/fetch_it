@@ -10,10 +10,17 @@
   </head>
 
   <body>
-    <%= render "layouts/application/navigation" %>
     <%= render "layouts/application/flash_messages" %>
+
+    <div class="page-wrap">
+
+    <%= render "layouts/application/navigation" %>
+
     <%= yield %>
+
+    </div>
+
     <%= render "layouts/application/footer" %>
-    <%= debug(user_session) if Rails.env.development? %>
+    <%# debug(user_session) if Rails.env.development? %>
   </body>
 </html>
