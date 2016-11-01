@@ -10,6 +10,10 @@ class Account < ApplicationRecord
     ]
   end
 
+
+default_scope -> { order(created_at: :desc) }
+
+
   enum account_type: { "Personal" => 0, "Business" => 1 }
 
 
@@ -39,6 +43,7 @@ class Account < ApplicationRecord
 
   validates :last_name, presence: true,
                         length: { maximum: 50 }
+
 
   # TODO: add reject_if
   accepts_nested_attributes_for :addresses

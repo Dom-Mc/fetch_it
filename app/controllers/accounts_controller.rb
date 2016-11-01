@@ -6,11 +6,11 @@ class AccountsController < ApplicationController
   # TODO: create a redirect for all users who don't have a account (put in applications controller) on create action.
 
   def new
-    binding.pry
     @user_account = current_user.build_account
   end
 
   def create
+    binding.pry
     @user_account = current_user.build_account(account_params)
     if @user_account.save
       redirect_to @user_account
@@ -49,7 +49,11 @@ class AccountsController < ApplicationController
             :address_type,
             :street_address,
             :secondary_address,
+            :city,
+            :state,
+             :country,
             :zip
+
           ],
           phones_attributes: [
             :phone_type,
@@ -60,7 +64,7 @@ class AccountsController < ApplicationController
     end
 
     def verify_user_is_new!
-      if current_user && current_user.account.present?
+      if current_user && current_user.account&.slug.present?
         redirect_to root_path
       end
       return false

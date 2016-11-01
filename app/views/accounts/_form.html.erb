@@ -1,25 +1,36 @@
-<%= simple_form_for user_account do |f| %>
+<div class="centered row">
+  <div class="col-sm-8 panel panel-default">
 
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
+    <%= simple_form_for user_account do |f| %>
 
-  <%= f.input :account_type, collection: Account.account_types.keys.to_a, selected: user_account.account_type %>
+      <%= render "layouts/application/form_errors", object: user_account %>
 
-  <%= f.input :company %>
+      <p class="form-required">*Required fields</p>
 
-  <%= f.fields_for :addresses, addresses do |address| %>
-    <%= address.input :address_type, collection: Address.address_types.keys.to_a, selected: "residence" %>
-    <%= address.input :street_address %>
-    <%= address.input :secondary_address, label: "Apt/Unit/Floor" %>
-    <%= address.input :zip %>
-  <% end %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :account_type, collection: Account.account_types.keys.to_a, selected: user_account.account_type %>
+      <%= f.input :company %>
 
-  <%=f.fields_for :phones, phones do |phone| %>
-    <%= phone.input :phone_type, collection: Phone.phone_types.keys.to_a, selected: 'mobile' %>
-    <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
-    <%= phone.input :ext, as: :tel, required: false %>
-  <% end %>
+      <%= f.fields_for :addresses, addresses do |address| %>
+        <%= address.input :address_type, collection: Address.address_types.keys.to_a, selected: "residence" %>
+        <%= address.input :street_address %>
+        <%= address.input :secondary_address, label: "Apt/Unit/Floor" %>
+        <%= address.input :city %>
+        <%= address.input :state %>
+        <%= address.input :zip %>
+        <%= address.input  :country, as: :string %>
+      <% end %>
 
-  <%= f.button :submit %>
+      <%=f.fields_for :phones, phones do |phone| %>
+        <%= phone.input :phone_type, collection: Phone.phone_types.keys.to_a, selected: 'mobile' %>
+        <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
+        <%= phone.input :ext, as: :tel, required: false %>
+      <% end %>
 
-<% end %>
+      <%= f.button :submit, class: "primary" %>
+
+    <% end %>
+
+  </div>
+</div>
