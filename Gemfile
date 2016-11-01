@@ -36,7 +36,7 @@ gem 'devise'
 gem 'faker'
 gem 'font-awesome-sass'
 gem 'friendly_id'
-# gem 'pundit'
+gem 'pundit'
 gem 'omniauth-facebook'
 gem 'simple_form'
 
