@@ -31,29 +31,19 @@ class Address < ApplicationRecord
   validates :secondary_address, length: { maximum: 250 },
                                 allow_blank: true
 
-  validates :city, presence: true,
-                   length: { maximum: 25 }
+  validates :city, length: { maximum: 25 },
+                   allow_blank: true
 
-  validates :state, presence: true,
-                    length: { maximum: 25 }
+  validates :state, length: { maximum: 25 },
+                    allow_blank: true
 
   validates :zip, presence: true,
                   length: { is: 5 },
                   numericality: { only_integer: true }
 
-  validates :country, presence: true,
-                      length: { maximum: 25 }
+  validates :country, length: { maximum: 25 },
+                      allow_blank: true
 
-  # validates :address_owner, presence: true
-                            # unless: -> { facebook_user? }
-
-  private
-
-    # # TODO: remove
-    # def facebook_user?
-    #   if address_owner.is_a?(User)
-    #     address_owner.provider && address_owner.uid
-    #   end
-    # end
+  validates :address_owner, presence: true
 
 end
