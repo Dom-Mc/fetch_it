@@ -1,6 +1,7 @@
 <div class="container form">
 
 <h1 class="page-title">Order History</h1>
+
 <ul>
   <% @orders.each do |order| %>
       <%= render "list", order: order %>
