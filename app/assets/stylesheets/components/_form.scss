@@ -37,23 +37,6 @@ form {
   margin-top: -10px;
   margin-bottom: 15px;
 }
-// $aluminum      : #999999;
-// $grey          : #888888;
-// $monsoon       : #777777;
-// $steel         : #666666;
-// $charcoal      : #555555;
-// $tundora       : #444444;
-// $github        : #333333;
-
-
-// // Mixins
-// .size(@width; @height) {
-//   width: @width;
-//   height: @height;
-// }
-// .square(@size) {
-//   .size(@size; @size);
-// }
-
-
-// @font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+.help-block {
+  font-size: 75%;
+}
