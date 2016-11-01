@@ -52,6 +52,3 @@ bower.json
 
 # Ignore ios settings
 .DS_Store
-
-# Ignore image file
-/images
