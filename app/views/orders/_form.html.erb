@@ -1,7 +1,14 @@
+<div class="centered row">
+
+<div class="col-sm-8 panel panel-default">
+
 <%= simple_form_for [user_account, order] do |f| %>
   <%= render "form_errors", order: order %>
 
-  <h2>Pickup</h2>
+<p class="form-required">*Required fields</p>
+<fieldset>
+
+  <h2 class="legend">Pickup</h2>
   <%# f.simple_fields_for :shipper, order.shipper do |shipper| %>
   <%= f.simple_fields_for :shipper, shipper do |shipper| %>
 
@@ -24,7 +31,11 @@
     <% end %>
   <% end %>
 
-  <h2>Delivery</h2>
+</fieldset>
+
+
+<fieldset>
+  <h2 class="legend">Delivery</h2>
   <%# f.simple_fields_for :recipient, order.recipient do |recipient| %>
   <%= f.simple_fields_for :recipient, recipient do |recipient| %>
     <%= recipient.input :first_name %>
@@ -46,25 +57,40 @@
     <% end %>
   <% end %>
 
-  <h2>Service</h2>
+</fieldset>
+
+<fieldset>
+
+  <h2 class="legend">Service</h2>
   <%= f.input :pickup_date, as: :date, discard_year: true, selected: pickup_date_selected %>
 
-  <%= f.input :get_pickup_time, label: "Pickup time", selected: pickup_time_selected, as: :time, minute_step: 10, ampm: true, hint: "Pickups are available from 8:00am to 3:00pm (PST) daily" %>
-  <small>Note: Select services may have earlier cut off times."</small>
-  <small>Please see our service page for more information.</small>
+  <%= f.input :pickup_time,  as: :time, hint: "Pickups are available from 8:00am to 3:00pm (PST) daily", html5: true %>
+
+  <%# f.input :pickup_time, placeholder: "3:00pm", selected: Time.current, as: :time, minute_step: 10, ampm: true, hint: "Pickups are available from 8:00am to 3:00pm (PST) daily", html5: true, placeholder: "3:00pm" %>
+
+  <p class="form-note">*Note: Select services may have earlier cut off times. Please see our <b><%= link_to "service", services_path %></b> page for more information.</p>
 
   <%= f.input :service_id, collection: service_type_collection, label_method: :service_name, selected: service_selected %>
   <%= f.input :special_instructions, as: :text, hint: 'Maximum 2000 characters.' %>
 
   <%= f.input :signature_requirement, collection: signature_requirement_collection, selected: "No Signature", hint: 'Indirect Signature: anyone at address - Direct Signature: only recipient.' %>
 
-  <h2>Shipment</h2>
-  <%= f.input :number_of_items, as: :integer %>
-  <%= f.input :estimated_weight, label: "Estimated Weight (lbs)", as: :integer %>
+</fieldset>
 
-  <h2>Billing</h2>
+<fieldset>
+
+  <h2 class="legend">Shipment</h2>
+  <%= f.input :number_of_items, as: :integer %>
+  <%= f.input :estimated_weight, label: "Estimated weight (lbs)", as: :integer %>
+  </fieldset>
+
+<fieldset>
+  <h2 class="legend">Billing</h2>
   <%= f.input :shipping_reference, label: "Shipping/Billing reference", hint: 'Maximum 50 characters.' %>
 
-  <%= f.button :submit %>
+</fieldset>
+  <%= f.button :submit, class: "primary" %>
 
 <% end %>
+</div><!-- /.panel -->
+</div><!-- /.row -->

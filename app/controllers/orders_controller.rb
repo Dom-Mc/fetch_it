@@ -34,7 +34,8 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(
         :pickup_date,
-        :get_pickup_time,
+        :pickup_time,
+        # :get_pickup_time,
         :number_of_items,
         :order_total,
         :special_instructions,
