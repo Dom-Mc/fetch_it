@@ -11,7 +11,6 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def index?
-    binding.pry
     user.manager? || record == user.account.try(:orders)
   end
 

@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account_orders, only: [:index, :new, :create, :show]
+  after_action :verify_authorized
+  after_action :verify_policy_scoped, only: :index
 
   def index
     # TODO: call this page order history
     @orders = policy_scope(Order.all)
-    # NOTE: fix
-    # authorize @orders
+    authorize @orders
   end
 
   def new

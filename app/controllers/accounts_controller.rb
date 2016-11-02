@@ -1,39 +1,51 @@
 class AccountsController < ApplicationController
   include AccountsHelper
-  before_action :authenticate_user!#, except: [:new, :create]
-  before_action :verify_user_is_new!, only: [:new, :create]
+
+  before_action :authenticate_user!
+  skip_before_action :complete_account_signup, only: [:new, :create]
+  before_action :verify_user_is_new, only: [:new, :create]
   before_action :set_user_account, only: [:show, :edit, :update]
-  # TODO: create a redirect for all users who don't have a account (put in applications controller) on create action.
+  after_action :verify_authorized, except: :index
 
   def new
     @user_account = current_user.build_account
+    authorize @user_account
   end
 
   def create
-    binding.pry
     @user_account = current_user.build_account(account_params)
+    authorize @user_account
     if @user_account.save
-      redirect_to @user_account
+      redirect_to @user_account, notice: "Your account is now active!"
     else
       render :new
     end
   end
 
   def show
+    authorize @user_account
   end
 
   def edit
+    authorize @user_account
   end
 
   def update
+    authorize @user_account
     if @user_account.update(account_params)
-      redirect_to @user_account, notice: "Your account is now active!"
+      redirect_to @user_account, notice: "Your account was successfully updated!"
     else
       render :edit
     end
   end
 
   private
+
+    def verify_user_is_new
+      if current_user && current_user.account.present?
+        redirect_to current_user.account
+      end
+    end
 
     def set_user_account
       @user_account = Account.friendly.find(params[:id])
@@ -62,13 +74,5 @@ class AccountsController < ApplicationController
           ]
       )
     end
-
-    def verify_user_is_new!
-      if current_user && current_user.account&.slug.present?
-        redirect_to root_path
-      end
-      return false
-    end
-
 
 end

@@ -1,9 +1,8 @@
 class ServicesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :verify_slug, only: [:show, :edit, :update]
+  after_action :verify_authorized, except: [:index, :show]
 
-
-  # TODO: fix seeds and add to readme!
   def index
     @services = Service.all
   end
@@ -11,11 +10,13 @@ class ServicesController < ApplicationController
   def new
     # TODO: check if user is an admin
     @service = Service.new
+    authorize @service
   end
 
   def create
     # TODO: check if user is an admin
     @service = Service.new(service_params)
+    authorize @service
     if @service.save
       redirect_to @service, notice: 'Your new service has been created.'
     else
@@ -27,11 +28,13 @@ class ServicesController < ApplicationController
   end
 
   def edit
+    authorize @service
     # TODO: check if user is an admin
   end
 
   def update
     # TODO: check if user is an admin
+    authorize @service
     if @service.save
       redirect_to @service, notice: 'Your new service has been created.'
     else
