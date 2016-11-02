@@ -1,28 +1,55 @@
 <% if order.errors.any? %>
-
   <div id="error_explanation">
     <h4>Your order could not be placed at this time. Please fix the following errors:</h4>
-    <ul>
-      <% order.errors.full_messages.each do |order_error_message| %>
 
-        <li><%= order_error_message %></li>
+    <ul class="order_errors">
+      <% order.errors.full_messages.each do |order_error_msg| %>
 
-          <% if order_error_message == "Shipper is invalid" %>
-            <ul>
-              <% order.shipper.errors.full_messages.each do |shipper_error_message| %>
-                <li><%= shipper_error_message %></li>
+        <li><%= order_error_msg %></li>
+
+          <% if order_error_msg == "Shipper is invalid" %>
+
+            <ul class="nested_errors">
+              <% order.shipper.errors.full_messages.each do |shipper_error_msg| %>
+                <li><%= shipper_error_msg %></li>
+
+                  <% if shipper_error_msg == "Phone is invalid" %>
+
+                      <ul class="nested-x2_errors">
+                        <% order.shipper.phone.errors.full_messages.each do |phone_error_msg|%>
+                          <li><%= phone_error_msg %></li>
+                        <% end %>
+                      </ul>
+
+                  <% end %>
+
               <% end %>
-            </ul>
+            </ul><!-- ./shipper_errors -->
 
-          <% elsif order_error_message == "Recipient is invalid"%>
-            <ul>
-              <% order.recipient.errors.full_messages.each do |recipient_error_message| %>
-                <li><%= recipient_error_message %></li>
+
+          <% elsif order_error_msg == "Recipient is invalid"%>
+
+            <ul class="nested_errors">
+              <% order.recipient.errors.full_messages.each do |recipient_error_msg| %>
+                <li><%= recipient_error_msg %></li>
+
+                  <% if recipient_error_msg == "Phone is invalid" %>
+
+                      <ul class="nested-x2_errors">
+                        <% order.recipient.phone.errors.full_messages.each do |phone_error_msg|%>
+                          <li><%= phone_error_msg %></li>
+                        <% end %>
+                      </ul>
+
+                  <% end %>
+
               <% end %>
-            </ul>
+            </ul><!-- ./recipient_errors -->
+
           <% end %>
 
       <% end %>
-    </ul>
+    </ul><!-- /.order_errors -->
+
   </div><!-- /.error_explanation -->
 <% end %>

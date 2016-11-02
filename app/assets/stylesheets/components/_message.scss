@@ -21,15 +21,17 @@
         margin-bottom: .5rem;
       }
     }
+  }
+}
 
+.order_errors {
+  .nested_errors {
+    margin-left: 15px;
+  }
+  .nested-x2_errors {
+    margin-left: 20px;
   }
 }
 .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
     color: $google;
-    // color: #a94442;
-}
-// Flash Message
-
-.alert.alert-dismissable {
-  // margin-top: 1.5rem;
 }
