@@ -4,16 +4,19 @@ class OrdersController < ApplicationController
 
   def index
     # TODO: call this page order history
-    # @user = current_user
+    @orders = policy_scope(Order.all)
+    # NOTE: fix
+    # authorize @orders
   end
 
   def new
     @order = @orders.build
+    authorize @order
   end
 
   def create
     @order = @orders.build(order_params)
-    # @order = current_user.orders.build(order_params)
+    authorize @order
     if @order.save
       redirect_to account_order_path(@order.account, @order), notice: 'Your order has been placed. Thank you for using FetchIt!'
     else
@@ -23,7 +26,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = @orders.find(params[:id])
-    # @order = current_user.orders.find_by(params[:id])
+    authorize @order
   end
 
   private
@@ -35,7 +38,6 @@ class OrdersController < ApplicationController
       params.require(:order).permit(
         :pickup_date,
         :pickup_time,
-        # :get_pickup_time,
         :number_of_items,
         :order_total,
         :special_instructions,
