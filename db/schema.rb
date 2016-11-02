@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028001400) do
+ActiveRecord::Schema.define(version: 20161101234647) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "slug"
@@ -132,10 +132,12 @@ ActiveRecord::Schema.define(version: 20161028001400) do
     t.string   "last_name",              default: "", null: false
     t.string   "provider"
     t.string   "uid"
+    t.integer  "role",                   default: 0,  null: false
     t.index ["account_number"], name: "index_users_on_account_number"
     t.index ["company"], name: "index_users_on_company"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
+    t.index ["role"], name: "index_users_on_role"
     t.index ["uid"], name: "index_users_on_uid"
   end
 

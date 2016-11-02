@@ -18,43 +18,14 @@
 
 class User < ApplicationRecord
 
-  # enum account_type: { "Personal" => 0, "Business" => 1 }
-
+  enum role: { customer: 0, employee: 1, manager: 2 }
 
   has_one :account, inverse_of: :user,
                     dependent: :destroy
-# has_many :orders, inverse_of: :user
-
-
-
-
-  # has_many :addresses, as: :address_owner,
-  #                      dependent: :destroy
-
-  # has_many :orders, inverse_of: :user
-  #
-  # # has_many :phones, as: :phone_owner,
-  # #                   dependent: :destroy
-  #
-  # has_many :recipients, through: :orders
-  #
-  # has_many :shippers, through: :orders
 
   validates :account_number, presence: true,
                              uniqueness: true,
                              on: :update
-
-  # validates :account_type, presence: true,
-  #                          inclusion: { within: %w(Personal Business) }
-
-  # validates :company, length: { maximum: 250 },
-  #                     allow_blank: true
-  #
-  # validates :first_name, presence: true,
-  #                        length: { maximum: 50 }
-  #
-  # validates :last_name, presence: true,
-  #                       length: { maximum: 50 }
 
   after_create :set_account_number, if: "account_number.blank?"
 
