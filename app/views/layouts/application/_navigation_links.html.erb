@@ -1,6 +1,6 @@
 <%# TODO: apply pundit %>
 
-<% if user_signed_in? %>
+
 
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -18,10 +18,10 @@
     </ul>
   </li>
 
+<% if user_signed_in? && current_user.account&.slug.present? %>
+
   <li><%= link_to "Place Order", new_account_order_path(current_user.account) %></li>
   <li><%= link_to "Order History", account_orders_path(current_user.account) %></li>
-
-
 
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

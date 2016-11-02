@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-inverse">
+<nav id="main-nav" class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
 
     <div class="navbar-header">
@@ -8,7 +8,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "FetchIt", root_path, class: "navbar-brand" %>
+      <a href="<%= root_path %>" class="logo">Fetch<span class="xbold">It</span></a>
+      <%# link_to "FetchIt", root_path, class: "logo" %>
     </div><!-- /.navbar-header -->
 
     <div class="navbar-collapse collapse" id="bs-navbar-collapse">
