@@ -36,9 +36,10 @@ class Address < ApplicationRecord
   validates :state, length: { maximum: 25 },
                     allow_blank: true
 
-  validates :zip, presence: true,
-                  length: { is: 5 },
-                  numericality: { only_integer: true }
+  validates :zip, presence: true
+  validates :zip, length: { is: 5 },
+                  numericality: { only_integer: true },
+                    unless: "zip.blank?"
 
   validates :country, length: { maximum: 25 },
                       allow_blank: true

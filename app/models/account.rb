@@ -25,20 +25,21 @@ class Account < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
-  validates :account_type, presence: true,
-                           inclusion: { within: %w(Personal Business) }
-
-  validates :company, length: { maximum: 250 },
-                      allow_blank: true
-
   validates :first_name, presence: true,
                          length: { maximum: 50 }
 
   validates :last_name, presence: true,
                         length: { maximum: 50 }
 
-  validates_associated :addresses
-  validates_associated :phones
+  validates :account_type, presence: true,
+                           inclusion: { within: %w(Personal Business) }
+
+  validates :company, length: { maximum: 250 },
+                      allow_blank: true
+
+  # TODO: Fix order of display
+  # validates_associated :addresses
+  # validates_associated :phones
 
   accepts_nested_attributes_for :addresses
   accepts_nested_attributes_for :phones

@@ -22,9 +22,10 @@ class Phone < ApplicationRecord
   validates :phone_type, presence: true,
                          inclusion: { within: %w(Mobile Home Office) }
 
-  validates :phone_number, presence: true,
-                           length: { is: 10 },
-                           numericality: { only_integer: true }
+  validates :phone_number, presence: true
+  validates :phone_number, length: { is: 10 },
+                           numericality: { only_integer: true },
+                             unless: "phone_number.blank?"
 
   validates :ext, length: { maximum: 10 },
                   numericality: { only_integer: true },
