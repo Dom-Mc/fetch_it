@@ -2,6 +2,8 @@ class Account < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
+  enum account_type: { "Personal" => 0, "Business" => 1 }
+
   def slug_candidates
     [
        :first_name,
@@ -17,13 +19,11 @@ class Account < ApplicationRecord
                     dependent: :destroy
 
   has_many :recipients, through: :orders
-
   has_many :shippers, through: :orders
-
-
   belongs_to :user, inverse_of: :account
   has_many :orders, inverse_of: :account
 
+  default_scope -> { order(created_at: :desc) }
 
   validates :account_type, presence: true,
                            inclusion: { within: %w(Personal Business) }
@@ -37,10 +37,9 @@ class Account < ApplicationRecord
   validates :last_name, presence: true,
                         length: { maximum: 50 }
 
+  validates_associated :addresses
+  validates_associated :phones
 
-  # TODO: add reject_if
   accepts_nested_attributes_for :addresses
   accepts_nested_attributes_for :phones
-
-
 end
