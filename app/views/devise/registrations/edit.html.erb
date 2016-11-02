@@ -21,7 +21,9 @@
 
           <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
           <%= f.input :password_confirmation, required: false %>
-          <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+
+          <p class='form-note'>Your current password is required for changes to take effect.</p>
+          <%= f.input :current_password, required: true %>
         </div><!-- /.form-inputs -->
 
         <div class="form-actions">

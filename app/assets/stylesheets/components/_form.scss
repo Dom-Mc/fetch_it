@@ -37,6 +37,14 @@ form {
   margin-top: -10px;
   margin-bottom: 15px;
 }
+#edit_user {
+  .form-note {
+    color: $google;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 3rem;
+  }
+}
 .help-block {
   font-size: 75%;
 }
