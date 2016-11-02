@@ -15,33 +15,22 @@
 class Phone < ApplicationRecord
   enum phone_type: { "Mobile" => 0, "Home" => 1, "Office" => 2 }
 
+  before_validation :sanitize_phone_number
+
   belongs_to :phone_owner, polymorphic: true
 
-
-  validates :ext, length: { maximum: 10 },
-                  numericality: { only_integer: true },
-                  allow_blank: true
+  validates :phone_type, presence: true,
+                         inclusion: { within: %w(Mobile Home Office) }
 
   validates :phone_number, presence: true,
                            length: { is: 10 },
                            numericality: { only_integer: true }
 
-  validates :phone_type, presence: true,
-                         inclusion: { within: %w(Mobile Home Office) }
-
-  # validates :phone_owner, presence: true,
-  #                         unless: -> { facebook_user? }
-
-  before_validation :sanitize_phone_number
+  validates :ext, length: { maximum: 10 },
+                  numericality: { only_integer: true },
+                  allow_blank: true
 
   private
-
-    # TODO: remove
-    # def facebook_user?
-    #   if phone_owner.is_a?(User)
-    #     phone_owner.provider && phone_owner.uid
-    #   end
-    # end
 
     def sanitize_phone_number
       self.phone_number = phone_number&.gsub(/\D/, '')

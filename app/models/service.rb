@@ -20,22 +20,23 @@ class Service < ApplicationRecord
 
   has_many :orders, inverse_of: :service
 
-  validates :description, presence: true,
-                          length: { maximum: 2000 }
-
-  validates :end_time, presence: true
-
   validates :service_name, presence: true,
                            length: { maximum: 50 },
                            uniqueness: true
 
-  validates :start_time, presence: true
-
-  validate :service_times_are_valid
+  validates :description, presence: true,
+                          length: { maximum: 2000 }
 
   validates :price, presence: { message: "can't be blank and should to be in the correct format (exampe: 0.00." },
                     numericality: { greater_than: 0,
-                                    message: "should be greater than 0.00." }
+                    message: "should be greater than 0.00." }
+
+  validates :start_time, presence: true
+
+  validates :end_time, presence: true
+
+  # NOTE: custom validation(s)
+  validate :service_times_are_valid
 
   private
 

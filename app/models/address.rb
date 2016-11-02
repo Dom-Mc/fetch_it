@@ -21,7 +21,6 @@ class Address < ApplicationRecord
 
   belongs_to :address_owner, polymorphic: true
 
-
   validates :address_type, presence: true,
                            inclusion: { within: %w(Residence Business) }
 
@@ -43,7 +42,4 @@ class Address < ApplicationRecord
 
   validates :country, length: { maximum: 25 },
                       allow_blank: true
-
-  validates :address_owner, presence: true
-
 end
