@@ -4,7 +4,7 @@
       <%= pluralize(object.errors.count, 'error') %> were found
     </h3>
 
-    <ul>
+    <ul class="error_list">
       <% object.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>

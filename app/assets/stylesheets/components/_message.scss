@@ -5,13 +5,15 @@
 // Provided by rails - simple_form
 .error_explanation, #error_explanation {
   color: $google;
-  margin-bottom: 1.25;
+  margin-bottom: 2rem;
   h4 {
       margin-bottom: .75rem;
   }
+  .error_list {
+    margin-left: 2rem;
+  }
   ul {
     font-size: 17px;
-    // margin-top: 8px;
     ul{
       margin-bottom: .5rem;
       li {
@@ -32,6 +34,7 @@
     margin-left: 20px;
   }
 }
+
 .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
     color: $google;
 }
