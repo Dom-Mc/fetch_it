@@ -2,27 +2,20 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= render "layouts/application/shim" %>
+    <%= render 'layouts/rails_default' %>
+    <%= render "layouts/shim" %>
   </head>
 
-
-
   <body class="hero main-bg-image">
-<%= render "layouts/application/flash_messages" %>
-<div class="page-wrap">
-    <%= render "layouts/application/navigation" %>
+    <%= render "layouts/application/flash_messages" %>
 
-    <%= yield %>
+    <div class="page-wrap">
+      <%= render "layouts/application/navigation" %>
+      <%= yield %>
+    </div>
 
-</div>
     <%= render "layouts/application/footer" %>
-
+    <%# debug(user_session) if Rails.env.development? %>
   </body>
-
-
 
 </html>
