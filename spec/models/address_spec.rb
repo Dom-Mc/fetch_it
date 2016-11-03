@@ -3,7 +3,7 @@
 # Table name: addresses
 #
 #  id                 :integer          not null, primary key
-#  address_type       :integer          default("residence"), not null
+#  address_type       :integer          default("Residence"), not null
 #  street_address     :string           default(""), not null
 #  secondary_address  :string
 #  city               :string           default("San Francisco"), not null

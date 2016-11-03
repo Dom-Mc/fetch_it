@@ -9,11 +9,10 @@
 #  reset_password_sent_at :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  company                :string
 #  account_number         :string           default(""), not null
-#  account_type           :integer          default("personal"), not null
-#  first_name             :string           default(""), not null
-#  last_name              :string           default(""), not null
+#  role                   :integer          default("customer"), not null
+#  provider               :string
+#  uid                    :string
 #
 
 FactoryGirl.define do

@@ -6,9 +6,12 @@
 #  service_name :string           default(""), not null
 #  description  :text             default(""), not null
 #  price        :decimal(, )      default(0.0), not null
-#  order_id     :integer
+#  start_time   :string
+#  end_time     :string
+#  slug         :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#
 
 class Service < ApplicationRecord
 

@@ -3,7 +3,6 @@
 # Table name: recipients
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
 #  order_id   :integer
 #  first_name :string           default(""), not null
 #  last_name  :string           default(""), not null

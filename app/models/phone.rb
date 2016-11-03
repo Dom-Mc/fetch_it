@@ -4,7 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  phone_number     :string(10)       default(""), not null
-#  phone_type       :integer          default("mobile"), not null
+#  phone_type       :integer          default("Mobile"), not null
 #  ext              :string
 #  phone_owner_type :string
 #  phone_owner_id   :integer
