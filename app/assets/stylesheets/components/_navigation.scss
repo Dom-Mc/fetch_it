@@ -25,17 +25,17 @@
     color: $smoke;
     &:focus, &:hover {
       background-color: $jet;
-      color: $aluminum;
+      color: $astral;
     }
   }
 
   // Active State
   .active > a {
     background-color: $jet;
-    color: $aluminum;
+    color: $astral;
     &:focus, &:hover {
       background-color: $jet;
-      color: $aluminum;
+      color: $astral;
     }
   }
 }
@@ -53,7 +53,7 @@
       color: $smoke;
       &:focus, &:hover {
         // background-color: $jet;
-        color: $steel;
+        color: $astral;
         // increase font
       }
     }

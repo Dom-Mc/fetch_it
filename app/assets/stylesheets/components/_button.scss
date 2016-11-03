@@ -1,5 +1,5 @@
 // =======================================================================
-// Buttons
+// Button
 // =======================================================================
 
 .hero {
@@ -15,9 +15,7 @@
     }
 }
 
-//forms
 .form {
-
   .btn.primary {
     background: $astral;
     color: $white-smoke;
@@ -27,7 +25,6 @@
       background-color: $linkedin;
     }
   }
-
 }
 
 .main-footer {
@@ -40,5 +37,12 @@
         color: $smoke;
       }
     }
+}
 
+.account {
+  .btn {
+    margin-left: 4.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 }

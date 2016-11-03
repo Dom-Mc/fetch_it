@@ -1,0 +1,46 @@
+// =======================================================================
+// List
+// =======================================================================
+
+.service-list {
+  li {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin-left: 7.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: .75rem;
+    margin-left: 4.5rem;
+  }
+}
+.order-list {
+  li {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin-left: 7.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: .75rem;
+    margin-left: 4.5rem;
+  }
+}
+
+.account {
+  ul {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin-left: 7.5rem;
+  }
+
+  h2 {
+    color: $astral;
+    margin-top: 2.5rem;
+    margin-bottom: .75rem;
+    margin-left: 4.5rem;
+    font-size: 2rem;
+  }
+}
