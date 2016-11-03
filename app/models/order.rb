@@ -176,4 +176,58 @@ class Order < ApplicationRecord
       end
     end
 
+
+
+    # TODO: Add charges to Order
+
+    # NOTE: List of Charges
+    # RESIDENTIAL_CHARGE = 1.5
+    # SUNDAY_CHARGE      = 30
+    # SATURDAY_CHARGE    = 15
+    # LATE_CHARGE        = 40
+    # PER_LB_CHARGE      = 2.5
+    # SALES_TAX          = 0.0875
+    # # service.price (included)
+    # self.list_of_charges    = [RESIDENTIAL_CHARGE, PER_LB_CHARGE]
+    #
+    # START_OF_DAY = 8 # 8:00am (Pacific Standard Time)
+    # END_OF_DAY   = 15 # 3:00pm (Pacific Standard Time)
+    #
+    # AVAILABILITY_8HOUR_SER   = [8, 9] (9am cutoff)
+    # AVAILABILITY_4HOUR_SER   = [8, 11] (11pm cutoff)
+    # AVAILABILITY_EXPRESS_SER = [8, 1] (1pm)
+    # AVAILABILITY_ASAP_SER    = [8, 3]
+    # order.pickup_time.hour.between?(8, 15)
+    #
+    #
+    # def list_of_charges
+    #   LIST_OF_CHARGES << LATE_CHARGE if delivery_time < # "random_time" TODO
+    #   if pickup_date.saturday?
+    #     LIST_OF_CHARGES << SATURDAY_CHARGE
+    #   elsif order.pickup_date.sunday?
+    #     LIST_OF_CHARGES << SUNDAY_CHARGE
+    #   else
+    #     LIST_OF_CHARGES
+    #   end
+    # end
+    #
+    # def additional_charges
+    #   LIST_OF_CHARGES.inject(service.price) { |sum, amount| sum + amount }
+    # end
+    #
+    # def tax_charge
+    #   additional_charges * SALES_TAX
+    # end
+    #
+    # def total_charge
+    #   tax_charge + additional_charges
+    # end
+    #
+    # def calculate_balance
+    #   self.order_total = total_charge
+    #   # TODO: Add #balance to users
+    #   # self.user.balance += order_total
+    #   save
+    # end
+
 end
