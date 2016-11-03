@@ -17,6 +17,7 @@
 #
 
 class Address < ApplicationRecord
+
   enum address_type: { "Residence" => 0, "Business" => 1 }
 
   belongs_to :address_owner, polymorphic: true
@@ -43,4 +44,5 @@ class Address < ApplicationRecord
 
   validates :country, length: { maximum: 25 },
                       allow_blank: true
+                      
 end

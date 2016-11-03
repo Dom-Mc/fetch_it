@@ -57,8 +57,6 @@ class ServicesController < ApplicationController
                                       :price,
                                       :start_time,
                                       :end_time
-                                      # :get_service_start,
-                                      # :get_service_end
                                       )
     end
 

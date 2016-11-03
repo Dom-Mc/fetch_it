@@ -11,6 +11,7 @@
 #  updated_at   :datetime         not null
 
 class Service < ApplicationRecord
+
   extend FriendlyId
   friendly_id :service_name, use: :slugged
 

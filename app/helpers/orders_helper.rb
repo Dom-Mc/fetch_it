@@ -7,12 +7,10 @@ module OrdersHelper
 
   def set_shipper_address
     set_shipper.address ||= set_shipper.build_address
-    # @order.shipper.address || @order.shipper.build_address
   end
 
   def set_shipper_phone
     set_shipper.phone ||= set_shipper.build_phone
-    # @order.shipper.phone || @order.shipper.build_phone
   end
 
   def set_recipient
@@ -21,12 +19,10 @@ module OrdersHelper
 
   def set_recipient_address
     set_recipient.address || set_recipient.build_address
-    # @order.recipient.address || @order.recipient.build_address
   end
 
   def set_recipient_phone
     set_recipient.phone || set_recipient.build_phone
-    # @order.recipient.phone || @order.recipient.build_phone
   end
 
   # Addresses (Shipper & Recipient)

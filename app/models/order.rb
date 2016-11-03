@@ -15,6 +15,7 @@
 #
 
 class Order < ApplicationRecord
+
   # TODO: Add to services table
   BIZ_START_TIME  = "08:00"
   BIZ_END_TIME = "16:00"

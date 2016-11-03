@@ -13,6 +13,7 @@
 #
 
 class Phone < ApplicationRecord
+  
   enum phone_type: { "Mobile" => 0, "Home" => 1, "Office" => 2 }
 
   before_validation :sanitize_phone_number
@@ -36,4 +37,5 @@ class Phone < ApplicationRecord
     def sanitize_phone_number
       self.phone_number = phone_number&.gsub(/\D/, '')
     end
+
 end

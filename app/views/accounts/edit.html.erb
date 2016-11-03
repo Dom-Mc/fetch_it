@@ -1,8 +1,9 @@
-<div class="container form">
-  <h1 class="page-title">Edit/Update Profile</h1>
+<div class="container account form">
 
-<%= render "form", user_account: @user_account,
-                   addresses:    display_address_fields,
-                   phones:       display_phone_fields %>
+  <h1 class="page-title">Update Profile</h1>
+
+  <%= render "form", user_account: @user_account,
+                   address:    display_address_fields,
+                   phone:       display_phone_fields %>
 
 </div><!-- /.container -->

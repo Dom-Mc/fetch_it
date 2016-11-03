@@ -1,7 +1,4 @@
 module AccountsHelper
-  # def account
-  #   @account ||= Account.friendly.find(params[:id])
-  # end
 
   def display_phone_fields
     if @user_account.phones.present?

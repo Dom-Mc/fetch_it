@@ -1,7 +1,9 @@
-<div class="container form">
+<div class="container account form">
+
   <h1 class="page-title">Create Profile</h1>
 
-<%= render "form", user_account: @user_account,
-                   addresses: display_address_fields,
-                   phones: display_phone_fields %>
+  <%= render "form", user_account: @user_account,
+                   address: display_address_fields,
+                   phone: display_phone_fields %>
+
 </div><!-- /.container -->

@@ -1,24 +1,20 @@
 <div class="row centered">
-<div class="panel panel-default col-sm-8 ">
+  <div class="panel panel-default col-sm-8 ">
 
-<%= simple_form_for service do |f| %>
-  <%= render "layouts/application/form_errors", object: service %>
+    <%= simple_form_for service do |f| %>
+      <%= render "layouts/application/form_errors", object: service %>
 
-    <p class="form-required">*Required fields</p>
+      <p class="form-required">*Required fields</p>
+            
+      <%= f.input :service_name %>
+      <%= f.input :description, as: :text, hint: 'Maximum 2000 characters' %>
+      <%= f.input :price,  as: :decimal, hint: "Omit the dollar sign (example: 25.00)" %>
+      <%= f.input :start_time, as: :time, html5: true %>
+      <%= f.input :end_time, as: :time, html5: true %>
 
-    <%= f.input :service_name %>
-    <%= f.input :description, as: :text, hint: 'Maximum 2000 characters' %>
+      <%= f.button :submit, class: "primary" %>
 
-    <%= f.input :price,  as: :decimal, hint: "Omit the dollar sign (example: 25.00)" %>
+    <% end %>
 
-    <%# TODO: move time conversions to helpers %>
-
-    <%= f.input :start_time, as: :time, html5: true %>
-    <%= f.input :end_time, as: :time, html5: true %>
-
-  <%= f.button :submit, class: "primary" %>
-
-<% end %>
-
-</div><!-- /.panel -->
+  </div><!-- /.panel -->
 </div><!-- /.row -->

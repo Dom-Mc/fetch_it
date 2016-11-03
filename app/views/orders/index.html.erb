@@ -1,13 +1,11 @@
-<div class="container form">
+<div class="container order">
 
-<h1 class="page-title">Order History</h1>
+  <h1 class="page-title">Order History</h1>
 
-<ul>
-  <% @orders.each do |order| %>
+  <ul>
+    <% @orders.each do |order| %>
       <%= render "list", order: order %>
-  <% end %>
-</ul>
-
-<%# link_to "Back to Account", account_path(@order.account), class: "btn btn-primary" %>
+    <% end %>
+  </ul>
 
 </div><!-- /.container -->

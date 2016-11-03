@@ -12,6 +12,7 @@
 #
 
 class Shipper < ApplicationRecord
+
   has_one :account, through: :order
 
   has_one :address, as: :address_owner,
@@ -33,6 +34,7 @@ class Shipper < ApplicationRecord
   validates :address, presence: true
   validates_associated :address
 
-  validates_associated :phone
   validates :phone, presence: true
+  validates_associated :phone
+  
 end

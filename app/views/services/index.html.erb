@@ -1,9 +1,8 @@
-<div class="container form">
+<div class="container service">
   <h1 class="page-title">Services</h1>
 
-  <ul class="service-list">
+  <ul>
     <% @services.each do |service| %>
-      <h2><%= link_to service.service_name, service_path(service) %></h2>
       <%= render "list", service: service %>
     <% end %>
   </ul>

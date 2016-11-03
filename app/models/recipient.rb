@@ -12,6 +12,7 @@
 #
 
 class Recipient < ApplicationRecord
+
   has_one :account, through: :order
 
   has_one :address, as: :address_owner,
@@ -35,4 +36,5 @@ class Recipient < ApplicationRecord
 
   validates :phone, presence: true
   validates_associated :phone
+  
 end

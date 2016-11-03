@@ -1,96 +1,77 @@
 <div class="centered row">
 
-<div class="col-sm-8 panel panel-default">
+  <div class="col-sm-8 panel panel-default">
 
-<%= simple_form_for [user_account, order] do |f| %>
-  <%= render "form_errors", order: order %>
+    <%= simple_form_for [user_account, order] do |f| %>
+      <%= render "form_errors", order: order %>
 
-<p class="form-required">*Required fields</p>
-<fieldset>
+      <p class="form-required">*Required fields</p>
 
-  <h2 class="legend">Pickup</h2>
-  <%# f.simple_fields_for :shipper, order.shipper do |shipper| %>
-  <%= f.simple_fields_for :shipper, shipper do |shipper| %>
+      <fieldset>
+        <h2 class="legend">Shipper <span>(pickup info)</span></h2>
+        <%= f.simple_fields_for :shipper, shipper do |shipper| %>
+          <%= shipper.input :first_name %>
+          <%= shipper.input :last_name %>
 
-    <%= shipper.input :first_name %>
-    <%= shipper.input :last_name %>
+          <%= shipper.fields_for :address, shipper_address do |address| %>
+            <%= address.input :address_type, collection: address_type_collection, selected: shipper_address_type_selected %>
+            <%= address.input :street_address %>
+            <%= address.input :secondary_address, label: "Apt/Unit/Floor", required: false %>
+            <%= address.input :zip %>
+          <% end %>
 
-    <%# shipper.fields_for :address, order.shipper.address do |address| %>
-    <%= shipper.fields_for :address, shipper_address do |address| %>
-      <%= address.input :address_type, collection: address_type_collection, selected: shipper_address_type_selected %>
-      <%= address.input :street_address %>
-      <%= address.input :secondary_address, label: "Apt/Unit/Floor", required: false %>
-      <%= address.input :zip %>
+        <%= shipper.fields_for :phone, shipper_phone do |phone| %>
+          <%= phone.input :phone_type, collection: phone_type_collection, selected: shipper_phone_type_selected %>
+          <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
+          <%= phone.input :ext, as: :tel, required: false %>
+          <% end %>
+        <% end %>
+      </fieldset>
+
+      <fieldset>
+        <h2 class="legend">Recipient <span>(deliver info)</span></h2>
+        <%= f.simple_fields_for :recipient, recipient do |recipient| %>
+          <%= recipient.input :first_name %>
+          <%= recipient.input :last_name %>
+
+          <%= recipient.fields_for :address, recipient_address do |address| %>
+            <%= address.input :address_type, collection: address_type_collection, selected: recipient_address_type_selected %>
+            <%= address.input :street_address %>
+            <%= address.input :secondary_address, label: "Apt/Unit/Floor", required: false %>
+            <%= address.input :zip %>
+          <% end %>
+
+          <%= recipient.fields_for :phone, recipient_phone do |phone| %>
+            <%= phone.input :phone_type, collection: phone_type_collection, selected: recipient_phone_type_selected %>
+            <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
+            <%= phone.input :ext, as: :tel, required: false %>
+            <% end %>
+          <% end %>
+      </fieldset>
+
+      <fieldset>
+        <h2 class="legend">Service</h2>
+        <%= f.input :pickup_date, as: :date, discard_year: true, selected: pickup_date_selected %>
+        <%= f.input :pickup_time, as: :time, hint: "Pickups are available from 8:00am to 3:00pm (PST) daily", html5: true %>
+        <p class="form-note">*Note: Select services may have earlier cut off times. Please see our <b><%= link_to "service", services_path %></b> page for more information.</p>
+        <%= f.input :service_id, collection: service_type_collection, label_method: :service_name, selected: service_selected %>
+        <%= f.input :special_instructions, as: :text, hint: 'Maximum 2000 characters.' %>
+        <%= f.input :signature_requirement, collection: signature_requirement_collection, selected: "No Signature", hint: 'Indirect Signature: anyone at address - Direct Signature: only recipient.' %>
+      </fieldset>
+
+      <fieldset>
+        <h2 class="legend">Shipment</h2>
+        <%= f.input :number_of_items, as: :integer %>
+        <%= f.input :estimated_weight, label: "Estimated weight (lbs)", as: :integer %>
+      </fieldset>
+
+      <fieldset>
+        <h2 class="legend">Billing</h2>
+        <%= f.input :shipping_reference, label: "Shipping/Billing reference", hint: 'Maximum 50 characters.' %>
+      </fieldset>
+
+      <%= f.button :submit, class: "primary" %>
+
     <% end %>
-
-    <%# shipper.fields_for :phone, order.shipper.phone do |phone| %>
-    <%= shipper.fields_for :phone, shipper_phone do |phone| %>
-      <%= phone.input :phone_type, collection: phone_type_collection, selected: shipper_phone_type_selected %>
-      <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
-      <%= phone.input :ext, as: :tel, required: false %>
-    <% end %>
-  <% end %>
-
-</fieldset>
-
-
-<fieldset>
-  <h2 class="legend">Delivery</h2>
-  <%# f.simple_fields_for :recipient, order.recipient do |recipient| %>
-  <%= f.simple_fields_for :recipient, recipient do |recipient| %>
-    <%= recipient.input :first_name %>
-    <%= recipient.input :last_name %>
-
-    <%# recipient.fields_for :address, order.recipient.address do |address| %>
-    <%= recipient.fields_for :address, recipient_address do |address| %>
-      <%= address.input :address_type, collection: address_type_collection, selected: recipient_address_type_selected %>
-      <%= address.input :street_address %>
-      <%= address.input :secondary_address, label: "Apt/Unit/Floor", required: false %>
-      <%= address.input :zip %>
-    <% end %>
-
-    <%# recipient.fields_for :phone, order.recipient.phone do |phone| %>
-    <%= recipient.fields_for :phone, recipient_phone do |phone| %>
-      <%= phone.input :phone_type, collection: phone_type_collection, selected: recipient_phone_type_selected %>
-      <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
-      <%= phone.input :ext, as: :tel, required: false %>
-    <% end %>
-  <% end %>
-
-</fieldset>
-
-<fieldset>
-
-  <h2 class="legend">Service</h2>
-  <%= f.input :pickup_date, as: :date, discard_year: true, selected: pickup_date_selected %>
-
-  <%= f.input :pickup_time,  as: :time, hint: "Pickups are available from 8:00am to 3:00pm (PST) daily", html5: true %>
-
-  <%# f.input :pickup_time, placeholder: "3:00pm", selected: Time.current, as: :time, minute_step: 10, ampm: true, hint: "Pickups are available from 8:00am to 3:00pm (PST) daily", html5: true, placeholder: "3:00pm" %>
-
-  <p class="form-note">*Note: Select services may have earlier cut off times. Please see our <b><%= link_to "service", services_path %></b> page for more information.</p>
-
-  <%= f.input :service_id, collection: service_type_collection, label_method: :service_name, selected: service_selected %>
-  <%= f.input :special_instructions, as: :text, hint: 'Maximum 2000 characters.' %>
-
-  <%= f.input :signature_requirement, collection: signature_requirement_collection, selected: "No Signature", hint: 'Indirect Signature: anyone at address - Direct Signature: only recipient.' %>
-
-</fieldset>
-
-<fieldset>
-
-  <h2 class="legend">Shipment</h2>
-  <%= f.input :number_of_items, as: :integer %>
-  <%= f.input :estimated_weight, label: "Estimated weight (lbs)", as: :integer %>
-  </fieldset>
-
-<fieldset>
-  <h2 class="legend">Billing</h2>
-  <%= f.input :shipping_reference, label: "Shipping/Billing reference", hint: 'Maximum 50 characters.' %>
-
-</fieldset>
-  <%= f.button :submit, class: "primary" %>
-
-<% end %>
-</div><!-- /.panel -->
+  </div><!-- /.panel -->
 </div><!-- /.row -->

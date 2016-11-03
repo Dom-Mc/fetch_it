@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+  
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -43,4 +44,5 @@ class Account < ApplicationRecord
 
   accepts_nested_attributes_for :addresses
   accepts_nested_attributes_for :phones
+
 end
