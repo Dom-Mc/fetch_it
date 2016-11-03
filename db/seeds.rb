@@ -100,21 +100,21 @@ Service.create!(
 )
 Service.create!(
   service_name: "Express",
-  description: Faker::Lorem.paragraph(2),
+  description: Faker::Lorem.paragraph(22),
   price: Faker::Commerce.price,
   start_time: '09:00',
   end_time: '13:00'
 )
 Service.create!(
   service_name: "4-Hour",
-  description: Faker::Lorem.paragraph(2),
+  description: Faker::Lorem.paragraph(22),
   price: Faker::Commerce.price,
   start_time: '09:00',
   end_time: '11:00'
 )
 Service.create!(
   service_name: "8-Hour",
-  description: Faker::Lorem.paragraph(2),
+  description: Faker::Lorem.paragraph(22),
   price: Faker::Commerce.price,
   start_time: '09:00',
   end_time: '9:00'
