@@ -10,49 +10,49 @@
   table.delete_all
 end
 
-# TODO: Add role
 user_type1 = User.create!(
-    email: Faker::Internet.email,
-    password: "secret",
-    password_confirmation: "secret"
-    # account_number (automatically generated on save)
-  )
+# role: (default - "customer")
+email: Faker::Internet.email,
+password: "secret",
+password_confirmation: "secret"
+# account_number (automatically generated on save)
+)
 
-# TODO: Add role
 user_type2 = User.create!(
-    email: Faker::Internet.email,
-    password: "secret",
-    password_confirmation: "secret"
-    # account_number (automatically generated on save)
-  )
+# role: (default - "customer")
+email: Faker::Internet.email,
+password: "secret",
+password_confirmation: "secret"
+# account_number (automatically generated on save)
+)
 
 user_type1.create_account!(
-  # account-type (default - "Personal")
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name
-  # slug (automatically generated on save)
-  # company (optional)
+# account-type (default - "Personal")
+first_name: Faker::Name.first_name,
+last_name: Faker::Name.last_name
+# slug (automatically generated on save)
+# company (optional)
 )
 
 user_type2.create_account!(
-  account_type: 1, # "Business"
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  # slug (automatically generated on save)
-  company: Faker::Company.name
+account_type: 1, # "Business"
+first_name: Faker::Name.first_name,
+last_name: Faker::Name.last_name,
+# slug (automatically generated on save)
+company: Faker::Company.name
 )
 
 user_type1.account.phones.create!(
-    phone_type: Faker::Number.between(0, 2),
-    phone_number: Faker::Number.number(10)
-    # ext (optional)
-  )
+phone_type: Faker::Number.between(0, 2),
+phone_number: Faker::Number.number(10)
+# ext (optional)
+)
 
 user_type2.account.phones.create!(
-    phone_type: Faker::Number.between(0, 2),
-    phone_number: Faker::Number.number(10),
-    ext: Faker::Number.number(3)
-  )
+phone_type: Faker::Number.between(0, 2),
+phone_number: Faker::Number.number(10),
+ext: Faker::Number.number(3)
+)
 
 # user_type2.phones.create!(
 #     phone_type: rand(0..2),
@@ -61,24 +61,24 @@ user_type2.account.phones.create!(
 #   )
 
 user_type1.account.addresses.create!(
-    address_type: Faker::Number.between(0, 1),
-    street_address: Faker::Address.street_address,
-    # secondary_address (optional)
-    city: Faker::Address.city, # (default - San Francisco)
-    state: Faker::Address.state, # (default - California)
-    zip: Faker::Address.postcode.first(5),
-    # country: (default - United States)
-  )
+address_type: Faker::Number.between(0, 1),
+street_address: Faker::Address.street_address,
+# secondary_address (optional)
+city: Faker::Address.city, # (default - San Francisco)
+state: Faker::Address.state, # (default - California)
+zip: Faker::Address.postcode.first(5),
+# country: (default - United States)
+)
 
 user_type2.account.addresses.create!(
-    address_type: Faker::Number.between(0, 1),
-    street_address: Faker::Address.street_address,
-    # secondary_address (optional)
-    # city (default - San Francisco)
-    # state (default - California)
-    zip: Faker::Address.postcode.first(5)
-    # country (default - United States)
-  )
+address_type: Faker::Number.between(0, 1),
+street_address: Faker::Address.street_address,
+# secondary_address (optional)
+# city (default - San Francisco)
+# state (default - California)
+zip: Faker::Address.postcode.first(5)
+# country (default - United States)
+)
 
 #end_times = %w(15:00, 13:00, 11:00, 9:00)
 # %w(ASAP Express 4-Hour 8-Hour).each do |service|
@@ -92,138 +92,129 @@ user_type2.account.addresses.create!(
 # end
 
 Service.create!(
-  service_name: "ASAP",
-  description: Faker::Lorem.paragraph(2),
-  price: Faker::Commerce.price,
-  start_time: '09:00',
-  end_time: '15:00'
+service_name: "ASAP",
+description: Faker::Lorem.paragraph(2),
+price: Faker::Commerce.price,
+start_time: '09:00',
+end_time: '15:00'
 )
 Service.create!(
-  service_name: "Express",
-  description: Faker::Lorem.paragraph(22),
-  price: Faker::Commerce.price,
-  start_time: '09:00',
-  end_time: '13:00'
+service_name: "Express",
+description: Faker::Lorem.paragraph(22),
+price: Faker::Commerce.price,
+start_time: '09:00',
+end_time: '13:00'
 )
 Service.create!(
-  service_name: "4-Hour",
-  description: Faker::Lorem.paragraph(22),
-  price: Faker::Commerce.price,
-  start_time: '09:00',
-  end_time: '11:00'
+service_name: "4-Hour",
+description: Faker::Lorem.paragraph(22),
+price: Faker::Commerce.price,
+start_time: '09:00',
+end_time: '11:00'
 )
 Service.create!(
-  service_name: "8-Hour",
-  description: Faker::Lorem.paragraph(22),
-  price: Faker::Commerce.price,
-  start_time: '09:00',
-  end_time: '9:00'
+service_name: "8-Hour",
+description: Faker::Lorem.paragraph(22),
+price: Faker::Commerce.price,
+start_time: '09:00',
+end_time: '9:00'
 )
 
-order1 = user_type1.account.orders.build(
-    pickup_date: Faker::Date.between(Date.tomorrow, 1.week.from_now),
-    service_id: Service.first.id,
-    pickup_time: Service.first.start_time,
-    number_of_items: Faker::Number.between(1, 10).to_s,
-    # special_instructions (optional)
-    # shipping_reference (optional)
-    # estimated_weight (default - "1")
-    # signature_requirement (default - 0)
-    order_total: Faker::Commerce.price
+[user_type1, user_type2].each do |user|
+  order1 = user.account.orders.build(
+  pickup_date: Faker::Date.between(Date.tomorrow, 1.week.from_now),
+  service_id: Service.first.id,
+  pickup_time: Service.first.start_time,
+  number_of_items: Faker::Number.between(1, 10).to_s,
+  # special_instructions (optional)
+  # shipping_reference (optional)
+  # estimated_weight (default - "1")
+  # signature_requirement (default - 0)
+  order_total: Faker::Commerce.price
   )
 
-order2 = user_type1.account.orders.create!(
-    pickup_date: Faker::Date.between(Date.tomorrow, 1.week.from_now),
-    service_id: Service.last.id,
-    pickup_time: Service.first.start_time,
-    number_of_items: Faker::Number.between(1, 10).to_s,
-    # special_instructions (optional)
-    # shipping_reference (optional)
-    # estimated_weight (default - "1")
-    # signature_requirement (default - 0)
-    order_total: Faker::Commerce.price
+  order2 = user.account.orders.build(
+  pickup_date: Faker::Date.between(Date.tomorrow, 1.week.from_now),
+  service_id: Service.last.id,
+  pickup_time: Service.first.start_time,
+  number_of_items: Faker::Number.between(1, 10).to_s,
+  # special_instructions (optional)
+  # shipping_reference (optional)
+  # estimated_weight (default - "1")
+  # signature_requirement (default - 0)
+  order_total: Faker::Commerce.price
   )
 
-shipper1 = order1.create_shipper!(
+  order3 = user.account.orders.build(
+  pickup_date: Faker::Date.between(Date.tomorrow, 1.week.from_now),
+  service_id: Service.last.id,
+  pickup_time: Service.first.start_time,
+  number_of_items: Faker::Number.between(1, 10).to_s,
+  # special_instructions (optional)
+  # shipping_reference (optional)
+  # estimated_weight (default - "1")
+  # signature_requirement (default - 0)
+  order_total: Faker::Commerce.price
+  )
+
+  order4 = user.account.orders.build(
+  pickup_date: Faker::Date.between(Date.tomorrow, 1.week.from_now),
+  service_id: Service.last.id,
+  pickup_time: Service.first.start_time,
+  number_of_items: Faker::Number.between(1, 10).to_s,
+  # special_instructions (optional)
+  # shipping_reference (optional)
+  # estimated_weight (default - "1")
+  # signature_requirement (default - 0)
+  order_total: Faker::Commerce.price
+  )
+
+  [order1, order2, order3, order4].each do |order|
+
+    shipper1 = order.build_shipper(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name
-  )
+    )
 
-shipper2 = order2.create_shipper!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name
-  )
+    shipper1.build_address(
+    address_type: Faker::Number.between(0, 1),
+    street_address: Faker::Address.street_address,
+    # secondary_address (optional)
+    # city (default - San Francisco)
+    # state (default - California)
+    zip: Faker::Address.postcode.first(5)
+    # country (default - United States)
+    )
 
-recipient1 = order1.create_recipient!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name
-  )
-
-recipient2 = order2.create_recipient!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name
-  )
-
-shipper1.create_phone!(
+    shipper1.build_phone(
     phone_type: rand(0..2),
     phone_number: Faker::Number.number(10)
     # ext (optional)
-  )
+    )
 
-shipper2.create_phone!(
+    recipient1 = order.build_recipient(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name
+    )
+
+    recipient1.build_address(
+    address_type: Faker::Number.between(0, 1),
+    street_address: Faker::Address.street_address,
+    # secondary_address (optional)
+    # city (default - San Francisco)
+    # state (default - California)
+    zip: Faker::Address.postcode.first(5)
+    # country (default - United States)
+    )
+
+    recipient1.build_phone(
     phone_type: rand(0..2),
     phone_number: Faker::Number.number(10)
     # ext (optional)
-  )
+    )
 
-recipient1.create_phone!(
-    phone_type: rand(0..2),
-    phone_number: Faker::Number.number(10)
-    # ext (optional)
-  )
+    order.save!
 
-recipient2.create_phone!(
-    phone_type: rand(0..2),
-    phone_number: Faker::Number.number(10)
-    # ext (optional)
-  )
+  end
 
-shipper1.create_address!(
-  address_type: Faker::Number.between(0, 1),
-  street_address: Faker::Address.street_address,
-  # secondary_address (optional)
-  # city (default - San Francisco)
-  # state (default - California)
-  zip: Faker::Address.postcode.first(5)
-  # country (default - United States)
-)
-
-shipper2.create_address!(
-  address_type: Faker::Number.between(0, 1),
-  street_address: Faker::Address.street_address,
-  # secondary_address (optional)
-  # city (default - San Francisco)
-  # state (default - California)
-  zip: Faker::Address.postcode.first(5)
-  # country (default - United States)
-)
-
-recipient1.create_address!(
-  address_type: Faker::Number.between(0, 1),
-  street_address: Faker::Address.street_address,
-  # secondary_address (optional)
-  # city (default - San Francisco)
-  # state (default - California)
-  zip: Faker::Address.postcode.first(5)
-  # country (default - United States)
-)
-
-recipient2.create_address!(
-  address_type: Faker::Number.between(0, 1),
-  street_address: Faker::Address.street_address,
-  # secondary_address (optional)
-  # city (default - San Francisco)
-  # state (default - California)
-  zip: Faker::Address.postcode.first(5)
-  # country (default - United States)
-)
+end
