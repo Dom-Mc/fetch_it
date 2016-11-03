@@ -1,4 +1,4 @@
-<div class="centered row">
+<div class="row centered">
   <div class="col-sm-8 panel panel-default">
 
     <%= simple_form_for user_account do |f| %>
@@ -12,7 +12,8 @@
       <%= f.input :account_type, collection: Account.account_types.keys.to_a, selected: user_account.account_type %>
       <%= f.input :company %>
 
-      <%= f.fields_for :addresses, addresses do |address| %>
+      <%= f.fields_for :addresses, address do |address| %>
+        <h3 class="legend">Address</h3>
         <%= address.input :address_type, collection: Address.address_types.keys.to_a, selected: "residence" %>
         <%= address.input :street_address %>
         <%= address.input :secondary_address, label: "Apt/Unit/Floor" %>
@@ -22,7 +23,8 @@
         <%= address.input  :country, as: :string %>
       <% end %>
 
-      <%=f.fields_for :phones, phones do |phone| %>
+      <%=f.fields_for :phones, phone do |phone| %>
+        <h3 class="legend">Phone</h3>
         <%= phone.input :phone_type, collection: Phone.phone_types.keys.to_a, selected: 'mobile' %>
         <%= phone.input :phone_number, as: :tel, placeholder: "123-456-7890" %>
         <%= phone.input :ext, as: :tel, required: false %>
@@ -32,5 +34,5 @@
 
     <% end %>
 
-  </div>
-</div>
+  </div><!-- .panel -->
+</div><!-- /.row -->
