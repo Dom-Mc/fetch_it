@@ -19,7 +19,8 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def show?
-    user.manager? || record.try(:account) == user.account
+    # NOTE: add condition for user.manager?
+    record.try(:account) == user.account
   end
 
   def update?

@@ -1,4 +1,5 @@
 class ServicePolicy < ApplicationPolicy
+
   def create?
     user.manager?
   end
@@ -6,4 +7,5 @@ class ServicePolicy < ApplicationPolicy
   def update?
     user.manager?
   end
+  
 end

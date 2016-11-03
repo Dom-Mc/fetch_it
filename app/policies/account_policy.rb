@@ -1,4 +1,5 @@
 class AccountPolicy < ApplicationPolicy
+
   def create?
     # TODO: give manager the ability to create accounts for others
     record == user.account
@@ -11,4 +12,5 @@ class AccountPolicy < ApplicationPolicy
   def update?
     user.manager? || record == user.account
   end
+  
 end
