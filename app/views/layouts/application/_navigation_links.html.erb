@@ -4,12 +4,18 @@
   </a>
 
   <ul class="dropdown-menu">
-    <% Service.all.each do |service| %>
-      <li><%= link_to service.service_name, service_path(service) %></li>
-      <% if service != Service.last %>
+    <% if Service.all.present? %>
+
+      <% Service.all.each do |service| %>
+        <li><%= link_to service.service_name, service_path(service) %></li>
         <li class="divider"></li>
       <% end %>
+
+      <li><%= link_to "View all services", services_path %></li>
+    <% else %>
+        <li><%= link_to "Not available", services_path %></li>
     <% end %>
+
   </ul>
 </li>
 

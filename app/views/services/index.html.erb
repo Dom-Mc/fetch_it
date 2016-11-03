@@ -2,9 +2,16 @@
   <h1 class="page-title">Services</h1>
 
   <ul>
+    <% if @services.present? %>
+
     <% @services.each do |service| %>
       <%= render "list", service: service %>
     <% end %>
+
+    <% else %>
+      <h3>There are no available services at this time.</h3>
+    <% end %>
+
   </ul>
 
 </div><!-- /.container -->

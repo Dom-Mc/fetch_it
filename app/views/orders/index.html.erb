@@ -3,8 +3,14 @@
   <h1 class="page-title">Order History</h1>
 
   <ul>
-    <% @orders.each do |order| %>
-      <%= render "list", order: order %>
+    <% if @orders.present? %>
+
+      <% @orders.each do |order| %>
+        <%= render "list", order: order %>
+      <% end %>
+
+    <% else %>
+      <h3>You currently do not have any orders.</h3>
     <% end %>
   </ul>
 
