@@ -1,4 +1,12 @@
-<li><b>Name:</b> <%= service.service_name %></li>
-<li><b>Description:</b> <%= service.description %></li>
-<li><b>Price:</b> <%= number_to_currency(service.price) %></li>
-<li><b>Availability:</b> <%= show_time(service.start_time) %> to <%= show_time(service.end_time) %></li>
+<div class="service-list">
+  <h2>
+    <%= link_to service.service_name, service %>
+  </h2>
+  <li><b>Name:</b> <%= service.service_name %></li>
+  <li><b>Price:</b> <%= number_to_currency(service.price) %></li>
+  <li><b>Availability:</b> <%= show_time(service.start_time) %> to <%= show_time(service.end_time) %></li>
+  <li>
+    <b>Description:</b> <%= truncate(service.description, length: 200)%>
+  </li>
+
+</div>

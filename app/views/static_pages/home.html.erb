@@ -3,13 +3,12 @@
       <h1 class="headline">You need it, we <i class="margin-right">fetch it</i>!</h1>
       <h2 class="subheadline">San Francisco's leading task running service</h2>
 
-<%# add pundit %>
-      <% if user_signed_in? && current_user.account&.slug.present? %>
+      <% if user_signed_in? && current_user.account&.persisted? %>
         <%= link_to "Order Now", new_account_order_path(current_user.account), class: "btn btn-default" %>
       <% else %>
 
-    <%= link_to "Log In", new_user_session_path, class: "btn btn-default" %>
-    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default" %>
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-default" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default" %>
 
     <% end %>
    </div>
