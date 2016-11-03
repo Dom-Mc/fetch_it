@@ -4,11 +4,12 @@ class CreateServices < ActiveRecord::Migration[5.0]
       t.string :service_name, default: "", null: false
       t.text :description, default: "", null: false
       t.decimal :price, default: "0.0", null: false
-      t.belongs_to :order, foreign_key: true
-
+      t.string :start_time
+      t.string :end_time
+      t.string :slug
       t.timestamps
     end
-
-    add_index :services, :service_name
+    add_index :services, :slug, unique: true
+    add_index :services, :service_name, unique: true
   end
 end

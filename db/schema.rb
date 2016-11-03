@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101234647) do
+ActiveRecord::Schema.define(version: 20161028001400) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "slug"
@@ -59,12 +59,12 @@ ActiveRecord::Schema.define(version: 20161101234647) do
     t.string   "shipping_reference"
     t.string   "estimated_weight",      default: "1",   null: false
     t.integer  "signature_requirement", default: 0,     null: false
+    t.date     "pickup_date"
+    t.string   "pickup_time"
+    t.integer  "service_id"
     t.integer  "account_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.integer  "service_id"
-    t.date     "pickup_date"
-    t.string   "pickup_time"
     t.index ["account_id"], name: "index_orders_on_account_id"
     t.index ["pickup_date"], name: "index_orders_on_pickup_date"
     t.index ["service_id"], name: "index_orders_on_service_id"
@@ -87,10 +87,8 @@ ActiveRecord::Schema.define(version: 20161101234647) do
     t.integer  "order_id"
     t.string   "first_name", default: "", null: false
     t.string   "last_name",  default: "", null: false
-    t.integer  "account_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.index ["account_id"], name: "index_recipients_on_account_id"
     t.index ["order_id"], name: "index_recipients_on_order_id"
   end
 
@@ -98,12 +96,12 @@ ActiveRecord::Schema.define(version: 20161101234647) do
     t.string   "service_name", default: "",    null: false
     t.text     "description",  default: "",    null: false
     t.decimal  "price",        default: "0.0", null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
     t.string   "start_time"
     t.string   "end_time"
     t.string   "slug"
-    t.index ["service_name"], name: "index_services_on_service_name"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["service_name"], name: "index_services_on_service_name", unique: true
     t.index ["slug"], name: "index_services_on_slug", unique: true
   end
 
@@ -111,10 +109,8 @@ ActiveRecord::Schema.define(version: 20161101234647) do
     t.integer  "order_id"
     t.string   "first_name", default: "", null: false
     t.string   "last_name",  default: "", null: false
-    t.integer  "account_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.index ["account_id"], name: "index_shippers_on_account_id"
     t.index ["order_id"], name: "index_shippers_on_order_id"
   end
 
@@ -125,16 +121,11 @@ ActiveRecord::Schema.define(version: 20161101234647) do
     t.datetime "reset_password_sent_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "company"
     t.string   "account_number",         default: "", null: false
-    t.integer  "account_type",           default: 0,  null: false
-    t.string   "first_name",             default: "", null: false
-    t.string   "last_name",              default: "", null: false
+    t.integer  "role",                   default: 0,  null: false
     t.string   "provider"
     t.string   "uid"
-    t.integer  "role",                   default: 0,  null: false
     t.index ["account_number"], name: "index_users_on_account_number"
-    t.index ["company"], name: "index_users_on_company"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["role"], name: "index_users_on_role"

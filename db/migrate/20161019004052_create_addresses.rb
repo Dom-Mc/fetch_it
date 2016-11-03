@@ -9,7 +9,6 @@ class CreateAddresses < ActiveRecord::Migration[5.0]
       t.string :zip, default: "", null: false
       t.string :country, default: "United States", null: false
       t.references :address_owner, polymorphic: true
-
       t.timestamps
     end
   end

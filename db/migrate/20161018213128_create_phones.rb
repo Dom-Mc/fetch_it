@@ -5,10 +5,8 @@ class CreatePhones < ActiveRecord::Migration[5.0]
       t.integer :phone_type, default: 0, null: false
       t.string :ext
       t.references :phone_owner, polymorphic: true
-
       t.timestamps
     end
-
     add_index :phones, :phone_number
   end
 end

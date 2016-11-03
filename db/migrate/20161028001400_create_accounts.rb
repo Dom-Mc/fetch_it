@@ -9,7 +9,6 @@ class CreateAccounts < ActiveRecord::Migration[5.0]
       t.belongs_to :user, foreign_key: true
       t.timestamps
     end
-
     add_index :accounts, :slug, unique: true
   end
 end
