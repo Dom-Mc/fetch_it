@@ -16,10 +16,15 @@
         <li><%= link_to "Not available", services_path %></li>
     <% end %>
 
+    <% if current_user && policy(Service).update? %>
+      <li class="divider"></li>
+      <li><%= link_to "Create a new service", new_service_path %></li>
+    <% end %>
+
   </ul>
 </li>
 
-<% if user_signed_in? && current_user.account&.slug.present? %>
+<% if user_signed_in? && current_user.account&.persisted? %>
 
   <li><%= link_to "Place Order", new_account_order_path(current_user.account) %></li>
   <li><%= link_to "Order History", account_orders_path(current_user.account) %></li>
