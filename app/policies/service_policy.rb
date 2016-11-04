@@ -7,5 +7,5 @@ class ServicePolicy < ApplicationPolicy
   def update?
     user.manager?
   end
-  
+
 end
