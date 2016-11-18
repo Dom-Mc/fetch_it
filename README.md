@@ -58,8 +58,8 @@ $ User.create(email: "your_email@example.com", password: "your_password", passwo
 ## Creator
 
 Dom McKellar
-http://newme.io/
-https://github.com/Dom-Mc
+* http://newme.io/
+* https://github.com/Dom-Mc
 
 ## License
 

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :complete_account_signup, if: "user_signed_in? && !current_user.account.present?"
 
   private
-
+      
     def after_sign_in_path_for(resource_or_scope)
       # request.env['omniauth.origin'] || root_url#profile_path
       new_account_path

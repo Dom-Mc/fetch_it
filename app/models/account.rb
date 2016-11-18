@@ -14,7 +14,7 @@
 #
 
 class Account < ApplicationRecord
-  
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -56,7 +56,7 @@ class Account < ApplicationRecord
   # TODO: Fix order of display
   # validates_associated :addresses
   # validates_associated :phones
-
+  
   accepts_nested_attributes_for :addresses
   accepts_nested_attributes_for :phones
 

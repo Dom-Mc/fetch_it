@@ -24,7 +24,6 @@ class Order < ApplicationRecord
   BIZ_END_TIME = "16:00"
   TIME_REGEX = /\A(2[0-3]|[01]?[0-9]):([0-5]?[0-9])( )?([APap][mM])?\z/
 
-# TODO: not sure about pickup_time_request
   attr_accessor :parsed_pickup_time
 
   enum signature_requirement: { "No Signature" => 0, "Direct Signature" => 1, "Indirect Signature" => 2 }
@@ -66,6 +65,7 @@ class Order < ApplicationRecord
   # TODO: Add later
   # validates :order_total, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
+  # TODO: Add scope for searching orders w/autocomplete
   default_scope { order(id: :desc) }
 
   def shipper_attributes=(shipper_attributes)
