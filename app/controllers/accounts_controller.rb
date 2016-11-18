@@ -7,6 +7,11 @@ class AccountsController < ApplicationController
   before_action :set_user_account, only: [:show, :edit, :update]
   after_action :verify_authorized, except: :index
 
+  def index
+    @accounts = policy_scope(Account.all)
+    authorize @accounts
+  end
+
   def new
     @user_account = current_user.build_account
     authorize @user_account
@@ -71,6 +76,10 @@ class AccountsController < ApplicationController
             :phone_type,
             :phone_number,
             :ext
+          ],
+
+          user_attributes: [
+            :role
           ]
       )
     end
