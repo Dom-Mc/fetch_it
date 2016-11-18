@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :accounts, path: :account, except: :destroy do
     resources :orders, only: [:index, :new, :create, :show]
   end
-  # resources :shippers
-  # resources :recipients
-  # resources :addresses
+
+  patch 'users/:id', to: 'users#update_role', as: 'update_role'
+
 end
