@@ -38,8 +38,27 @@
             this.serviceList = response;
           }
 
-        }
+        },
+        error: function(errorResponse){
+          let error = $.parseJSON(errorResponse.responseText);
+          let html = [
+            '<div class="alert alert-danger alert-dismissible fade in" role="alert">',
+            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">',
+            '<span aria-hidden="true">×</span>',
+            '</button>',
+            '<h4>Please fix the following errors:</h4>',
+            '<ul id=js-error>'
+          ]
 
-  });//end on()
-});//end jquery()
+          $.each(error, function(key, value) {
+            html.push(`<li>${value}</li>`);
+          });
+          html.push('</ul>', '</div>');
+          $(".container.service.form").before(html.join(''));
+
+        }// end of error
+      });//end ajax()
+
+    });//end on()
+  });//end jquery()
 </script>
