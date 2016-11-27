@@ -90,6 +90,18 @@
                       '</ul>'
                     );
         },//end success:
+        error: function(error){
+          if (error.statusText === "Not Found"){
+            output.push(
+                        `<h3>Order #${searchInput} could not be found</h3>`,
+                        '<p>Please check your ',
+                        `<a href="${orderHistoryPath}">order history</a> `,
+                        'and try again.</p>'
+                       );
+          } else {
+            // TODO: generic message to return
+          }
+        },//end error:
         complete: function(){
           $('#search').val('');
           $('input[type="submit"]').prop('disabled', false);
