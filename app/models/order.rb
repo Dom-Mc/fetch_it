@@ -116,6 +116,14 @@ class Order < ApplicationRecord
            :pickup_within_serv_hours,
               if: :pickup_date_and_time_are_present?
 
+  def self.search(search)
+    if search
+      where("id = ?", search.try(:squish)).take!
+    else
+      self.all
+    end
+  end
+
   private
 
     def set_pickup_time
