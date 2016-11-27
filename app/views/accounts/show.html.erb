@@ -1,7 +1,15 @@
 <div class="container account">
   <h1 class="page-title">Account Details</h1>
 
+    <%= form_tag(account_orders_path(@user_account), method: "get", id: "search-form") do %>
+      <%= text_field_tag :search, nil, placeholder: "Enter order number" %>
+      <%= submit_tag "Find Order#", :name => nil %>
+    <% end %>
+
+  <div class="js-searchResults"></div>
+
   <h2>Profile</h2>
+
   <ul>
     <li><b>Account Type:</b> <%= @user_account.account_type %></li>
     <li><b>First Name:</b> <%= @user_account.first_name %></li>
