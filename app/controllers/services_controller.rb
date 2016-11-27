@@ -14,13 +14,14 @@ class ServicesController < ApplicationController
   end
 
   def create
-    # TODO: check if user is an admin
     @service = Service.new(service_params)
     authorize @service
+
     if @service.save
-      redirect_to @service, notice: 'Your new service has been created.'
+      # NOTE: possibly add flash message
+      render json: @service, status: 201
     else
-      render :new
+      render json: @service.errors.as_json(full_messages: true), status: 400
     end
   end
 
