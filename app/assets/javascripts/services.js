@@ -54,7 +54,12 @@ $(document).on('turbolinks:load', function() {
         // NOTE: place error message above the form
         $(".container.service.form").before(html.join(''));
 
-      }// end error
+      },// end error
+
+      complete: function(){
+        // NOTE: enable submit button after preventDefault()
+        $('input[type="submit"]').prop('disabled', false);
+      }//end complete:
 
     });//end ajax()
 
