@@ -8,6 +8,10 @@ class OrdersController < ApplicationController
     # TODO: call this page order history
     @orders = policy_scope(Order.all)
     authorize @orders
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @orders.search(params[:search]) }
+    end
   end
 
   def new
@@ -26,9 +30,13 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = @orders.find(params[:id])
-    authorize @order
-  end
+     @order = @orders.find(params[:id])
+     authorize @order
+     respond_to do |format|
+       format.html { render :show }
+       format.json { render json: @order}
+     end
+   end
 
   private
     def set_account_orders
