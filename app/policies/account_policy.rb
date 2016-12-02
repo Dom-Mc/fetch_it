@@ -8,6 +8,10 @@ class AccountPolicy < ApplicationPolicy
     end
   end
 
+  def admin?
+    user.manager?
+  end
+
   def index?
     user.manager?
   end
