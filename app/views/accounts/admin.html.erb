@@ -1,14 +1,15 @@
 <div class="container order form">
-  <h1 class="page-title">Manage Accounts / Admin</h1>
+  <h1 class="page-title">Manage Accounts</h1>
 
   <%= form_tag(accounts_path, method: "get", id: "account-form") do %>
 
-  <%= select("account", "account_id", Account.all.collect  {|a| [ "#{a.first_name} #{a.last_name} #{ '| ' + a.company if a.company.present?}", a.id ] } + [["View All Accounts"]],  {prompt: 'Select Account'}) %>
+    <%= select("account", "account_id", Account.all.collect  {|a| [ "#{a.first_name} #{a.last_name} #{ '| ' + a.company if a.company.present?}", a.id ] } + [["View All Accounts"]],  {prompt: 'Select Account'}) %>
 
-  <%= submit_tag "View Account", :name => nil, class: "btn btn-primary"%>
+    <%= submit_tag "View Account", :name => nil, class: "btn btn-primary"%>
   <% end %>
 
-</div>
+  <div id="js-panel">
+    <div class="js-account"></div>
+  </div>
 
-<div class="js-account"></div>
-<div class="js-order"></div>
+</div>
