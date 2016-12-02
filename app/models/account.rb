@@ -56,8 +56,16 @@ class Account < ApplicationRecord
   # TODO: Fix order of display
   # validates_associated :addresses
   # validates_associated :phones
-  
+
   accepts_nested_attributes_for :addresses
   accepts_nested_attributes_for :phones
+
+  def self.search(search)
+    if search && search != "View All Accounts"
+      where("id = ?", search).take!
+    else
+      self.all
+    end
+  end
 
 end
