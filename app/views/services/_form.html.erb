@@ -20,8 +20,6 @@
 </div><!-- /.row -->
 
 <script type="text/javascript">
-
-
   $(function(){
     $('#new_service').submit(function(event){
       event.preventDefault();
@@ -34,9 +32,30 @@
 
         success: function(response){
 
-          function Services(response){
-            this.serviceList = response;
-          }
+          class Service {
+            constructor(jsonData){
+              this.id = jsonData.id;
+              this.service_name = jsonData.service_name;
+              this.description = jsonData.description;
+              this.start_time = jsonData.start_time;
+              this.end_time = jsonData.end_time;
+            }
+            displayService(){
+                const html = [
+                  `<h2>Order #${this.id}</h2>`,
+                  '<ul>',
+                  `<li>Service Name: ${this.service_name}</li>`,
+                  `<li>Service Description: ${this.description}</li>`,
+                  `<li>Service Start Time: ${this.start_time}</li>`,
+                  `<li>Service End Time: ${this.end_time}</li>`,
+                  '</ul>'
+                ].join('')
+                return html;
+            }
+          }//end User()
+
+          let service = new Service(response);
+          $("form").html(service.displayService());
 
         },
         error: function(errorResponse){
@@ -50,15 +69,18 @@
             '<ul id=js-error>'
           ]
 
-          $.each(error, function(key, value) {
-            html.push(`<li>${value}</li>`);
-          });
+          for (let errorMessage in error) {
+            html.push(`<li>${errorMessage}</li>`);
+          }
           html.push('</ul>', '</div>');
+
+          // NOTE: place error message above the form
           $(".container.service.form").before(html.join(''));
 
-        }// end of error
+        }// end error
+
       });//end ajax()
 
-    });//end on()
+    });//end submit()
   });//end jquery()
 </script>
