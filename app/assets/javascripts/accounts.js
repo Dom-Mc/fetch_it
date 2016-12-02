@@ -6,7 +6,7 @@ class Account {
     this.company = jsonData.company || "";
     this.account_type = jsonData.account_type;
     this.orders = jsonData.orders;
-    // this.account_number = jsonData.account_number;
+    this.account_number = jsonData.user.account_number;
   }
 
   outputAccount(){
@@ -14,6 +14,7 @@ class Account {
     output.push(
       '<h4>Account</h4>',
       '<ul>',
+      `<li>Account Number: ${this.account_number}</li>`,
       `<li>Account Type: ${this.account_type}</li>`,
       `<li>Company: ${this.company || ''}</li>`,
       `<li>First Name: ${this.first_name}</li>`,
@@ -46,14 +47,9 @@ class Account {
 $( document ).on('turbolinks:load', function() {
 
   $("#account-form").submit(function(event){
+    let searchInput = $('#account_account_id').val();
     event.preventDefault();
     $('.js-account').html("");
-
-    var searchInput = $('#account_account_id').val();
-    var output = [
-      '<div class="alert panel panel-default alert-dismissible">',
-      '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'
-    ];
 
     $.ajax({
       url: this.action,
@@ -63,34 +59,43 @@ $( document ).on('turbolinks:load', function() {
 
       success: function(jsonResponse){
         if (searchInput === "View All Accounts"){
-          // var htmlOutput = [];
           let html = [];
 
           for (let val of jsonResponse){
             let account = new Account(val);
             html.push(account.outputAccount());
           }
-          $('.js-account').append(html);
+
+        $('.js-account').append(html);
 
         } else {
             let html = [];
             let account = new Account(jsonResponse);
 
+            // NOTE: create a list of accounts & orders
             html.push(account.outputAccount());
             html.push(account.outputOrder());
             $('.js-account').append(html);
         }
 
       },//end success
+
       error: function(error){
-        html = [
+
+        // NOTE: create an error message
+        let html = [
             `<h3>Account belonging to ${searchInput} could not be found</h3>`,
             '<p>Please check the account and try again.</p>'
           ].join('');
           return $('.js-account').append(html);
       },//end error:
+
       complete: function(){
+        // NOTE: enable submit button after preventDefault()
         $('input[type="submit"]').prop('disabled', false);
+
+        // NOTE: add bootstrap class to display a panel
+        $('#js-panel').addClass("panel panel-default")
       }//end complete:
 
     });//end ajax()
