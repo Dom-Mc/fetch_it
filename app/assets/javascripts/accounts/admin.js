@@ -52,6 +52,19 @@ class Account {
 }//end Account
 
 $(document).on('turbolinks:load', function() {
+  const $submitButton = $('#select');
+
+  (function(){
+    $submitButton.prop('disabled', true);
+
+    $('form').change(function(){
+      if ( $('#account_account_id').val() === "" ) {
+        $submitButton.prop('disabled', true);
+      } else {
+        $submitButton.prop('disabled', false);
+      }
+    });
+  })();
 
   $("#account-form").submit(function(event){
     const selectInput = $('#account_account_id').val();
