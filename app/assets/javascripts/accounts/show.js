@@ -6,7 +6,8 @@ $(document).on('turbolinks:load', function() {
     const orderHistoryPath = "<%= account_orders_path(@user_account) %>";
     const outputHtml = [
           '<div class="alert panel panel-default alert-dismissible">',
-          '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'
+          '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',
+          '<div class="flex">'
         ];
     event.preventDefault();
 
@@ -20,16 +21,16 @@ $(document).on('turbolinks:load', function() {
         const urlPath = `/account/${response.account.slug}/orders/${response.id}`;
 
         outputHtml.push(
-            `<h1>Order #${response.id}</h1>`,
-            '<ul>',
-            `<li>Number of items: ${response.number_of_items}</li>`,
-            `<li>Shipping Reference: ${response.shipping_reference || ''}</li>`,
-            `<li>Pickup Date: ${response.pickup_date}</li>`,
-            `<li>Shipper's Name: ${response.shipper.first_name || ''} ${response.shipper.last_name}</li>`,
-            `<li>Recipient's Name: ${response.recipient.first_name} ${response.recipient.last_name}</li>`,
-            `<a href="${urlPath}">More info</a>`,
-            '</ul>'
-                  );
+              '<ul>',
+              `<h2><b>Order #</b>${response.id}</h2>`,
+              `<li><b>Pickup Date:</b> ${response.pickup_date}</li>`,
+              `<li><b>Shipping Reference:</b> ${response.shipping_reference || ''}</li>`,
+              `<li><b>Number of items:</b> ${response.number_of_items}</li>`,
+              `<li><b>Shipper's Name:</b> ${response.shipper.first_name || ''} ${response.shipper.last_name}</li>`,
+              `<li><b>Recipient's Name:</b> ${response.recipient.first_name} ${response.recipient.last_name}</li>`,
+              `<p class="text-center"><a href="${urlPath}" class="btn btn-primary">More info</a><p>`,
+              '</ul>'
+            );
       },//end success
 
       error: function(error){
@@ -44,7 +45,7 @@ $(document).on('turbolinks:load', function() {
       complete: function(){
         $('#search').val('');
         $('input[type="submit"]').prop('disabled', false);
-        outputHtml.push('</div>');
+        outputHtml.push('</div>','</div>');
         $('.js-searchResults').html(outputHtml.join(''));
       }
 

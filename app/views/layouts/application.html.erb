@@ -5,8 +5,7 @@
     <%= render 'layouts/rails_default' %>
     <%= render "layouts/shim" %>
   </head>
-
-  <body>
+  <body id="<%= controller_name %>-<%= action_name %>">
     <%= render "layouts/application/flash_messages" %>
 
     <div class="page-wrap">
