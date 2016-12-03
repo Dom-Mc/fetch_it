@@ -8,12 +8,13 @@ class Service {
   }
   displayService(){
     const html = [
-      `<h2>Order #${this.id}</h2>`,
+      `<h2>New Service</h2>`,
       '<ul>',
       `<li>Service Name: ${this.service_name}</li>`,
       `<li>Service Description: ${this.description}</li>`,
       `<li>Service Start Time: ${this.start_time}</li>`,
       `<li>Service End Time: ${this.end_time}</li>`,
+      `<a href="/services">View Services</a>`,
       '</ul>'
     ].join('')
     return html;
@@ -25,6 +26,7 @@ $(document).on('turbolinks:load', function() {
   $('#new_service').submit(function(event){
 
     event.preventDefault();
+    $('.alert.alert-danger').remove();
 
     $.ajax({
       url: this.action,
@@ -35,6 +37,7 @@ $(document).on('turbolinks:load', function() {
       success: function(response){
         const service = new Service(response);
         $("form").html(service.displayService());
+        $(".page-title").html("Service Successfully Created")
       },
 
       error: function(errorResponse){
