@@ -12,43 +12,50 @@ class Account {
   displayAccount(){
     const outputHtml = [];
     outputHtml.push(
-        '<h4>Account</h4>',
+        '<hr>',
+        '<div class="flex">',
         '<ul>',
-        `<li>Account Number: ${this.account_number}</li>`,
-        `<li>Account Type: ${this.account_type}</li>`,
-        `<li>Company: ${this.company || ''}</li>`,
-        `<li>First Name: ${this.first_name}</li>`,
-        `<li>Last Name: ${this.last_name}</li>`,
+        `<li><b>Account Number:</b> ${this.account_number}</li>`,
+        `<li><b>First Name:</b> ${this.first_name}</li>`,
+        `<li><b>Last Name:</b> ${this.last_name}</li>`,
+        `<li><b>Account Type:</b> ${this.account_type}</li>`,
+        `<li><b>Company:</b> ${this.company || ''}</li>`,
         `<a href="account/${this.slug}">View Profile</a>`,
-        '</ul>'
+        '</ul>',
+        '</div>'
     );
     return outputHtml.join('');
   }//end displayAccount()
 
   displayOrder(){
-    const outputHtml = ['<button data-toggle="collapse" data-target="#js-dropdown-orders">View Orders</button>','<div id="js-dropdown-orders" class="collapse">','<h3>Order History</h3>'];
+    const outputHtml = [
+      '<div class="flex">',
+      '<button data-toggle="collapse" data-target="#js-dropdown-orders" class="btn btn-primary ">Display Orders</button>',
+      '<div id="js-dropdown-orders" class="collapse">',
+      '<hr>',
+      '<h3>Order History</h3>'
+    ];
     for (let order of this.orders){
       outputHtml.push(
-          `<h4>Order #${order.id}</h4>`,
           '<ul>',
-          `<li>Shipping Reference: ${order.shipping_reference || ""}</li>`,
-          `<li>Number of items: ${order.number_of_items}</li>`,
-          `<li>Pickup Date: ${order.pickup_date}</li>`,
-          `<a href="account/${this.slug}/orders/${order.id}">More info</a>`,
+          `<li><b>Order #</b>${order.id}</li>`,
+          `<li><b>Shipping Reference:</b> ${order.shipping_reference || ""}</li>`,
+          `<li><b>Number of items:</b> ${order.number_of_items}</li>`,
+          `<li><b>Pickup Date:</b> ${order.pickup_date}</li>`,
+          `<p><a href="account/${this.slug}/orders/${order.id}">View Order</a></p>`,
           '</ul>'
       );
     }
-    outputHtml.push('</div>');
+    outputHtml.push('</div>','</div>');
     return outputHtml.join('');
   }//end displayOrder()
 }//end Account
 
-
 $(document).on('turbolinks:load', function() {
 
   $("#account-form").submit(function(event){
+    const selectInput = $('#account_account_id').val();
 
-    const searchInput = $('#account_account_id').val();
     event.preventDefault();
     $('.js-account').html("");
 
@@ -59,8 +66,8 @@ $(document).on('turbolinks:load', function() {
       type: this.method,
 
       success: function(jsonResponse){
-        if (searchInput === "View All Accounts"){
-          const html = [];
+        if (selectInput === "View All Accounts"){
+          const html = ['<h3 class="text-center">User Accounts</h3>'];
 
           for (let val of jsonResponse){
             let account = new Account(val);
@@ -70,7 +77,7 @@ $(document).on('turbolinks:load', function() {
         $('.js-account').append(html);
 
         } else {
-            const html = [];
+            const html = ['<h3 class="text-center">User Account</h3>'];
             const account = new Account(jsonResponse);
 
             // NOTE: create a list of accounts & orders
@@ -85,7 +92,7 @@ $(document).on('turbolinks:load', function() {
 
         // NOTE: create an error message
         const html = [
-            `<h3>Account belonging to ${searchInput} could not be found</h3>`,
+            `<h3>Account belonging to ${selectInput} could not be found</h3>`,
             '<p>Please check the account and try again.</p>'
           ].join('');
           return $('.js-account').append(html);
