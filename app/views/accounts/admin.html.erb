@@ -1,11 +1,19 @@
-<div class="container order form">
+<div class="container">
   <h1 class="page-title">Manage Accounts</h1>
 
+  <h2>Services</h2>
+
+  <div class="btn-group">
+    <%= link_to "Create Service", new_service_path, class: "btn btn-primary"%>
+    <%= link_to "View Services", services_path, class: "btn btn-primary"%>
+  </div>
+
+  <h2>Users</h2>
   <%= form_tag(accounts_path, method: "get", id: "account-form") do %>
 
-    <%= select("account", "account_id", Account.all.collect  {|a| [ "#{a.first_name} #{a.last_name} #{ '| ' + a.company if a.company.present?}", a.id ] } + [["View All Accounts"]],  {prompt: 'Select Account'}) %>
+    <%= select("account", "account_id", Account.all.collect  {|a| [ "#{a.first_name} #{a.last_name} #{ '| ' + a.company if a.company.present?}", a.id ] } + [["View All Accounts"]],  {prompt: 'Select Account'}) %><br>
 
-    <%= submit_tag "View Account", :name => nil, class: "btn btn-primary"%>
+    <%= submit_tag "View Account", :name => nil, id: "select", class: "btn btn-primary"%>
   <% end %>
 
   <div id="js-panel">

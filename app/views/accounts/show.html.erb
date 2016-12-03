@@ -4,57 +4,59 @@
   <h2 class="order-search">Search Orders</h2>
 
     <%= form_tag(account_orders_path(@user_account), method: "get", id: "search-form") do %>
-      <%= text_field_tag :search, nil, placeholder: "Enter order number" %>
-      <%= submit_tag "Find Order#", :name => nil %>
+      <%= text_field_tag :search, nil, placeholder: "Enter order number", autofocus: true %>
+      <%= submit_tag "Find Order", :name => nil, class: "btn btn-primary" %>
     <% end %>
 
   <div class="js-searchResults"></div>
 
-  <h2>Profile</h2>
-  <ul>
-    <li><b>Account Type:</b> <%= @user_account.account_type %></li>
-    <li><b>First Name:</b> <%= @user_account.first_name %></li>
-    <li><b>Last Name:</b> <%= @user_account.last_name %></li>
-    <li><b>Company:</b> <%= @user_account.company %></li>
-  </ul>
-
-  <h2>Address</h2>
-  <% if @user_account.addresses.present? %>
+  <div class="list-account">
+    <h2>Profile</h2>
     <ul>
-      <% @user_account.addresses.each do |address| %>
-        <li><b>Type of Address:</b> <%= address.address_type %></li>
-        <li><b>Street:</b> <%= address.street_address %></li>
-        <li><b>Apt/Unit/Floor:</b> <%= address.secondary_address %></li>
-        <li><b>City:</b> <%= address.city %></li>
-        <li><b>State:</b> <%= address.state %></li>
-        <li><b>Zip:</b> <%= address.zip %></li>
-        <li><b>Country:</b> <%= address.country %></li>
-      <% end %>
+      <li><b>Account Type:</b> <%= @user_account.account_type %></li>
+      <li><b>First Name:</b> <%= @user_account.first_name %></li>
+      <li><b>Last Name:</b> <%= @user_account.last_name %></li>
+      <li><b>Company:</b> <%= @user_account.company %></li>
     </ul>
-  <% else %>
-    <p>Your account doesn't have an address at this time.</p>
-  <% end %>
 
-  <h2>Phone Number</h2>
-  <% if @user_account.phones.present? %>
+    <h2>Address</h2>
+    <% if @user_account.addresses.present? %>
+      <ul>
+        <% @user_account.addresses.each do |address| %>
+          <li><b>Type of Address:</b> <%= address.address_type %></li>
+          <li><b>Street:</b> <%= address.street_address %></li>
+          <li><b>Apt/Unit/Floor:</b> <%= address.secondary_address %></li>
+          <li><b>City:</b> <%= address.city %></li>
+          <li><b>State:</b> <%= address.state %></li>
+          <li><b>Zip:</b> <%= address.zip %></li>
+          <li><b>Country:</b> <%= address.country %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Your account doesn't have an address at this time.</p>
+    <% end %>
+
+    <h2>Phone Number</h2>
+    <% if @user_account.phones.present? %>
+      <ul>
+        <% @user_account.phones.each do |phone| %>
+        <li><b>Phone Type:</b> <%= phone.phone_type %></li>
+        <li><b>Phone Number:</b> <%= phone.phone_number %></li>
+        <li><b>Ext:</b> <%= phone.ext %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Your account doesn't have phone number at this time.</p>
+    <% end %>
+
+    <%= link_to "Edit Account", edit_account_path(@user_account), class: "btn btn-primary"%>
+
+    <h2>Log in</h2>
     <ul>
-      <% @user_account.phones.each do |phone| %>
-      <li><b>Phone Type:</b> <%= phone.phone_type %></li>
-      <li><b>Phone Number:</b> <%= phone.phone_number %></li>
-      <li><b>Ext:</b> <%= phone.ext %></li>
-      <% end %>
+      <li><b>Email:</b> <%= @user_account.user.email %></li>
+      <li><b>Password:</b> *********</li>
     </ul>
-  <% else %>
-    <p>Your account doesn't have phone number at this time.</p>
-  <% end %>
-
-  <%= link_to "Edit Account", edit_account_path(@user_account), class: "btn btn-primary"%>
-
-  <h2>Log in</h2>
-  <ul>
-    <li><b>Email:</b> <%= @user_account.user.email %></li>
-    <li><b>Password:</b> *********</li>
-  </ul>
+  </div>
 
   <%= link_to "Edit Log in", edit_user_registration_path, class: "btn btn-primary" %>
 
