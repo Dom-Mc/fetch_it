@@ -17,15 +17,12 @@ Rails.application.routes.draw do
       end
   end
 
-  # TODO: check resources
-  # resources :orders, only: [:index, :new, :create, :show]
-
   resources :services, only: [:index, :new, :create, :show, :edit, :update]
 
   resources :accounts, path: :account, except: :destroy do
     resources :orders, only: [:index, :new, :create, :show]
   end
 
-  patch 'users/:id', to: 'users#update_role', as: 'update_role'
+  get '/admin', to: 'accounts#admin', as: 'admin'
 
 end
