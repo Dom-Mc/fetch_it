@@ -21,7 +21,9 @@ class Service {
 }//end Service
 
 $(document).on('turbolinks:load', function() {
+
   $('#new_service').submit(function(event){
+
     event.preventDefault();
 
     $.ajax({
@@ -31,13 +33,13 @@ $(document).on('turbolinks:load', function() {
       type: this.method,
 
       success: function(response){
-        let service = new Service(response);
+        const service = new Service(response);
         $("form").html(service.displayService());
       },
 
       error: function(errorResponse){
-        let error = $.parseJSON(errorResponse.responseText);
-        let html = [
+        const error = $.parseJSON(errorResponse.responseText);
+        const html = [
           '<div class="alert alert-danger alert-dismissible fade in" role="alert">',
           '<button type="button" class="close" data-dismiss="alert" aria-label="Close">',
           '<span aria-hidden="true">×</span>',
@@ -59,7 +61,7 @@ $(document).on('turbolinks:load', function() {
       complete: function(){
         // NOTE: enable submit button after preventDefault()
         $('input[type="submit"]').prop('disabled', false);
-      }//end complete:
+      }
 
     });//end ajax()
 
