@@ -5,11 +5,22 @@ class AccountsController < ApplicationController
   skip_before_action :complete_account_signup, only: [:new, :create]
   before_action :verify_user_is_new, only: [:new, :create]
   before_action :set_user_account, only: [:show, :edit, :update]
-  after_action :verify_authorized, except: :index
+  after_action :verify_authorized
+
+def admin
+  @accounts = policy_scope(Account.all)
+  authorize @accounts
+
+  respond_to do |format|
+    format.html { render :admin }
+    format.json { render json: @accounts }
+  end
+end
 
   def index
     @accounts = policy_scope(Account.all)
     authorize @accounts
+    render json: @accounts&.search(params[:account][:account_id])
   end
 
   def new
