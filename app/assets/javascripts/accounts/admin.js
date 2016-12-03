@@ -10,7 +10,7 @@ class Account {
   }
 
   displayAccount(){
-    let outputHtml = [];
+    const outputHtml = [];
     outputHtml.push(
         '<h4>Account</h4>',
         '<ul>',

@@ -2,9 +2,9 @@ $(document).on('turbolinks:load', function() {
 
   $("#search-form").submit(function(event){
 
-    let searchInput = $('#search').val();
-    let orderHistoryPath = "<%= account_orders_path(@user_account) %>";
-    let outputHtml = [
+    const searchInput = $('#search').val();
+    const orderHistoryPath = "<%= account_orders_path(@user_account) %>";
+    const outputHtml = [
           '<div class="alert panel panel-default alert-dismissible">',
           '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'
         ];
@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function() {
       type: this.method,
 
       success: function(response){
-        let urlPath = `/account/${response.account.slug}/orders/${response.id}`;
+        const urlPath = `/account/${response.account.slug}/orders/${response.id}`;
 
         outputHtml.push(
             `<h1>Order #${response.id}</h1>`,
