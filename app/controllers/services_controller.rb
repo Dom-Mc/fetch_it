@@ -8,7 +8,6 @@ class ServicesController < ApplicationController
   end
 
   def new
-    # TODO: check if user is an admin
     @service = Service.new
     authorize @service
   end
@@ -18,7 +17,6 @@ class ServicesController < ApplicationController
     authorize @service
 
     if @service.save
-      # NOTE: possibly add flash message
       render json: @service, status: 201
     else
       render json: @service.errors.as_json(full_messages: true), status: 400
@@ -30,11 +28,9 @@ class ServicesController < ApplicationController
 
   def edit
     authorize @service
-    # TODO: check if user is an admin
   end
 
   def update
-    # TODO: check if user is an admin
     authorize @service
     if @service.save
       redirect_to @service, notice: 'Your new service has been created.'
@@ -53,12 +49,13 @@ class ServicesController < ApplicationController
     end
 
     def service_params
-      params.require(:service).permit(:service_name,
-                                      :description,
-                                      :price,
-                                      :start_time,
-                                      :end_time
-                                      )
+      params.require(:service).permit(
+        :service_name,
+        :description,
+        :price,
+        :start_time,
+        :end_time
+      )
     end
 
 end
