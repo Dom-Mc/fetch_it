@@ -8,14 +8,16 @@ class Service {
   }
   displayService(){
     const html = [
-      `<h2>New Service</h2>`,
+      '<div class="flex success">',
+      `<h2>${this.service_name}</h2>`,
       '<ul>',
-      `<li>Service Name: ${this.service_name}</li>`,
-      `<li>Service Description: ${this.description}</li>`,
-      `<li>Service Start Time: ${this.start_time}</li>`,
-      `<li>Service End Time: ${this.end_time}</li>`,
-      `<a href="/services">View Services</a>`,
-      '</ul>'
+      `<li><b>Service Name:</b> ${this.service_name}</li>`,
+      `<li><b>Service Description:</b> ${this.description}</li>`,
+      `<li><b>Service Start Time:</b> ${this.start_time}</li>`,
+      `<li><b>Service End Time:</b> ${this.end_time}</li>`,
+      `<a href="/services" class="btn btn-primary">View Services</a>`,
+      '</ul>',
+      '</div>'
     ].join('')
     return html;
   }
@@ -37,7 +39,7 @@ $(document).on('turbolinks:load', function() {
       success: function(response){
         const service = new Service(response);
         $("form").html(service.displayService());
-        $(".page-title").html("Service Successfully Created")
+        $(".page-title").html("Service Created")
       },
 
       error: function(errorResponse){
@@ -47,23 +49,28 @@ $(document).on('turbolinks:load', function() {
           '<button type="button" class="close" data-dismiss="alert" aria-label="Close">',
           '<span aria-hidden="true">×</span>',
           '</button>',
+          '<div class="flex">',
           '<h4>Please fix the following errors:</h4>',
-          '<ul id=js-error>'
+          '<ul class=js-error>',
         ]
 
-        for (let errorMessage in error) {
-          html.push(`<li>${errorMessage}</li>`);
+        for (const message in error) {
+          html.push(`<li>${error[message]}</li>`);
         }
-        html.push('</ul>', '</div>');
+        html.push(
+                  '</ul>',  //.js-error
+                  '</div>', //.alert
+                  '</div>'  //.flex
+                );
 
         // NOTE: place error message above the form
         $(".container.service.form").before(html.join(''));
-
       },// end error
 
       complete: function(){
-        // NOTE: enable submit button after preventDefault()
+        // NOTE: enable submit button after preventDefault() and automatically scroll to top of window to view possible errors
         $('input[type="submit"]').prop('disabled', false);
+        $( "#services-new" ).scrollTop( 0 );
       }
 
     });//end ajax()
