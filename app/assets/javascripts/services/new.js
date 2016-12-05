@@ -1,3 +1,5 @@
+"use strict"
+
 class Service {
   constructor(jsonData){
     this.id = jsonData.id;

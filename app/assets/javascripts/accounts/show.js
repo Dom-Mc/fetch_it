@@ -1,3 +1,5 @@
+"use strict"
+
 $(document).on('turbolinks:load', function() {
 
   $("#search-form").submit(function(event){
@@ -51,4 +53,5 @@ $(document).on('turbolinks:load', function() {
 
     });//end ajax()
   });//end submit()
+
 });//end on('turbolinks:load')

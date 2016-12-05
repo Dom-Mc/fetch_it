@@ -1,3 +1,5 @@
+"use strict"
+
 class Account {
   constructor(jsonData){
       this.first_name = jsonData.first_name;
@@ -54,17 +56,15 @@ class Account {
 $(document).on('turbolinks:load', function() {
   const $submitButton = $('#select');
 
-  (function(){
-    $submitButton.prop('disabled', true);
+  $submitButton.prop('disabled', true);
 
-    $('form').change(function(){
-      if ( $('#account_account_id').val() === "" ) {
-        $submitButton.prop('disabled', true);
-      } else {
-        $submitButton.prop('disabled', false);
-      }
-    });
-  })();
+  $('form').change(function(){
+    if ( $('#account_account_id').val() === "" ) {
+      $submitButton.prop('disabled', true);
+    } else {
+      $submitButton.prop('disabled', false);
+    }
+  });//end change()
 
   $("#account-form").submit(function(event){
     const selectInput = $('#account_account_id').val();
@@ -121,4 +121,5 @@ $(document).on('turbolinks:load', function() {
 
     });//end ajax()
   });//end submit()
+
 });//end on('turbolinks:load')
