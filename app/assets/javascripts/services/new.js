@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 class Service {
   constructor(jsonData){
@@ -8,6 +8,7 @@ class Service {
     this.start_time = jsonData.start_time;
     this.end_time = jsonData.end_time;
   }
+  
   displayService(){
     const html = [
       '<div class="flex success">',
@@ -24,6 +25,7 @@ class Service {
     return html;
   }
 }//end Service
+
 
 $(document).on('turbolinks:load', function() {
 

@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 class Account {
   constructor(jsonData){
@@ -10,7 +10,7 @@ class Account {
       this.orders = jsonData.orders;
       this.account_number = jsonData.user.account_number;
   }
-
+  
   displayAccount(){
     const outputHtml = [];
     outputHtml.push(
@@ -52,6 +52,7 @@ class Account {
     return outputHtml.join('');
   }//end displayOrder()
 }//end Account
+
 
 $(document).on('turbolinks:load', function() {
   const $submitButton = $('#select');
