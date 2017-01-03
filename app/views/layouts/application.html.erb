@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= full_title(yield(:title)) %></title>
+    <title>Dom McKellar | FetchIt</title>
+    <meta name="google-site-verification" content="RPRubF6vNgx1mAYd_eUbQxQGbnTMy_PQRT-jEvSJ070">
     <%= render 'layouts/rails_default' %>
+    <%= yield :js %>
     <%= render "layouts/shim" %>
   </head>
   <body id="<%= controller_name %>-<%= action_name %>">
@@ -10,12 +12,9 @@
 
     <div class="page-wrap">
       <%= render "layouts/application/navigation" %>
-
       <%= yield %>
     </div>
 
     <%= render "layouts/application/footer" %>
-    <%# debug(user_session) if Rails.env.development? %>
-
   </body>
 </html>

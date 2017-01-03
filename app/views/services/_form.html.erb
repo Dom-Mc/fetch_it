@@ -1,13 +1,17 @@
-<%= simple_form_for service do |f| %>
-  <%= render "layouts/application/form_errors", object: service %>
+<div class="js-serviceFormContainer">
+  <%= simple_form_for service do |f| %>
+    <%= render "layouts/application/form_errors", object: service %>
 
-  <p class="form-required">*Required fields</p>
+    <p class="form-required">*Required fields</p>
 
-  <%= f.input :service_name %>
-  <%= f.input :description, as: :text, hint: 'Maximum 2000 characters' %>
-  <%= f.input :price,  as: :decimal, hint: "Omit the dollar sign (example: 25.00)" %>
-  <%= f.input :start_time, as: :time, html5: true %>
-  <%= f.input :end_time, as: :time, html5: true %>
+    <%= f.input :service_name %>
+    <%= f.input :description, as: :text, hint: 'Maximum 2000 characters' %>
+    <%= f.input :price,  as: :decimal, hint: "Omit the dollar sign (example: 25.00)" %>
+    <%= f.input :start_time, as: :time, html5: true %>
+    <%= f.input :end_time, as: :time, html5: true %>
 
-  <%= f.button :submit, class: "primary" %>
-<% end %>
+    <%= f.button :submit, class: "primary" %>
+  <% end %>
+</div>
+
+<div class="js-successMessage"></div>

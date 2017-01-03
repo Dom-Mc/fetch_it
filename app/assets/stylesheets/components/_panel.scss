@@ -57,7 +57,7 @@
 //create a new service
 #services-new {
     .alert h4{
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         margin-bottom: .7rem;
     }
   //list of errors
@@ -144,5 +144,19 @@
       margin-top: .5rem;
       margin-bottom: 1rem;
     }
+  }
+}
+
+
+form#new_service {
+    background-color: #f7f7f9;
+    margin-top: 1rem;
+    padding: 3rem 5rem;
+}
+
+
+.js-successMessage{
+  .alert{
+    margin-top: 3rem;
   }
 }
