@@ -2,27 +2,22 @@
 
 class Account {
   constructor(jsonData){
-      this.first_name = jsonData.first_name;
-      this.last_name = jsonData.last_name;
-      this.slug = jsonData.slug;
-      this.company = jsonData.company || "";
-      this.account_type = jsonData.account_type;
-      this.orders = jsonData.orders;
-      this.account_number = jsonData.user.account_number;
+    this.accountData = jsonData;
   }
-  
+
   displayAccount(){
+    const account = this.accountData;
     const outputHtml = [];
     outputHtml.push(
         '<hr>',
         '<div class="flex">',
         '<ul>',
-        `<li><b>Account Number:</b> ${this.account_number}</li>`,
-        `<li><b>First Name:</b> ${this.first_name}</li>`,
-        `<li><b>Last Name:</b> ${this.last_name}</li>`,
-        `<li><b>Account Type:</b> ${this.account_type}</li>`,
-        `<li><b>Company:</b> ${this.company || ''}</li>`,
-        `<a href="account/${this.slug}">View Profile</a>`,
+        `<li><b>Account Number:</b> ${account.account_number}</li>`,
+        `<li><b>First Name:</b> ${account.first_name}</li>`,
+        `<li><b>Last Name:</b> ${account.last_name}</li>`,
+        `<li><b>Account Type:</b> ${account.account_type}</li>`,
+        `<li><b>Company:</b> ${account.company || ''}</li>`,
+        `<a href="account/${account.slug}">More Info</a>`,
         '</ul>',
         '</div>'
     );
@@ -30,6 +25,7 @@ class Account {
   }//end displayAccount()
 
   displayOrder(){
+    const account = this.accountData;
     const outputHtml = [
       '<div class="flex">',
       '<button data-toggle="collapse" data-target="#js-dropdown-orders" class="btn btn-primary ">Display Orders</button>',
@@ -37,90 +33,95 @@ class Account {
       '<hr>',
       '<h3>Order History</h3>'
     ];
-    for (let order of this.orders){
+    for (let order of account.orders){
       outputHtml.push(
           '<ul>',
           `<li><b>Order #</b>${order.id}</li>`,
           `<li><b>Shipping Reference:</b> ${order.shipping_reference || ""}</li>`,
           `<li><b>Number of items:</b> ${order.number_of_items}</li>`,
           `<li><b>Pickup Date:</b> ${order.pickup_date}</li>`,
-          `<p><a href="account/${this.slug}/orders/${order.id}">View Order</a></p>`,
+          `<p><a href="account/${account.slug}/orders/${order.id}">More Info</a></p>`,
           '</ul>'
       );
     }
     outputHtml.push('</div>','</div>');
     return outputHtml.join('');
+
   }//end displayOrder()
+
 }//end Account
 
 
+class Service {
+  constructor(jsonData){
+      this.serviceData = jsonData;
+  }
+  displayService(){
+    const service = this.serviceData;
+    const outputHtml = [];
+    outputHtml.push(
+        '<ul class="panel-default">',
+        `<h3>${service.service_name}</h3>`,
+        `<li><b>Service Name:</b> ${service.service_name}</li>`,
+        `<li><b>Description:</b> ${service.description}</li>`,
+        `<li><b>Price:</b> ${service.price}</li>`,
+        `<li><b>Start Time:</b> ${service.start_time}</li>`,
+        `<li><b>End Time:</b> ${service.end_time}</li>`,
+        `<a href="service/${service.slug}">More Info</a>`,
+        '</ul>'
+    );
+    return outputHtml.join('');
+  }//end displayAccount()
+
+}//end Service
+
+
 $(document).on('turbolinks:load', function() {
-  const $submitButton = $('#select');
 
-  $submitButton.prop('disabled', true);
+  // NOTE: submits form via ajax
+  ajaxCreateService();
 
-  $('form').change(function(){
-    if ( $('#account_account_id').val() === "" ) {
-      $submitButton.prop('disabled', true);
-    } else {
-      $submitButton.prop('disabled', false);
-    }
-  });//end change()
+  (function(){
+    $("#js-serviceBtnGroup").click(function(event){
 
-  $("#account-form").submit(function(event){
-    const selectInput = $('#account_account_id').val();
+      event.preventDefault();
+      // var htmlPanel = [];
 
-    event.preventDefault();
-    $('.js-account').html("");
+      // NOTE: check witch button from button group was clicked
+      if (event.target.id === "js-listServicesBtn"){
 
-    $.ajax({
-      url: this.action,
-      data: $(this).serialize(),
-      dataType: "json",
-      type: this.method,
+        // NOTE: toggles the list of services visibility
+        $("#js-displayServices").toggle();
 
-      success: function(jsonResponse){
-        if (selectInput === "View All Accounts"){
-          const html = ['<h3 class="text-center">User Accounts</h3>'];
+      } else {
 
-          for (let val of jsonResponse){
-            let account = new Account(val);
-            html.push(account.displayAccount());
-          }
+        // NOTE: toggles the form's visibility
+        $("#new_service").toggle();
 
-        $('.js-account').append(html);
+        // NOTE: change button text to show & hide form
+        changeBtnText();
+      }
 
-        } else {
-            const html = ['<h3 class="text-center">User Account</h3>'];
-            const account = new Account(jsonResponse);
+    });//end click()
+  }());//end closure
 
-            // NOTE: create a list of accounts & orders
-            html.push(account.displayAccount());
-            html.push(account.displayOrder());
-            $('.js-account').append(html);
-        }
 
-      },//end success
 
-      error: function(error){
+  (function(){
+    const $submitButton = $('#select');
 
-        // NOTE: create an error message
-        const html = [
-            `<h3>Account belonging to ${selectInput} could not be found</h3>`,
-            '<p>Please check the account and try again.</p>'
-          ].join('');
-          return $('.js-account').append(html);
-      },//end error:
+    $submitButton.prop('disabled', true);
 
-      complete: function(){
-        // NOTE: enable submit button after preventDefault()
-        $('input[type="submit"]').prop('disabled', false);
+    $('#account-form').change(function(){
+      if ( $('#account_account_id').val() === "" ) {
+        $submitButton.prop('disabled', true);
+      } else {
+        $submitButton.prop('disabled', false);
+      }
+    });//end change()
 
-        // NOTE: add bootstrap class to display a panel
-        $('#js-panel').addClass("panel panel-default")
-      }//end complete:
+    ajaxGetAccounts();
 
-    });//end ajax()
-  });//end submit()
+  }());//end closure
 
 });//end on('turbolinks:load')

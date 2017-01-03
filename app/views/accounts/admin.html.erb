@@ -1,12 +1,50 @@
-<div class="container">
+<% content_for :js do %>
+  <script>
+
+  $(document).on('turbolinks:load', function() {
+    // NOTE: hide form when view first renders
+    $("#new_service").hide();
+
+    $.getJSON("/services.json", function(data){
+
+      const serviceListOutput = $.map(data, function(service, i){
+        const newService = new Service(service);
+        return newService.displayService();
+      }).join('');//end map()
+
+      // NOTE: list services on page
+      $("#js-displayServices").html(serviceListOutput).hide();
+
+    });//end getJSON()
+
+    $("#new_service").hide();
+
+  });//end on()
+
+  function changeBtnText(){
+    if ($("#new_service").is(':visible')){
+      $("#js-newServiceBtn").text("Hide Service Form");
+    } else {
+      $("#js-newServiceBtn").text("Create Service");
+    }
+  }//end changeBtnText()
+  </script>
+<% end %>
+
+
+<div class="container formErrors">
   <h1 class="page-title">Manage Accounts</h1>
 
   <h2>Services</h2>
 
-  <div class="btn-group">
-    <%= link_to "Create Service", new_service_path, class: "btn btn-primary"%>
-    <%= link_to "View Services", services_path, class: "btn btn-primary"%>
+  <div class="btn-group" id="js-serviceBtnGroup">
+    <%= link_to "Create Service", nil, id: "js-newServiceBtn", class: "btn btn-primary"%>
+    <%= link_to "View Services", nil, id: "js-listServicesBtn", class: "btn btn-primary"%>
   </div>
+
+    <%= render "/services/form", service: Service.new %>
+
+  <div id="js-displayServices"></div>
 
   <h2>Users</h2>
   <%= form_tag(accounts_path, method: "get", id: "account-form") do %>
