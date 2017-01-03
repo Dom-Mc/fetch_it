@@ -9,11 +9,11 @@ class AccountsController < ApplicationController
 
 def admin
   @accounts = policy_scope(Account.all)
+  @services = policy_scope(Service.all)
   authorize @accounts
-
   respond_to do |format|
     format.html { render :admin }
-    format.json { render json: @accounts }
+    format.json { render json: @services }
   end
 end
 

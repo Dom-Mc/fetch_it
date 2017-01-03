@@ -5,6 +5,10 @@ class ServicesController < ApplicationController
 
   def index
     @services = Service.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @services }
+    end
   end
 
   def new
@@ -16,10 +20,14 @@ class ServicesController < ApplicationController
     @service = Service.new(service_params)
     authorize @service
 
-    if @service.save
-      render json: @service, status: 201
-    else
-      render json: @service.errors.as_json(full_messages: true), status: 400
+    respond_to do |format|
+      if @service.save
+        format.html { redirect_to @service, notice: 'Service was successfully created.' }
+        format.json { render json: @service, status: 201 }
+      else
+        format.html { render :new }
+        format.json { render json: @service.errors.as_json(full_messages: true), status: 400 }
+      end
     end
   end
 
