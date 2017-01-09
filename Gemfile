@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
 #Application build with the following Ruby version:
-ruby "2.3.1"
+ruby "2.4.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+# gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.0', '>= 5.0.1'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -58,7 +59,7 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'rails-erd'
+  # gem 'rails-erd'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
@@ -76,4 +77,4 @@ group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
