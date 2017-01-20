@@ -1,6 +1,6 @@
 # FetchIt
 
-FetchIt is a Task Running (aka Delivery) service application based on a fictitious company located in San Francisco, CA.
+[FetchIt](https://dom-mckellar-fetchit.herokuapp.com/) is a Task Running (aka Delivery) service application based on a fictitious company located in San Francisco, CA.
 
 It was designed with both the customer and business in mind. Where customers have the ability to create an account, place orders, and access their order history. While from the business side, a manager(s) have the capacity to create and customize various services to meet their needs. In addition, business managers' have built in administrative privileges to both keep track of orders and manage user accounts.
 
@@ -56,10 +56,10 @@ $ User.create(email: "your_email@example.com", password: "your_password", passwo
 
 
 ## Creator
-
-Dom McKellar
-* http://domckellar.com/
-* https://github.com/Dom-Mc
+###### [Dominic McKellar](https://twitter.com/_dom_mc)
+* [Website | domckellar.com](http://domckellar.com/)
+* [Blog | newme.io](http://newme.io/)
+* [Github | Dom-Mc](https://github.com/Dom-Mc)
 
 ## License
 
